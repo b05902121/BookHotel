@@ -17,14 +17,14 @@ public class SignHandler implements ServiceModel {
 	@Override
 	public void notifyView() {
 		// TODO Auto-generated method stub
-
-	}
-	
-	public void signIn() {
 		
 	}
 	
-	public void signUp() {
+	public void signIn(String username, String pwd) {
+		
+	}
+	
+	public void signUp(String username, String pwd) {
 		
 	}
 
