@@ -15,15 +15,8 @@ public class SignHandler implements ServiceModel {
     private DatabaseUser dbUser = null;
 
     public SignHandler() {
-        // TODO Auto-generated constructor stub
         this.dbUser = new DatabaseUser("jdbc.properties");
     }
-
-    /*@Override
-	public void notifyView() {
-		// TODO Auto-generated method stub
-
-	}*/
 
     public Boolean signIn(String username, String pwd) throws SQLException {
         /*
