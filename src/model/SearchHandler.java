@@ -9,23 +9,23 @@ package model;
 
 public class SearchHandler implements ServiceModel {
 
-	public SearchHandler() {
-		// TODO Auto-generated constructor stub
-	}
+    public SearchHandler() {
+        // TODO Auto-generated constructor stub
+    }
 
-	@Override
+    /*@Override
 	public void notifyView() {
 		// TODO Auto-generated method stub
-		
-	}
-	
-	public void SearchAvailableRoom(int hotelId, int roomType, int startDate, int endDate) {
-		
-	}
-	
-	public void SearchHotelbyStarLevel(int starLevel, Boolean sortbyPrice) {
-		
-	}
-	
+
+	}*/
+
+    public void SearchAvailableRoom(int hotelId, int roomType, int startDate, int endDate) {
+
+    }
+
+    public void SearchHotelbyStarLevel(int starLevel, Boolean sortbyPrice) {
+
+    }
+
 
 }
