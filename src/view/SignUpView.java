@@ -1,19 +1,26 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import controller.SignUpController;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class SignUpView {
-
-	private JFrame frame;
-	private JTextField textField;
+	// UI
+	public JFrame frame;
+	private JTextField usernameTextField;
 	private JTextField textField_1;
+	
+	// Controller
+	private SignUpController controller;
 
 	/**
 	 * Launch the application.
@@ -29,6 +36,12 @@ public class SignUpView {
 				}
 			}
 		});
+	}
+	
+	public void setProperty(SignUpController controller, JFrame frame) {
+		this.controller = controller;
+		this.frame = frame;
+		initialize(frame);
 	}
 
 	/**
@@ -62,18 +75,25 @@ public class SignUpView {
 		label.setBounds(106, 126, 84, 27);
 		frame.getContentPane().add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(189, 165, 130, 26);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		usernameTextField = new JTextField();
+		usernameTextField.setBounds(189, 165, 130, 26);
+		frame.getContentPane().add(usernameTextField);
+		usernameTextField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(189, 126, 130, 26);
 		frame.getContentPane().add(textField_1);
 		
-		JButton btnNewButton = new JButton("submit");
-		btnNewButton.setBounds(151, 234, 117, 29);
-		frame.getContentPane().add(btnNewButton);
+		JButton submitButton = new JButton("submit");
+		submitButton.setBounds(151, 234, 117, 29);
+		frame.getContentPane().add(submitButton);
+		
+		// Set ActionListener
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.signUp(usernameTextField.getText(), textField_1.getText());
+			}
+		});
 	}
 }
