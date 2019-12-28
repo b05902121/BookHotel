@@ -1,36 +1,34 @@
 package controller;
-import view.LoginView;
+
 import javax.swing.*;
-import controller.TestSignUpController;
-import view.SignUpView;
+import main.FrameType;
 
 public class MainController {
+	private static JFrame mainFrame = new JFrame(); 
 	
-	public static void main(String[] args) {
-		
-		// Init other controller
-		//  ..
-		JFrame frame = new JFrame(); 
-		MainController mainController = new MainController();
-//		LoginView window = new LoginView();
-//		window.init(frame, new TestSignUpController(mainController));
-//		frame.setVisible(true);
-		mainController.drawFrame(frame, 1, mainController);
-	
-		
+	public void start() {
+		showLoginView();
 	}
 	
-	public void drawFrame(JFrame frame, int frameType, MainController mainController) {
-		switch (frameType){
-			case 1:
-				LoginView window = new LoginView();
-				window.init(frame, new TestSignUpController(mainController));
-				frame.setVisible(true);
+	public void showLoginView() {
+		drawFrame(FrameType.Login);
+	}
+	
+	public void showSignUpView() {
+		drawFrame(FrameType.SignUp);
+	}
+
+	public void drawFrame(FrameType frameType) {
+		switch (frameType) {
+			case Login:
+				LoginController loginController = new LoginController(this);
+				loginController.show(mainFrame);
 				break;
-			case 2:
-				SignUpView signupView = new SignUpView();
-				signupView.init(frame);
-				frame.setVisible(true);
+			case SignUp:
+				SignUpController testSignUpController = new SignUpController(this);
+				testSignUpController.show(mainFrame);
+				break;
+			case Menu:
 				break;
 				/*
 			case frameType:
@@ -38,16 +36,13 @@ public class MainController {
 				draw another view ...
 				break
 			EXAMPLE : 
-			case 2:
+			case SignUp:
 				SignUpView window = new SignUpView();
 				window.init(frame, new SignUpViewController(mainController));
 				frame.setVisible(true);	
-			*/	
-			default:
-				break;
+			*/
 		}
 	}
-	
 }
 
 

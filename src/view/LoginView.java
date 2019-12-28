@@ -4,55 +4,60 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import controller.MainController;
-import controller.TestSignUpController;
+import controller.LoginController;
 
 public class LoginView {
 
 	public JFrame frame;
 	private JTextField usernameField;
 	private JTextField passwordField;
-	private TestSignUpController testSignUpController;
-
+	
+	private LoginController controller;
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					LoginView window = new LoginView();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-
-	public void init(JFrame frame, TestSignUpController testSignUpController) {
-		this.testSignUpController = testSignUpController;
-		this.frame = frame;
-		initialize(frame);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginView window = new LoginView();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
 	public void setVisible() {
 		this.frame.setVisible(true);
 	}
+	
+	public void showErrorMessage(String message) {
+		JOptionPane.showMessageDialog(this.frame, message);
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public void setProperty(LoginController controller, JFrame frame) {
+		this.controller = controller;
+		this.frame = frame;
+		initialize();
+	}
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
-	private void initialize(JFrame frame) {
+	private void initialize() {
 //		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,18 +87,24 @@ public class LoginView {
 		frame.getContentPane().add(passwordField);
 		
 		JButton registerBtn = new JButton("register");
-		registerBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				testSignUpController.recv(1, frame);
-				
-			}
-		});
 		registerBtn.setBounds(105, 220, 97, 27);
 		frame.getContentPane().add(registerBtn);
 		
 		JButton loginBtn = new JButton("login");
 		loginBtn.setBounds(227, 219, 117, 29);
-		frame.getContentPane().add(loginBtn);
-//		
+		frame.getContentPane().add(loginBtn);	
+		
+		// Set ActionListener
+		registerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.regist(usernameField.getText(), passwordField.getText());
+			}
+		});
+		
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.login(usernameField.getText(), passwordField.getText());
+			}
+		});
 	}
 }
