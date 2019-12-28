@@ -1,5 +1,10 @@
+package test;
+
 import java.io.*;
 import java.sql.*;
+
+import databaseUtil.DatabaseBuildAllTables;
+import databaseUtil.DatabaseUser;
 
 public class DatabaseUtilTest{
     public static void main(String[] args) {
