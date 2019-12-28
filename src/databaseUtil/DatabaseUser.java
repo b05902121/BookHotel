@@ -1,7 +1,7 @@
-import java.sql.Connection;
+package databaseUtil;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatabaseUser extends DatabaseConnect {
     public DatabaseUser(String configFile) {
