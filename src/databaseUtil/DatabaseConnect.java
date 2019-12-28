@@ -30,6 +30,7 @@ public class DatabaseConnect{
             Class.forName(classPath);
             conn = DriverManager.getConnection(url, user, password);
             stmt = conn.createStatement();
+            stmt.executeUpdate("USE `hotelList`;");
         } catch(IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
