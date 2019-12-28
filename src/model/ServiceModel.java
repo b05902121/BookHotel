@@ -8,5 +8,5 @@ package model;
  */
 
 public interface ServiceModel {
-	public void notifyView();
+	//public void notifyView();
 }
