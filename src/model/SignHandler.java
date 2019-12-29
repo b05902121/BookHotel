@@ -15,7 +15,7 @@ public class SignHandler implements ServiceModel {
     private DatabaseUser dbUser = null;
 
     public SignHandler() {
-        this.dbUser = new DatabaseUser("jdbc.properties");
+        this.dbUser = new DatabaseUser("config/jdbc.properties");
     }
 
     public Boolean signIn(String username, String pwd) throws SQLException {
