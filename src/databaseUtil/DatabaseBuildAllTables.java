@@ -28,7 +28,6 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
             String[] commands = stringBuilder.toString().split(";");
             for(int i = 0; i < commands.length; i++){
                 if(!commands[i].equals("")){
-//                    System.out.print(commands[i] + "\n");
                     stmt.executeUpdate(commands[i]);
                 }
             }
@@ -56,7 +55,6 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
             String[] commands = stringBuilder.toString().split(";");
             for(int i = 0; i < commands.length; i++){
                 if(!commands[i].equals("")){
-//                    System.out.print(commands[i] + "\n");
                     stmt.executeUpdate(commands[i]);
                 }
             }
