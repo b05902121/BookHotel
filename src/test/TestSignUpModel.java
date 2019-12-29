@@ -1,13 +1,13 @@
 package test;
 
 import java.sql.*;
-import model.SignHandler;
+import model.SignUpModel;
 import databaseUtil.DatabaseBuildAllTables;
 import databaseUtil.DatabaseUser;
 
-public class TestSignHandler {
+public class TestSignUpModel {
 
-    public TestSignHandler() throws SQLException {
+    public TestSignUpModel() throws SQLException {
         /*  Initialize databases and tables */
         DatabaseBuildAllTables databaseBuildAllTables = new DatabaseBuildAllTables("config/jdbc.properties");
         if(!databaseBuildAllTables.getConnection().isClosed()) {
@@ -21,23 +21,19 @@ public class TestSignHandler {
         if(!databaseUser.getConnection().isClosed()) {
             System.out.print("[LOG] DatabaseUser start.\n");
         }
-
     }
 
     public static void main(String[] args) throws SQLException {
-        SignHandler sh = new SignHandler();
+        SignUpModel signUpModel = new SignUpModel();
 
-        Boolean ret = sh.signUp("bbbb", "123123");
+        Boolean ret = signUpModel.signUp("gggg", "123123");
         if (ret) {System.out.println("Sign up successfully.");}
         else {System.out.println("User already exists.");}
 
-        Boolean ret2 = sh.signUp("bbbb", "123123");
+        Boolean ret2 = signUpModel.signUp("gggg", "123123");
         if (ret2) {System.out.println("Sign up successfully.");}
         else {System.out.println("User already exists.");}
 
-        Boolean ret3 = sh.signIn("bbbb", "123123");
-        if (ret3) {System.out.println("Sign in successfully.");}
-        else {System.out.println("username or password incorrect");}
     }
 
 }

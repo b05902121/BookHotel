@@ -1,20 +1,13 @@
 package model;
 
-/**
- * @author gerber
- * This class implements the interface ServiceModel.
- * This class has two class methods, signIn() and signUp().
- * The class SignController should hold a reference of this class.
- */
-
 import java.sql.*;
 import databaseUtil.DatabaseUser;
 
-public class SignHandler implements ServiceModel {
-
+public class SignInModel {
+    
     private DatabaseUser dbUser = null;
 
-    public SignHandler() {
+    public SignInModel() {
         this.dbUser = new DatabaseUser("config/jdbc.properties");
     }
 
@@ -37,21 +30,4 @@ public class SignHandler implements ServiceModel {
         }
         return Boolean.FALSE;
     }
-
-    public Boolean signUp(String username, String pwd) throws SQLException {
-        /* 
-         * First checks whether username exists in database.
-         * If yes, return false.
-         * If no, insert user and return true.
-         */
-
-        ResultSet resultSet = dbUser.getUserById(username);
-        if(resultSet.next() == Boolean.TRUE) {
-            // username exists
-            return Boolean.FALSE;
-        }
-        dbUser.InsertUser(username, pwd);
-        return Boolean.TRUE;
-    }
-
 }
