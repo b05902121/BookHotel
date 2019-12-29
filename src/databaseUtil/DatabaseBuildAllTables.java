@@ -44,7 +44,7 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
     public void insertDefaultData(){
         System.out.print("[LOG] DatabaseUser insertDefaultData().\n");
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("InsertDefaultData.sql"));
+            BufferedReader reader = new BufferedReader(new FileReader("config/InsertDefaultData.sql"));
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null){
