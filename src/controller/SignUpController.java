@@ -11,16 +11,16 @@ public class SignUpController extends BaseController {
 	private MainController mainController;
 	private SignUpView signUpView = new SignUpView();
 	private SignUpModel signUpModel = new SignUpModel();
-	
+
 	private String enterUsername;
 	private String enterPassword;
-	
+
 	public SignUpController(MainController mainController, String username, String password) {
 		this.mainController = mainController;
 		enterUsername = username;
 		enterPassword = password;
 	}
-	
+
 	public void show(JFrame frame) {
 		signUpView.setProperty(this, frame);
 		if (!enterUsername.isBlank()) {
@@ -31,7 +31,7 @@ public class SignUpController extends BaseController {
 		}
 		frame.setVisible(true);
 	}
-	
+
 	public void signUp(String username, String password) {
 		System.out.println(String.format("[SignUp] Username: %s, Password: %s", username, password));
 		if (!username.isEmpty() && !password.isEmpty()) {
@@ -53,6 +53,3 @@ public class SignUpController extends BaseController {
 		}
 	}
 }
-
-
-
