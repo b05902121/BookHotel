@@ -5,21 +5,23 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-import controller.LoginController;
+import controller.SignInController;
 
-public class LoginView {
+public class SignInView {
 
 	public JFrame frame;
 	private JTextField usernameField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 	
-	private LoginController controller;
+	private SignInController controller;
 	
 	/**
 	 * Launch the application.
@@ -28,7 +30,7 @@ public class LoginView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginView window = new LoginView();
+					SignInView window = new SignInView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +50,7 @@ public class LoginView {
 	/**
 	 * Create the application.
 	 */
-	public void setProperty(LoginController controller, JFrame frame) {
+	public void setProperty(SignInController controller, JFrame frame) {
 		this.controller = controller;
 		this.frame = frame;
 		initialize();
@@ -81,7 +83,7 @@ public class LoginView {
 		frame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		
-		passwordField = new JTextField();
+		passwordField = new  JPasswordField();
 		passwordField.setColumns(10);
 		passwordField.setBounds(206, 157, 151, 15);
 		frame.getContentPane().add(passwordField);
@@ -97,13 +99,13 @@ public class LoginView {
 		// Set ActionListener
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.regist(usernameField.getText(), passwordField.getText());
+				controller.regist(usernameField.getText(), String.copyValueOf(passwordField.getPassword()));
 			}
 		});
 		
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.login(usernameField.getText(), passwordField.getText());
+				controller.login(usernameField.getText(), String.copyValueOf( passwordField.getPassword()));
 			}
 		});
 	}

@@ -2,11 +2,11 @@ package controller;
 
 import javax.swing.JFrame;
 
-import view.LoginView;
+import view.SignInView;
 
-public class MenuController {
+public class MenuController extends BaseController {
 	private MainController mainController;
-	LoginView loginView = new LoginView();
+	SignInView loginView = new SignInView();
 	// LoginModel loginModel = new LoginModel(this);
 	
 	public MenuController(MainController mainController) {
@@ -14,7 +14,7 @@ public class MenuController {
 	}
 	
 	public void show(JFrame frame) {
-//		loginView.setProperty(this, frame);
+//		menuView.setProperty(this, frame);
 		frame.setVisible(true);
 	}
 	
@@ -29,14 +29,9 @@ public class MenuController {
 		boolean isSuccessLogin = true; // = loginModel.login(username, password);
 		if (isSuccessLogin) {
 			clearFrame(loginView.frame);
-			this.mainController.showSignUpView();
+//			this.mainController.showSignUpView();
 		} else {
 			loginView.showErrorMessage("Invalid username or password");
 		}
-	}
-	
-	private void clearFrame(JFrame frame) {
-		frame.getContentPane().removeAll();
-		frame.getContentPane().repaint();
 	}
 }

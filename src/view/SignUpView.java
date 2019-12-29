@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
 import controller.SignUpController;
@@ -17,7 +19,7 @@ public class SignUpView {
 	// UI
 	public JFrame frame;
 	private JTextField usernameTextField;
-	private JTextField textField_1;
+	private JPasswordField passwordTextField;
 	
 	// Controller
 	private SignUpController controller;
@@ -42,6 +44,18 @@ public class SignUpView {
 		this.controller = controller;
 		this.frame = frame;
 		initialize(frame);
+	}
+	
+	public void setUsername(String text) {
+		usernameTextField.setText(text);
+	}
+	
+	public void setPassword(String text) {
+		passwordTextField.setText(text);
+	}
+	
+	public void showErrorMessage(String message) {
+		JOptionPane.showMessageDialog(this.frame, message);
 	}
 
 	/**
@@ -76,14 +90,14 @@ public class SignUpView {
 		frame.getContentPane().add(label);
 		
 		usernameTextField = new JTextField();
-		usernameTextField.setBounds(189, 165, 130, 26);
+		usernameTextField.setBounds(189, 126, 130, 26);
 		frame.getContentPane().add(usernameTextField);
 		usernameTextField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(189, 126, 130, 26);
-		frame.getContentPane().add(textField_1);
+		passwordTextField = new JPasswordField();
+		passwordTextField.setColumns(10);
+		passwordTextField.setBounds(189, 165, 130, 26);
+		frame.getContentPane().add(passwordTextField);
 		
 		JButton submitButton = new JButton("submit");
 		submitButton.setBounds(151, 234, 117, 29);
@@ -92,7 +106,7 @@ public class SignUpView {
 		// Set ActionListener
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.signUp(usernameTextField.getText(), textField_1.getText());
+				controller.signUp(usernameTextField.getText(), String.copyValueOf(passwordTextField.getPassword()));
 			}
 		});
 	}

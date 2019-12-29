@@ -7,41 +7,19 @@ public class MainController {
 	private static JFrame mainFrame = new JFrame(); 
 	
 	public void start() {
-		showLoginView();
+		showSignInView();
 	}
 	
-	public void showLoginView() {
-		drawFrame(FrameType.Login);
+	public void showSignInView() {
+		drawFrame(new SignInController(this), FrameType.Login);
 	}
 	
-	public void showSignUpView() {
-		drawFrame(FrameType.SignUp);
+	public void showSignUpView(String username, String password) {
+		drawFrame(new SignUpController(this, username, password), FrameType.SignUp);
 	}
 
-	public void drawFrame(FrameType frameType) {
-		switch (frameType) {
-			case Login:
-				LoginController loginController = new LoginController(this);
-				loginController.show(mainFrame);
-				break;
-			case SignUp:
-				SignUpController testSignUpController = new SignUpController(this);
-				testSignUpController.show(mainFrame);
-				break;
-			case Menu:
-				break;
-				/*
-			case frameType:
-				..
-				draw another view ...
-				break
-			EXAMPLE : 
-			case SignUp:
-				SignUpView window = new SignUpView();
-				window.init(frame, new SignUpViewController(mainController));
-				frame.setVisible(true);	
-			*/
-		}
+	private void drawFrame(BaseController controller, FrameType frameType) {
+		controller.show(mainFrame);
 	}
 }
 
