@@ -45,7 +45,6 @@ public class SignUpView {
 		this.frame = frame;
 		initialize(frame);
 	}
-<<<<<<< HEAD
 
 	public void setUsername(String text) {
 		usernameTextField.setText(text);
@@ -58,8 +57,6 @@ public class SignUpView {
 	public void showErrorMessage(String message) {
 		JOptionPane.showMessageDialog(this.frame, message);
 	}
-=======
->>>>>>> 838aeb0cda404aac628698e2ad019c9165aa7c1f
 
 	/**
 	 * Create the application.
