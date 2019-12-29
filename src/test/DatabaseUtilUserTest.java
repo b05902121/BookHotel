@@ -3,7 +3,6 @@ package test;
 import java.sql.*;
 
 import databaseUtil.DatabaseBuildAllTables;
-import databaseUtil.DatabaseHotel;
 import databaseUtil.DatabaseUser;
 
 public class DatabaseUtilUserTest {
