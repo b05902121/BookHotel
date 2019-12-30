@@ -4,4 +4,5 @@ public enum FrameType {
     Login,
     SignUp,
     Menu,
+    Query,
 }

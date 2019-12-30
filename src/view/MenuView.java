@@ -52,10 +52,6 @@ public class MenuView extends BaseView {
         frame.getContentPane().setLayout(null);
 
         JButton orderHotelButton = new JButton("OrderHotel");
-        orderHotelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
         orderHotelButton.setBounds(70, 70, 117, 45);
         frame.getContentPane().add(orderHotelButton);
 
@@ -71,10 +67,18 @@ public class MenuView extends BaseView {
         logoutButton.setBounds(250, 160, 117, 29);
         frame.getContentPane().add(logoutButton);
         
+
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.logout();
             }
         });
+
+        orderHotelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	controller.showQueryHotelView();
+            }
+        });
+        
     }
 }

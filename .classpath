@@ -12,6 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="jar/gson-2.8.2.jar">
+	<classpathentry kind="lib" path="jar/jcalendar-1.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
