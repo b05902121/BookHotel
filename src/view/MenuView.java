@@ -54,24 +54,24 @@ public class MenuView extends BaseView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        JButton btnNewButton = new JButton("TopLeft");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton orderHotelButton = new JButton("OrderHotel");
+        orderHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        btnNewButton.setBounds(70, 70, 117, 29);
-        frame.getContentPane().add(btnNewButton);
+        orderHotelButton.setBounds(70, 70, 117, 45);
+        frame.getContentPane().add(orderHotelButton);
 
-        JButton btnNewButton_1 = new JButton("BottomLeft");
-        btnNewButton_1.setBounds(70, 160, 117, 29);
-        frame.getContentPane().add(btnNewButton_1);
+//        JButton xxxx = new JButton("BottomLeft");
+//        xxxx.setBounds(70, 160, 117, 29);
+//        frame.getContentPane().add(xxxx);
 
-        JButton btnNewButton_2 = new JButton("TopRight");
-        btnNewButton_2.setBounds(250, 70, 117, 29);
-        frame.getContentPane().add(btnNewButton_2);
+        JButton checkOrderButton = new JButton("CheckOrder");
+        checkOrderButton.setBounds(250, 70, 117, 45);
+        frame.getContentPane().add(checkOrderButton);
 
-        JButton btnNewButton_3 = new JButton("BottomRight");
-        btnNewButton_3.setBounds(250, 160, 117, 29);
-        frame.getContentPane().add(btnNewButton_3);
+        JButton logoutButton = new JButton("Log Out");
+        logoutButton.setBounds(250, 160, 117, 29);
+        frame.getContentPane().add(logoutButton);
     }
 }
