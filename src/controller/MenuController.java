@@ -2,19 +2,21 @@ package controller;
 
 import javax.swing.JFrame;
 
+import main.UserSession;
 import view.MenuView;
 
 public class MenuController extends BaseController {
-	private MainController mainController;
+	private RoutingController router;
 	private MenuView menuView = new MenuView();
 	// MenuModel menuModel = new MenuModel(this);
 
-	public MenuController(MainController mainController) {
-		this.mainController = mainController;
+	public MenuController(RoutingController router) {
+		this.router = router;
 	}
 
 	public void show(JFrame frame) {
 		menuView.setProperty(this, frame);
 		frame.setVisible(true);
+		UserSession.getInstance(true).testingMethod();
 	}
 }

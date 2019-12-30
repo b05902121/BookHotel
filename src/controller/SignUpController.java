@@ -3,20 +3,20 @@ package controller;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
-import controller.MainController;
+import controller.RoutingController;
 import model.SignUpModel;
 import view.SignUpView;
 
 public class SignUpController extends BaseController {
-	private MainController mainController;
+	private RoutingController router;
 	private SignUpView signUpView = new SignUpView();
 	private SignUpModel signUpModel = new SignUpModel();
 
 	private String enterUsername;
 	private String enterPassword;
 
-	public SignUpController(MainController mainController, String username, String password) {
-		this.mainController = mainController;
+	public SignUpController(RoutingController router, String username, String password) {
+		this.router = router;
 		enterUsername = username;
 		enterPassword = password;
 	}
@@ -39,7 +39,7 @@ public class SignUpController extends BaseController {
 				boolean isSuccessSignUp = signUpModel.signUp(username, password);
 				if (isSuccessSignUp) {
 					clearFrame(signUpView.frame);
-					 this.mainController.showSignInView();
+					 this.router.showSignInView();
 					System.out.println("[SignUp] SignUp Success");
 				} else {
 					 signUpView.showErrorMessage("Sign-up failed, please try again.");

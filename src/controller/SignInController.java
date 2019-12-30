@@ -7,12 +7,12 @@ import model.SignInModel;
 import view.SignInView;
 
 public class SignInController extends BaseController {
-	private MainController mainController;
+	private RoutingController router;
 	private SignInView loginView = new SignInView();
 	 SignInModel signInModel = new SignInModel();
 	
-	public SignInController(MainController mainController) {
-		this.mainController = mainController;
+	public SignInController(RoutingController router) {
+		this.router = router;
 	}
 	
 	public void show(JFrame frame) {
@@ -22,7 +22,7 @@ public class SignInController extends BaseController {
 	
 	public void regist(String username, String password) {
 		clearFrame(loginView.frame);
-		this.mainController.showSignUpView(username, password);
+		this.router.showSignUpView(username, password);
 	}
 	
 	public void login(String username, String password) {
@@ -31,7 +31,7 @@ public class SignInController extends BaseController {
 			boolean isSuccessLogin = signInModel.signIn(username, password);
 			if (isSuccessLogin) {
 				clearFrame(loginView.frame);
-				this.mainController.showMenu();
+				this.router.showMenu();
 				System.out.println(String.format("[SignIn] isSuccessLogin -> %b", isSuccessLogin));
 			} else {
 				loginView.showErrorMessage("Invalid username or password");

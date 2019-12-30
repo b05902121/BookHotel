@@ -3,7 +3,8 @@ package controller;
 import javax.swing.*;
 import main.FrameType;
 
-public class MainController {
+public class RoutingController {
+//	private static RoutingController sharedInstance = new RoutingController();
 	private static JFrame mainFrame = new JFrame();
 
 	public void start() {
