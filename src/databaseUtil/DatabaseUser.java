@@ -9,14 +9,14 @@ public class DatabaseUser extends DatabaseConnect {
     }
 
     public void InsertUser(String Id, String password){
-        System.out.print("[LOG] DatabaseUser InsertUser().\n");
+        System.out.print("[dbUtil] DatabaseUser InsertUser().\n");
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("INSERT INTO `Users`(`UID`,`password`) VALUES ( '");
         stringBuilder.append(Id);
         stringBuilder.append("' , '");
         stringBuilder.append(password);
         stringBuilder.append("' );");
-        System.out.print(stringBuilder.toString() + "\n");
+        System.out.print("[dbUtil] " + stringBuilder.toString() + "\n");
         try {
             stmt.executeUpdate(stringBuilder.toString());
         } catch (SQLException e) {
@@ -30,7 +30,7 @@ public class DatabaseUser extends DatabaseConnect {
         stringBuilder.append("SELECT * FROM `Users` WHERE  `UID` = '");
         stringBuilder.append(Id);
         stringBuilder.append("' ;");
-        System.out.print(stringBuilder.toString() + "\n");
+        System.out.print("[dbUtil] " + stringBuilder.toString() + "\n");
         try {
             return stmt.executeQuery(stringBuilder.toString());
         } catch (SQLException e) {
