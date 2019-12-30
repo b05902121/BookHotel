@@ -17,7 +17,7 @@ public class DatabaseConnect{
     protected  Statement stmt = null;
 
     public DatabaseConnect(String configFile){
-        System.out.print("[LOG] Build DatabaseConnect connection.\n");
+        System.out.print("[dbUtil] Build DatabaseConnect connection.\n");
         try {
             Properties props = new Properties();
             props.load(new FileInputStream(configFile));
@@ -41,7 +41,7 @@ public class DatabaseConnect{
     }
 
     public void closeConnection() throws SQLException{
-        System.out.print("[LOG] Mysql connection close.\n");
+        System.out.print("[dbUtil] Mysql connection close.\n");
         conn.close();
     }
 

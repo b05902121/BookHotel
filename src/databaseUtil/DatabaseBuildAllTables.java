@@ -14,7 +14,7 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
     }
 
     public void start(){
-        System.out.print("[LOG] DatabaseBuildAllTables start().\n");
+        System.out.print("[dbUtil] DatabaseBuildAllTables start().\n");
         try {
             BufferedReader reader = new BufferedReader(new FileReader("config/buildAllTables.sql"));
             StringBuilder stringBuilder = new StringBuilder();
@@ -41,7 +41,7 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
     }
 
     public void insertDefaultData(){
-        System.out.print("[LOG] DatabaseUser insertDefaultData().\n");
+        System.out.print("[dbUtil] DatabaseUser insertDefaultData().\n");
         try {
             BufferedReader reader = new BufferedReader(new FileReader("config/InsertDefaultData.sql"));
             StringBuilder stringBuilder = new StringBuilder();
