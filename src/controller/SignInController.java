@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 import javax.swing.JFrame;
+
 import model.SignInModel;
 import view.SignInView;
 
@@ -29,8 +30,8 @@ public class SignInController extends BaseController {
 		try {
 			boolean isSuccessLogin = signInModel.signIn(username, password);
 			if (isSuccessLogin) {
-//				clearFrame(loginView.frame);
-//				this.mainController.showXXXXView();
+				clearFrame(loginView.frame);
+				this.mainController.showMenu();
 				System.out.println(String.format("[SignIn] isSuccessLogin -> %b", isSuccessLogin));
 			} else {
 				loginView.showErrorMessage("Invalid username or password");

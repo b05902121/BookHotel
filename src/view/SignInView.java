@@ -4,20 +4,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 import controller.SignInController;
 
-public class SignInView {
-
-	public JFrame frame;
+public class SignInView extends BaseView {
+//	private JFrame frame;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	
@@ -37,14 +34,6 @@ public class SignInView {
 				}
 			}
 		});
-	}
-	
-	public void setVisible() {
-		this.frame.setVisible(true);
-	}
-	
-	public void showErrorMessage(String message) {
-		JOptionPane.showMessageDialog(this.frame, message);
 	}
 
 	/**

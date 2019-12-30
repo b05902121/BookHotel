@@ -23,10 +23,10 @@ public class SignUpController extends BaseController {
 
 	public void show(JFrame frame) {
 		signUpView.setProperty(this, frame);
-		if (!enterUsername.isBlank()) {
+		if (!enterUsername.isEmpty()) {
 			signUpView.setUsername(enterUsername);
 		}
-		if (!enterPassword.isBlank()) {
+		if (!enterPassword.isEmpty()) {
 			signUpView.setPassword(enterPassword);
 		}
 		frame.setVisible(true);

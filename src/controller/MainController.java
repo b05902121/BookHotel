@@ -17,6 +17,10 @@ public class MainController {
 	public void showSignUpView(String username, String password) {
 		drawFrame(new SignUpController(this, username, password), FrameType.SignUp);
 	}
+	
+	public void showMenu() {
+		drawFrame(new MenuController(this), FrameType.Menu);
+	}
 
 	private void drawFrame(BaseController controller, FrameType frameType) {
 		controller.show(mainFrame);

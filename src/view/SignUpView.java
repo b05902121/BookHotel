@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
@@ -15,13 +14,11 @@ import controller.SignUpController;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class SignUpView {
-	// UI
-	public JFrame frame;
+public class SignUpView extends BaseView {
+//	private JFrame frame;
 	private JTextField usernameTextField;
 	private JPasswordField passwordTextField;
 
-	// Controller
 	private SignUpController controller;
 
 	/**
@@ -39,6 +36,10 @@ public class SignUpView {
 			}
 		});
 	}
+	
+	/**
+	 * Create the application.
+	 */
 
 	public void setProperty(SignUpController controller, JFrame frame) {
 		this.controller = controller;
@@ -53,19 +54,6 @@ public class SignUpView {
 	public void setPassword(String text) {
 		passwordTextField.setText(text);
 	}
-
-	public void showErrorMessage(String message) {
-		JOptionPane.showMessageDialog(this.frame, message);
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public void init(JFrame frame) {
-		this.frame = frame;
-		initialize(frame);
-	}
-
 
 	/**
 	 * Initialize the contents of the frame.
