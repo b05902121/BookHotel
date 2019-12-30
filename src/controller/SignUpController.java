@@ -8,7 +8,6 @@ import model.SignUpModel;
 import view.SignUpView;
 
 public class SignUpController extends BaseController {
-    private RoutingController router;
     private SignUpView signUpView = new SignUpView();
     private SignUpModel signUpModel = new SignUpModel();
 

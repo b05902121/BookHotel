@@ -6,7 +6,6 @@ import main.UserSession;
 import view.MenuView;
 
 public class MenuController extends BaseController {
-    private RoutingController router;
     private MenuView menuView = new MenuView();
     // MenuModel menuModel = new MenuModel(this);
 

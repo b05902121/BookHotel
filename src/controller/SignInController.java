@@ -7,7 +7,6 @@ import model.SignInModel;
 import view.SignInView;
 
 public class SignInController extends BaseController {
-    private RoutingController router;
     private SignInView loginView = new SignInView();
     SignInModel signInModel = new SignInModel();
 
