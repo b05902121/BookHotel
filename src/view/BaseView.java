@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public abstract class BaseView {
 	public JFrame frame;
-    public void showErrorMessage(String message) {
+	public void showErrorMessage(String message) {
 		JOptionPane.showMessageDialog(this.frame, message);
 	}
 }

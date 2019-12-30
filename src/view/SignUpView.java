@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class SignUpView extends BaseView {
-//	private JFrame frame;
+	//	private JFrame frame;
 	private JTextField usernameTextField;
 	private JPasswordField passwordTextField;
 
@@ -36,7 +36,7 @@ public class SignUpView extends BaseView {
 			}
 		});
 	}
-	
+
 	/**
 	 * Create the application.
 	 */
@@ -59,7 +59,7 @@ public class SignUpView extends BaseView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(JFrame frame) {
-//		frame = new JFrame();
+		//		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

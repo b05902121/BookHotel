@@ -9,22 +9,22 @@ import view.SignInView;
 public class SignInController extends BaseController {
 	private RoutingController router;
 	private SignInView loginView = new SignInView();
-	 SignInModel signInModel = new SignInModel();
-	
+	SignInModel signInModel = new SignInModel();
+
 	public SignInController(RoutingController router) {
 		this.router = router;
 	}
-	
+
 	public void show(JFrame frame) {
 		loginView.setProperty(this, frame);
 		frame.setVisible(true);
 	}
-	
+
 	public void regist(String username, String password) {
 		clearFrame(loginView.frame);
 		this.router.showSignUpView(username, password);
 	}
-	
+
 	public void login(String username, String password) {
 		System.out.println(String.format("[SignIn] Username: %s, Password: %s", username, password));
 		try {
