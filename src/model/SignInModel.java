@@ -1,10 +1,11 @@
 package model;
 
 import java.sql.*;
+import main.UserSession;
 import databaseUtil.DatabaseUser;
 
 public class SignInModel {
-    
+
     private DatabaseUser dbUser = null;
 
     public SignInModel() {
@@ -26,6 +27,7 @@ public class SignInModel {
             return Boolean.FALSE;
         }
         else if (resultSet.getString("password").compareTo(pwd) == 0) {
+            UserSession.getInstance(true).signIn(username, pwd);
             return Boolean.TRUE;
         }
         return Boolean.FALSE;

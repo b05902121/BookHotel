@@ -6,5 +6,5 @@ package model;
  */
 
 public interface ServiceModel {
-    
+
 }

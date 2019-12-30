@@ -1,9 +1,9 @@
 package main;
-import controller.MainController;
+import controller.RoutingController;
 
 public class Main {
-	public static void main(String[] args) {
-		MainController mainController = new MainController();
-		mainController.start();
-	}
+    public static void main(String[] args) {
+        RoutingController router = new RoutingController();
+        router.start();
+    }
 }

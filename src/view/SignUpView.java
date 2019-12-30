@@ -15,87 +15,87 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class SignUpView extends BaseView {
-//	private JFrame frame;
-	private JTextField usernameTextField;
-	private JPasswordField passwordTextField;
+    //	private JFrame frame;
+    private JTextField usernameTextField;
+    private JPasswordField passwordTextField;
 
-	private SignUpController controller;
+    private SignUpController controller;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SignUpView window = new SignUpView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	/**
-	 * Create the application.
-	 */
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    SignUpView window = new SignUpView();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	public void setProperty(SignUpController controller, JFrame frame) {
-		this.controller = controller;
-		this.frame = frame;
-		initialize(frame);
-	}
+    /**
+     * Create the application.
+     */
 
-	public void setUsername(String text) {
-		usernameTextField.setText(text);
-	}
+    public void setProperty(SignUpController controller, JFrame frame) {
+        this.controller = controller;
+        this.frame = frame;
+        initialize(frame);
+    }
 
-	public void setPassword(String text) {
-		passwordTextField.setText(text);
-	}
+    public void setUsername(String text) {
+        usernameTextField.setText(text);
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(JFrame frame) {
-//		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+    public void setPassword(String text) {
+        passwordTextField.setText(text);
+    }
 
-		JLabel titleLabel = new JLabel("SIGN UP");
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(142, 32, 162, 47);
-		frame.getContentPane().add(titleLabel);
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize(JFrame frame) {
+        //		frame = new JFrame();
+        frame.setBounds(100, 100, 450, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Password");
-		lblNewLabel.setBounds(106, 165, 84, 27);
-		frame.getContentPane().add(lblNewLabel);
+        JLabel titleLabel = new JLabel("SIGN UP");
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleLabel.setBounds(142, 32, 162, 47);
+        frame.getContentPane().add(titleLabel);
 
-		JLabel label = new JLabel("Username");
-		label.setBounds(106, 126, 84, 27);
-		frame.getContentPane().add(label);
+        JLabel lblNewLabel = new JLabel("Password");
+        lblNewLabel.setBounds(106, 165, 84, 27);
+        frame.getContentPane().add(lblNewLabel);
 
-		usernameTextField = new JTextField();
-		usernameTextField.setBounds(189, 126, 130, 26);
-		frame.getContentPane().add(usernameTextField);
-		usernameTextField.setColumns(10);
+        JLabel label = new JLabel("Username");
+        label.setBounds(106, 126, 84, 27);
+        frame.getContentPane().add(label);
 
-		passwordTextField = new JPasswordField();
-		passwordTextField.setColumns(10);
-		passwordTextField.setBounds(189, 165, 130, 26);
-		frame.getContentPane().add(passwordTextField);
+        usernameTextField = new JTextField();
+        usernameTextField.setBounds(189, 126, 130, 26);
+        frame.getContentPane().add(usernameTextField);
+        usernameTextField.setColumns(10);
 
-		JButton submitButton = new JButton("submit");
-		submitButton.setBounds(151, 234, 117, 29);
-		frame.getContentPane().add(submitButton);
+        passwordTextField = new JPasswordField();
+        passwordTextField.setColumns(10);
+        passwordTextField.setBounds(189, 165, 130, 26);
+        frame.getContentPane().add(passwordTextField);
 
-		// Set ActionListener
-		submitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controller.signUp(usernameTextField.getText(), String.copyValueOf(passwordTextField.getPassword()));
-			}
-		});
-	}
+        JButton submitButton = new JButton("submit");
+        submitButton.setBounds(151, 234, 117, 29);
+        frame.getContentPane().add(submitButton);
+
+        // Set ActionListener
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.signUp(usernameTextField.getText(), String.copyValueOf(passwordTextField.getPassword()));
+            }
+        });
+    }
 }

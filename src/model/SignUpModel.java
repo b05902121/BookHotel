@@ -9,7 +9,7 @@ public class SignUpModel {
     public SignUpModel() {
         this.dbUser = new DatabaseUser("config/jdbc.properties");
     }
-    
+
     public Boolean signUp(String username, String pwd) throws SQLException {
         /* 
          * First checks whether username exists in database.
