@@ -4,11 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 
 import controller.MenuController;
-import controller.SignInController;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -73,5 +70,11 @@ public class MenuView extends BaseView {
         JButton logoutButton = new JButton("Log Out");
         logoutButton.setBounds(250, 160, 117, 29);
         frame.getContentPane().add(logoutButton);
+        
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.logout();
+            }
+        });
     }
 }

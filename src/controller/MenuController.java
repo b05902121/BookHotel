@@ -19,4 +19,10 @@ public class MenuController extends BaseController {
         frame.setVisible(true);
         UserSession.getInstance(true).testingMethod();
     }
+    
+    public void logout() {
+        UserSession.getInstance(true).logout();
+        clearFrame(menuView.frame);
+        router.showSignInView();
+    }
 }
