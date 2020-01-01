@@ -5,4 +5,5 @@ public enum FrameType {
     SignUp,
     Menu,
     Query,
+    ShowResult,
 }

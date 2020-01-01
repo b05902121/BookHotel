@@ -24,7 +24,7 @@ import java.awt.BorderLayout;
 public class QueryView extends BaseView{
 
 	private QueryController controller;
-	private int selectHotelStar;
+	private int selectHotelStar = 3;
 	private int selectSingleNum;
 	private int selectDoubleNum;
 	private int selectQuadNum;
@@ -304,8 +304,10 @@ public class QueryView extends BaseView{
 //            	System.out.println("User Book"+singleNum+"single room and "+doubleNum+"double room and "+quadNum+" quad room");
             	Date checkInDate = checkInDateChooser.getDate();
             	Date checkOutDate = checkOutDateChooser.getDate();
-            	System.out.println(checkInDate.getTime());
-            	System.out.println(checkOutDate.getTime());
+//            	System.out.println(checkInDate.getTime());
+//            	System.out.println(checkOutDate.getTime());
+            	
+            	controller.searchMatchHotel(selectHotelStar, singleNum, doubleNum, quadNum, checkInDate, checkOutDate);
             }
         });
 		
