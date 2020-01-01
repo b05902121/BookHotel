@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import com.toedter.calendar.*;
 import javax.swing.JTextField;
+import java.util.Date;
 
 import controller.MenuController;
 import controller.QueryController;
@@ -49,7 +50,7 @@ public class QueryView extends BaseView{
 	 * Create the application.
 	 */
 	public QueryView() {
-		test_initialize();
+//		test_initialize();
 	}
 	public void setProperty(QueryController controller, JFrame frame) {
         this.controller = controller;
@@ -174,7 +175,7 @@ public class QueryView extends BaseView{
 		
 		
 		
-		frame.setVisible(true);
+//		frame.setVisible(true);
 		
 		
 		
@@ -263,7 +264,7 @@ public class QueryView extends BaseView{
 		singleRoomLabel.setBounds(76, 38, 77, 16);
 		frame.getContentPane().add(singleRoomLabel);
 		
-		JTextField singleRoomField = new JTextField();
+		JTextField singleRoomField = new JTextField("0");
 		singleRoomField.setBounds(143, 34, 52, 27);
 		frame.getContentPane().add(singleRoomField);
 		
@@ -271,7 +272,7 @@ public class QueryView extends BaseView{
 		doubleRoomLabel.setBounds(197, 38, 81, 16);
 		frame.getContentPane().add(doubleRoomLabel);
 		
-		JTextField doubleRoomField = new JTextField();
+		JTextField doubleRoomField = new JTextField("0");
 		doubleRoomField.setBounds(265, 34, 52, 27);
 		frame.getContentPane().add(doubleRoomField);
 		
@@ -279,7 +280,7 @@ public class QueryView extends BaseView{
 		quadRoomLabel.setBounds(327, 38, 70, 16);
 		frame.getContentPane().add(quadRoomLabel);
 		
-		JTextField quadRoomField = new JTextField();
+		JTextField quadRoomField = new JTextField("0");
 		quadRoomField.setBounds(392, 34, 52, 27);
 		frame.getContentPane().add(quadRoomField);
 		
@@ -295,6 +296,18 @@ public class QueryView extends BaseView{
 			}
 			
 		});
+		searchHotelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	int singleNum =  Integer.parseInt(singleRoomField.getText());
+            	int doubleNum =  Integer.parseInt(doubleRoomField.getText());
+            	int quadNum = Integer.parseInt(quadRoomField.getText());
+//            	System.out.println("User Book"+singleNum+"single room and "+doubleNum+"double room and "+quadNum+" quad room");
+            	Date checkInDate = checkInDateChooser.getDate();
+            	Date checkOutDate = checkOutDateChooser.getDate();
+            	System.out.println(checkInDate.getTime());
+            	System.out.println(checkOutDate.getTime());
+            }
+        });
 		
 		
 	}
