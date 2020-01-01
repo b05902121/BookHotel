@@ -19,9 +19,17 @@ public class MenuController extends BaseController {
         UserSession.getInstance(true).testingMethod();
     }
     
+
     public void logout() {
         UserSession.getInstance(true).logout();
         clearFrame(menuView.frame);
         router.showSignInView();
     }
+
+    public void showQueryHotelView() {
+    	this.clearFrame(menuView.frame);
+    	this.router.showQueryHotelView();
+    }
+    
+    
 }

@@ -22,7 +22,12 @@ public class RoutingController {
     public void showMenu() {
         drawFrame(new MenuController(this), FrameType.Menu);
     }
-
+    public void showQueryHotelView() {
+    	drawFrame(new QueryController(this), FrameType.Query);
+    }
+    public void showSearchResultView() {
+    	drawFrame(new SearchResultController(this), FrameType.ShowResult);
+    }
     private void drawFrame(BaseController controller, FrameType frameType) {
         controller.show(mainFrame);
     }
