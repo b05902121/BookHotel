@@ -11,13 +11,11 @@ import main.Hotel;
 
 public class DatabaseHotel extends DatabaseConnect{
     private StringBuilder stringBuilder = new StringBuilder();
-    private Statement stmt2 = null;
     private PreparedStatement prstmtHotel = null;
     private PreparedStatement prstmtRoom = null;
 
     public DatabaseHotel(String configFile) throws SQLException {
         super(configFile);
-        stmt2 = conn.createStatement();
     }
 
     public Integer insertHotel(Integer hotelStar, String locality, String address, Integer sNum, Integer dNum, Integer qNum, Integer sPrice, Integer dPrice, Integer qPrice){
