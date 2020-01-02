@@ -14,6 +14,7 @@ public class SignInController extends BaseController {
         this.router = router;
     }
 
+    @Override
     public void show(JFrame frame) {
         loginView.setProperty(this, frame);
         frame.setVisible(true);
