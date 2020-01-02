@@ -13,6 +13,7 @@ public class MenuController extends BaseController {
         this.router = router;
     }
 
+    @Override
     public void show(JFrame frame) {
         menuView.setProperty(this, frame);
         frame.setVisible(true);
@@ -22,14 +23,14 @@ public class MenuController extends BaseController {
 
     public void logout() {
         UserSession.getInstance(true).logout();
-        clearFrame(menuView.frame);
         router.showSignInView();
     }
 
     public void showQueryHotelView() {
-    	this.clearFrame(menuView.frame);
-    	this.router.showQueryHotelView();
+    	router.showQueryHotelView();
     }
     
-    
+    public void showcheckOrderView() {
+        router.showCheckOrderView();
+    }
 }

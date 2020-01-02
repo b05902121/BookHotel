@@ -14,13 +14,13 @@ public class SignInController extends BaseController {
         this.router = router;
     }
 
+    @Override
     public void show(JFrame frame) {
         loginView.setProperty(this, frame);
         frame.setVisible(true);
     }
 
     public void regist(String username, String password) {
-        clearFrame(loginView.frame);
         this.router.showSignUpView(username, password);
     }
 
@@ -29,7 +29,6 @@ public class SignInController extends BaseController {
         try {
             boolean isSuccessLogin = signInModel.signIn(username, password);
             if (isSuccessLogin) {
-                clearFrame(loginView.frame);
                 this.router.showMenu();
                 System.out.println(String.format("[SignIn] isSuccessLogin -> %b", isSuccessLogin));
             } else {

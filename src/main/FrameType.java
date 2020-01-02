@@ -6,4 +6,6 @@ public enum FrameType {
     Menu,
     Query,
     ShowResult,
+    CheckOrderResult,
+    CheckOrder,
 }

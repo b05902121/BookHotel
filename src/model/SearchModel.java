@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import databaseUtil.DatabaseHotel;
 import main.Hotel;
 
-public class SearchModel extends ServiceModel{
+public class SearchModel extends ServiceModel {
     DatabaseHotel dbhotel = null;
     public SearchModel() throws SQLException {
         dbhotel = new DatabaseHotel("config/jdbc.properties");
