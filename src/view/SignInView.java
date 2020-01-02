@@ -83,7 +83,7 @@ public class SignInView extends BaseView {
 
         JButton loginBtn = new JButton("login");
         loginBtn.setBounds(227, 219, 117, 29);
-        frame.getContentPane().add(loginBtn);	
+        frame.getContentPane().add(loginBtn);
 
         // Set ActionListener
         registerBtn.addActionListener(new ActionListener() {

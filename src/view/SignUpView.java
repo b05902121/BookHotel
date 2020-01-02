@@ -88,13 +88,23 @@ public class SignUpView extends BaseView {
         frame.getContentPane().add(passwordTextField);
 
         JButton submitButton = new JButton("submit");
-        submitButton.setBounds(151, 234, 117, 29);
+        submitButton.setBounds(100, 234, 100, 30);
         frame.getContentPane().add(submitButton);
+        
+        JButton cancelButton = new JButton("cancel");
+        cancelButton.setBounds(230, 234, 100, 30);
+        frame.getContentPane().add(cancelButton);
 
         // Set ActionListener
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.signUp(usernameTextField.getText(), String.copyValueOf(passwordTextField.getPassword()));
+            }
+        });
+        
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.showSignInView();
             }
         });
     }
