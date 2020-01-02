@@ -20,6 +20,7 @@ public class SignUpController extends BaseController {
         enterPassword = password;
     }
 
+    @Override
     public void show(JFrame frame) {
         signUpView.setProperty(this, frame);
         if (!enterUsername.isEmpty()) {

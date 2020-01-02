@@ -13,6 +13,7 @@ public class MenuController extends BaseController {
         this.router = router;
     }
 
+    @Override
     public void show(JFrame frame) {
         menuView.setProperty(this, frame);
         frame.setVisible(true);
