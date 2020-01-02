@@ -72,8 +72,8 @@ public class DatabaseHotel extends DatabaseConnect{
                     hotels.add(new Hotel(
                                         Integer.parseInt(resultSetHotel.getString("HotelId")),
                                         Integer.parseInt(resultSetHotel.getString("HotelStar")),
-                                        resultSetHotel.getString("Locality"),
                                         resultSetHotel.getString("Street-Address"),
+                                        resultSetHotel.getString("Locality"),
                                         Integer.parseInt(resultSetHotel.getString("SPrice")),
                                         Integer.parseInt(resultSetHotel.getString("DPrice")),
                                         Integer.parseInt(resultSetHotel.getString("QPrice"))
