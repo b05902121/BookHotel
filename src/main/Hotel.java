@@ -29,5 +29,27 @@ public class Hotel {
         return hotelStar;
     }
     
+    public Integer getSingleRoomPrice() {
+    	return singleRoom.get(0).getRoomPrice();
+    }
     
+    public Integer getDoubleRoomPrice() {
+    	return doubleRoom.get(0).getRoomPrice();
+    }
+    
+    public Integer getQuadRoomPrice() {
+    	return quadRoom.get(0).getRoomPrice();
+    }
+    
+    public int getSingleRoomNum() {
+    	return singleRoom.size();
+    }
+    
+    public int getDoubleRoomNum() {
+    	return doubleRoom.size();
+    }
+    
+    public int getQuadRoomNum() {
+    	return quadRoom.size();
+    }
 }
