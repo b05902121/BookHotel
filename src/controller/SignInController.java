@@ -33,7 +33,7 @@ public class SignInController extends BaseController {
                 this.router.showMenu();
                 System.out.println(String.format("[SignIn] isSuccessLogin -> %b", isSuccessLogin));
             } else {
-                loginView.showErrorMessage("Invalid username or password");
+                loginView.showPopOutMessage("Invalid username or password");
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -37,18 +37,22 @@ public class SignUpController extends BaseController {
             try {
                 boolean isSuccessSignUp = signUpModel.signUp(username, password);
                 if (isSuccessSignUp) {
-                    clearFrame(signUpView.frame);
-                    this.router.showSignInView();
-                    System.out.println("[SignUp] SignUp Success");
+                    signUpView.showPopOutMessage("Sign-up succeed!");
+                    showSignInView();
                 } else {
-                    signUpView.showErrorMessage("Sign-up failed, please try again.");
+                    signUpView.showPopOutMessage("Sign-up failed, please try again.");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         else {
-            signUpView.showErrorMessage("Sign-up failed, please try again.");
+            signUpView.showPopOutMessage("Sign-up failed, please try again.");
         }
+    }
+    
+    public void showSignInView() {
+        clearFrame(signUpView.frame);
+        router.showSignInView();
     }
 }
