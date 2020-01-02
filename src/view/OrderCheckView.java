@@ -13,16 +13,8 @@ import controller.OrderCheckController;
 public class OrderCheckView extends BaseView {
 
     private JFrame frame;
-    private JTextField reservationIdField;
-    private JTextField hotelIdField;
-    private JTextField startDateField;
-    private JTextField endDateField;
-    private JTextField singleNumField;
-    private JTextField doubleNumField;
-    private JTextField QuadNumField;
-    private JTextField stayNightsField;
-    private JTextField totalPrizeField;
-
+    private JTextField reservationIdField, hotelIdField, startDateField, endDateField;
+    private JTextField singleNumField, doubleNumField, quadNumField, stayNightsField, totalPrizeField;
     private OrderCheckController controller;
     /**
      * Launch the application.
@@ -149,12 +141,12 @@ public class OrderCheckView extends BaseView {
         doubleNumField.setBounds(241, 189, 41, 26);
         frame.getContentPane().add(doubleNumField);
 
-        QuadNumField = new JTextField();
-        QuadNumField.setEditable(false);
-        QuadNumField.setHorizontalAlignment(SwingConstants.CENTER);
-        QuadNumField.setColumns(10);
-        QuadNumField.setBounds(358, 189, 41, 26);
-        frame.getContentPane().add(QuadNumField);
+        quadNumField = new JTextField();
+        quadNumField.setEditable(false);
+        quadNumField.setHorizontalAlignment(SwingConstants.CENTER);
+        quadNumField.setColumns(10);
+        quadNumField.setBounds(358, 189, 41, 26);
+        frame.getContentPane().add(quadNumField);
 
         stayNightsField = new JTextField();
         stayNightsField.setEditable(false);
@@ -170,5 +162,4 @@ public class OrderCheckView extends BaseView {
         totalPrizeField.setBounds(354, 256, 41, 26);
         frame.getContentPane().add(totalPrizeField);
     }
-
 }
