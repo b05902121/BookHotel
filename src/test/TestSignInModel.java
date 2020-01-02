@@ -1,6 +1,8 @@
 package test;
 
 import java.sql.*;
+
+import controller.RoutingController;
 import model.SignUpModel;
 import model.SignInModel;
 import databaseUtil.DatabaseBuildAllTables;
@@ -9,20 +11,18 @@ import databaseUtil.DatabaseUser;
 public class TestSignInModel {
 
     public TestSignInModel() throws SQLException {
-        /*  Initialize databases and tables */
         DatabaseBuildAllTables databaseBuildAllTables = new DatabaseBuildAllTables("config/jdbc.properties");
-        if(!databaseBuildAllTables.getConnection().isClosed()) {
-            System.out.print("[LOG] databaseBuildAllTables start.\n");
+        Boolean forceDropTable = true;
+        databaseBuildAllTables.start(forceDropTable);
+        databaseBuildAllTables.insertDefaultData("config/InsertDefaultData.sql");
+        try {
+            databaseBuildAllTables.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        databaseBuildAllTables.start();
-        databaseBuildAllTables.closeConnection();
-
-        /*  Set default user data to users table and select one data    */
-        DatabaseUser databaseUser = new DatabaseUser("config/jdbc.properties");
-        if(!databaseUser.getConnection().isClosed()) {
-            System.out.print("[LOG] DatabaseUser start.\n");
+            RoutingController router = new RoutingController();
+            router.start();
         }
-    }
 
     public static void main(String[] args) throws SQLException {
         SignUpModel signUpModel = new SignUpModel();
