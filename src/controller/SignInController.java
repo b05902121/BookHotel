@@ -21,7 +21,6 @@ public class SignInController extends BaseController {
     }
 
     public void regist(String username, String password) {
-        clearFrame(loginView.frame);
         this.router.showSignUpView(username, password);
     }
 
@@ -30,7 +29,6 @@ public class SignInController extends BaseController {
         try {
             boolean isSuccessLogin = signInModel.signIn(username, password);
             if (isSuccessLogin) {
-                clearFrame(loginView.frame);
                 this.router.showMenu();
                 System.out.println(String.format("[SignIn] isSuccessLogin -> %b", isSuccessLogin));
             } else {

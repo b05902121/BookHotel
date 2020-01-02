@@ -80,5 +80,10 @@ public class MenuView extends BaseView {
             }
         });
         
+        checkOrderButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.showcheckOrderView();
+            }
+        });
     }
 }

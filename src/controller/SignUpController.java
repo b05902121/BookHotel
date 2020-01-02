@@ -53,7 +53,6 @@ public class SignUpController extends BaseController {
     }
     
     public void showSignInView() {
-        clearFrame(signUpView.frame);
         router.showSignInView();
     }
 }

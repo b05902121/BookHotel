@@ -23,8 +23,8 @@ public class RoutingController {
         }
         showSignInView();
     }
-    
- // MARK - Routing Method
+
+    // MARK - Routing Method
 
     public void showSignInView() {
         drawFrame(new SignInController(this), FrameType.Login);
@@ -46,13 +46,23 @@ public class RoutingController {
         drawFrame(new SearchResultController(this), FrameType.ShowResult);
     }
 
-    public void showOrderCheckView() {
-        drawFrame(new OrderCheckController(this), FrameType.OrderCheck);
+    public void showCheckOrderView() {
+        drawFrame(new CheckOrderController(this), FrameType.CheckOrder);
+    }
+
+    public void showCheckOrderResultView() {
+        drawFrame(new CheckOrderResultController(this), FrameType.CheckOrderResult);
     }
 
     // MARK - Private Method
-    
+
     private void drawFrame(BaseController controller, FrameType frameType) {
+        clearFrame(mainFrame);
         controller.show(mainFrame);
+    }
+    
+    private void clearFrame(JFrame frame) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().repaint();
     }
 }

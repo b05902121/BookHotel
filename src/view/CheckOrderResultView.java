@@ -8,14 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import controller.OrderCheckController;
+import controller.CheckOrderResultController;
 
-public class OrderCheckView extends BaseView {
+public class CheckOrderResultView extends BaseView {
 
-    private JFrame frame;
+//    private JFrame frame;
     private JTextField reservationIdField, hotelIdField, startDateField, endDateField;
     private JTextField singleNumField, doubleNumField, quadNumField, stayNightsField, totalPrizeField;
-    private OrderCheckController controller;
+    private CheckOrderResultController controller;
     /**
      * Launch the application.
      */
@@ -23,7 +23,7 @@ public class OrderCheckView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    OrderCheckView window = new OrderCheckView();
+                    CheckOrderResultView window = new CheckOrderResultView();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -35,11 +35,11 @@ public class OrderCheckView extends BaseView {
     /**
      * Create the application.
      */
-    public OrderCheckView() {
-        // initialize();
+    public CheckOrderResultView() {
+//         initialize();
     }
 
-    public void setProperty(OrderCheckController controller, JFrame frame) {
+    public void setProperty(CheckOrderResultController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
         initialize();
@@ -50,7 +50,7 @@ public class OrderCheckView extends BaseView {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        // frame = new JFrame();
+//        frame = new JFrame();
         frame.setBounds(100, 100, 450, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
@@ -100,7 +100,7 @@ public class OrderCheckView extends BaseView {
         frame.getContentPane().add(confirmButton);
 
         reservationIdField = new JTextField();
-        reservationIdField.setEnabled(false);
+        reservationIdField.setEditable(false);
         reservationIdField.setHorizontalAlignment(SwingConstants.CENTER);
         reservationIdField.setBounds(195, 35, 130, 26);
         frame.getContentPane().add(reservationIdField);
