@@ -8,19 +8,22 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import controller.OrderCheckController;
+
 public class OrderCheckView extends BaseView {
 
     private JFrame frame;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JTextField textField_4;
-    private JTextField textField_5;
-    private JTextField textField_6;
-    private JTextField textField_7;
-    private JTextField textField_8;
+    private JTextField reservationIdField;
+    private JTextField hotelIdField;
+    private JTextField startDateField;
+    private JTextField endDateField;
+    private JTextField singleNumField;
+    private JTextField doubleNumField;
+    private JTextField QuadNumField;
+    private JTextField stayNightsField;
+    private JTextField totalPrizeField;
 
+    private OrderCheckController controller;
     /**
      * Launch the application.
      */
@@ -41,123 +44,131 @@ public class OrderCheckView extends BaseView {
      * Create the application.
      */
     public OrderCheckView() {
+        // initialize();
+    }
+
+    public void setProperty(OrderCheckController controller, JFrame frame) {
+        this.controller = controller;
+        this.frame = frame;
         initialize();
     }
+
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        frame = new JFrame();
+        // frame = new JFrame();
         frame.setBounds(100, 100, 450, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-        
-        JLabel lblNewLabel = new JLabel("Reservation Number:");
-        lblNewLabel.setBounds(47, 36, 179, 25);
-        frame.getContentPane().add(lblNewLabel);
-        
-        JLabel lblHotelId = new JLabel("Hotel ID:");
-        lblHotelId.setBounds(86, 73, 73, 25);
-        frame.getContentPane().add(lblHotelId);
-        
-        JLabel label = new JLabel("~");
-        label.setBounds(214, 110, 22, 25);
-        frame.getContentPane().add(label);
-        
-        JLabel lblSingle = new JLabel("Single:");
-        lblSingle.setBounds(67, 159, 73, 25);
-        frame.getContentPane().add(lblSingle);
-        
-        JLabel lblDouble = new JLabel("Double:");
-        lblDouble.setBounds(183, 159, 73, 25);
-        frame.getContentPane().add(lblDouble);
-        
-        JLabel lblQuad = new JLabel("Quad:");
-        lblQuad.setBounds(307, 159, 73, 25);
-        frame.getContentPane().add(lblQuad);
-        
-        JLabel lblTotalNightsOf = new JLabel("Total Nights of Stay:");
-        lblTotalNightsOf.setBounds(47, 218, 136, 25);
-        frame.getContentPane().add(lblTotalNightsOf);
-        
-        JLabel lblTotalPrize = new JLabel("Total Prize:");
-        lblTotalPrize.setBounds(262, 218, 80, 25);
-        frame.getContentPane().add(lblTotalPrize);
-        
-        JButton btnNewButton = new JButton("Cancel Order");
-        btnNewButton.setBounds(23, 272, 117, 29);
-        frame.getContentPane().add(btnNewButton);
-        
-        JButton btnNewButton_1 = new JButton("Modify");
-        btnNewButton_1.setBounds(165, 272, 117, 29);
-        frame.getContentPane().add(btnNewButton_1);
-        
-        JButton btnConfirm = new JButton("Confirm");
-        btnConfirm.setBounds(310, 272, 117, 29);
-        frame.getContentPane().add(btnConfirm);
-        
-        textField = new JTextField();
-        textField.setHorizontalAlignment(SwingConstants.CENTER);
-        textField.setText("0");
-        textField.setBounds(195, 35, 130, 26);
-        frame.getContentPane().add(textField);
-        textField.setColumns(10);
-        
-        textField_1 = new JTextField();
-        textField_1.setText("0");
-        textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_1.setColumns(10);
-        textField_1.setBounds(195, 72, 130, 26);
-        frame.getContentPane().add(textField_1);
-        
-        textField_2 = new JTextField();
-        textField_2.setText("0");
-        textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_2.setColumns(10);
-        textField_2.setBounds(67, 109, 130, 26);
-        frame.getContentPane().add(textField_2);
-        
-        textField_3 = new JTextField();
-        textField_3.setText("0");
-        textField_3.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_3.setColumns(10);
-        textField_3.setBounds(250, 109, 130, 26);
-        frame.getContentPane().add(textField_3);
-        
-        textField_4 = new JTextField();
-        textField_4.setText("0");
-        textField_4.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_4.setColumns(10);
-        textField_4.setBounds(124, 158, 41, 26);
-        frame.getContentPane().add(textField_4);
-        
-        textField_5 = new JTextField();
-        textField_5.setText("0");
-        textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_5.setColumns(10);
-        textField_5.setBounds(241, 158, 41, 26);
-        frame.getContentPane().add(textField_5);
-        
-        textField_6 = new JTextField();
-        textField_6.setText("0");
-        textField_6.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_6.setColumns(10);
-        textField_6.setBounds(358, 158, 41, 26);
-        frame.getContentPane().add(textField_6);
-        
-        textField_7 = new JTextField();
-        textField_7.setText("0");
-        textField_7.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_7.setColumns(10);
-        textField_7.setBounds(195, 217, 41, 26);
-        frame.getContentPane().add(textField_7);
-        
-        textField_8 = new JTextField();
-        textField_8.setText("0");
-        textField_8.setHorizontalAlignment(SwingConstants.CENTER);
-        textField_8.setColumns(10);
-        textField_8.setBounds(354, 217, 41, 26);
-        frame.getContentPane().add(textField_8);
+
+        JLabel reservationIdLabel = new JLabel("Reservation Number:");
+        reservationIdLabel.setBounds(47, 36, 136, 25);
+        frame.getContentPane().add(reservationIdLabel);
+
+        JLabel hotelIdLabel = new JLabel("Hotel ID:");
+        hotelIdLabel.setBounds(86, 73, 73, 25);
+        frame.getContentPane().add(hotelIdLabel);
+
+        JLabel waveLabel = new JLabel("~");
+        waveLabel.setBounds(214, 141, 14, 25);
+        frame.getContentPane().add(waveLabel);
+
+        JLabel singleLabel = new JLabel("Single:");
+        singleLabel.setBounds(67, 190, 52, 25);
+        frame.getContentPane().add(singleLabel);
+
+        JLabel doubleLabel = new JLabel("Double:");
+        doubleLabel.setBounds(183, 190, 52, 25);
+        frame.getContentPane().add(doubleLabel);
+
+        JLabel QuadLabel = new JLabel("Quad:");
+        QuadLabel.setBounds(307, 190, 41, 25);
+        frame.getContentPane().add(QuadLabel);
+
+        JLabel stayNightsLabel = new JLabel("Total Nights of Stay:");
+        stayNightsLabel.setBounds(47, 257, 136, 25);
+        frame.getContentPane().add(stayNightsLabel);
+
+        JLabel totalPrizeLabel = new JLabel("Total Prize:");
+        totalPrizeLabel.setBounds(262, 257, 80, 25);
+        frame.getContentPane().add(totalPrizeLabel);
+
+        JButton cancelButton = new JButton("Cancel Order");
+        cancelButton.setBounds(24, 319, 117, 29);
+        frame.getContentPane().add(cancelButton);
+
+        JButton modifyButton = new JButton("Modify");
+        modifyButton.setBounds(167, 319, 117, 29);
+        frame.getContentPane().add(modifyButton);
+
+        JButton confirmButton = new JButton("Confirm");
+        confirmButton.setBounds(310, 319, 117, 29);
+        frame.getContentPane().add(confirmButton);
+
+        reservationIdField = new JTextField();
+        reservationIdField.setEnabled(false);
+        reservationIdField.setHorizontalAlignment(SwingConstants.CENTER);
+        reservationIdField.setBounds(195, 35, 130, 26);
+        frame.getContentPane().add(reservationIdField);
+        reservationIdField.setColumns(10);
+
+        hotelIdField = new JTextField();
+        hotelIdField.setEditable(false);
+        hotelIdField.setHorizontalAlignment(SwingConstants.CENTER);
+        hotelIdField.setColumns(10);
+        hotelIdField.setBounds(195, 72, 130, 26);
+        frame.getContentPane().add(hotelIdField);
+
+        startDateField = new JTextField();
+        startDateField.setEditable(false);
+        startDateField.setHorizontalAlignment(SwingConstants.CENTER);
+        startDateField.setColumns(10);
+        startDateField.setBounds(67, 140, 130, 26);
+        frame.getContentPane().add(startDateField);
+
+        endDateField = new JTextField();
+        endDateField.setEditable(false);
+        endDateField.setHorizontalAlignment(SwingConstants.CENTER);
+        endDateField.setColumns(10);
+        endDateField.setBounds(250, 140, 130, 26);
+        frame.getContentPane().add(endDateField);
+
+        singleNumField = new JTextField();
+        singleNumField.setEditable(false);
+        singleNumField.setHorizontalAlignment(SwingConstants.CENTER);
+        singleNumField.setColumns(10);
+        singleNumField.setBounds(124, 189, 41, 26);
+        frame.getContentPane().add(singleNumField);
+
+        doubleNumField = new JTextField();
+        doubleNumField.setEditable(false);
+        doubleNumField.setHorizontalAlignment(SwingConstants.CENTER);
+        doubleNumField.setColumns(10);
+        doubleNumField.setBounds(241, 189, 41, 26);
+        frame.getContentPane().add(doubleNumField);
+
+        QuadNumField = new JTextField();
+        QuadNumField.setEditable(false);
+        QuadNumField.setHorizontalAlignment(SwingConstants.CENTER);
+        QuadNumField.setColumns(10);
+        QuadNumField.setBounds(358, 189, 41, 26);
+        frame.getContentPane().add(QuadNumField);
+
+        stayNightsField = new JTextField();
+        stayNightsField.setEditable(false);
+        stayNightsField.setHorizontalAlignment(SwingConstants.CENTER);
+        stayNightsField.setColumns(10);
+        stayNightsField.setBounds(195, 256, 41, 26);
+        frame.getContentPane().add(stayNightsField);
+
+        totalPrizeField = new JTextField();
+        totalPrizeField.setEditable(false);
+        totalPrizeField.setHorizontalAlignment(SwingConstants.CENTER);
+        totalPrizeField.setColumns(10);
+        totalPrizeField.setBounds(354, 256, 41, 26);
+        frame.getContentPane().add(totalPrizeField);
     }
+
 }
