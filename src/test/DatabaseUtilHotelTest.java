@@ -17,12 +17,12 @@ public class DatabaseUtilHotelTest{
             }
 
             /* if you execute in the first time */
-            Boolean forceDropTable = true;
-            databaseBuildAllTables.start(forceDropTable);
-            databaseBuildAllTables.insertJsonData();
-            /* if you have been executed */
-//            Boolean forceDropTable = false;
+//            Boolean forceDropTable = true;
 //            databaseBuildAllTables.start(forceDropTable);
+//            databaseBuildAllTables.insertJsonData();
+            /* if you have been executed */
+            Boolean forceDropTable = false;
+            databaseBuildAllTables.start(forceDropTable);
 
             databaseBuildAllTables.closeConnection();
 
