@@ -107,14 +107,12 @@ public class DatabaseHotel extends DatabaseConnect{
     }
 
     public Integer getTotalHotelNumber(){
-        Integer totalHotelNumber = 0;
+        Integer totalHotelNumber = -1;
         try {
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM `Hotels`;");
+            ResultSet resultSet = stmt.executeQuery("SELECT `HotelID` FROM `Hotels` order by `HotelID` ASC;");
             while (resultSet.next()) {
-                Integer getHotelID = Integer.parseInt(resultSet.getString("HotelID"));
-                if(getHotelID > totalHotelNumber){
-                    totalHotelNumber = getHotelID;
-                }
+            	totalHotelNumber = Integer.parseInt(resultSet.getString("HotelID"));
+                break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
