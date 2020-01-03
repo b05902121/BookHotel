@@ -19,6 +19,12 @@ CREATE TABLE `Hotels` (
   `HotelStar` int(11) NOT NULL,
   `Locality` varchar(45) NOT NULL,
   `Street-Address` varchar(45) NOT NULL,
+  `SNum` int(11) NOT NULL,
+  `DNum` int(11) NOT NULL,
+  `QNum` int(11) NOT NULL,
+  `SPrice` int(11) NOT NULL,
+  `DPrice` int(11) NOT NULL,
+  `QPrice` int(11) NOT NULL,
   PRIMARY KEY (`HotelID`),
   UNIQUE KEY `HotelID_UNIQUE` (`HotelID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -30,6 +36,7 @@ CREATE TABLE `Rooms` (
   `HotelID` int(11) NOT NULL,
   `RoomType` varchar(45) NOT NULL,
   `RoomPrice` int(11) NOT NULL,
+  `DateIsAvailable` BLOB NOT NULL,
   PRIMARY KEY (`RoomID`),
   UNIQUE KEY `RoomID_UNIQUE` (`RoomID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
