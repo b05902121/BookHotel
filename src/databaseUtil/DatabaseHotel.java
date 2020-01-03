@@ -53,13 +53,6 @@ public class DatabaseHotel extends DatabaseConnect{
         }
 //        System.out.print("[dbUtil] getHotelsByInformation dateIsAvailableBytes " + new String(dateIsAvailableBytes, Charset.forName("UTF-8")) + "\n");
         try {
-//            prstmtHotel = conn.prepareStatement("SELECT * FROM `Hotels` WHERE `HotelStar`=? AND `HotelId`=any(SELECT HotelId FROM `Rooms` WHERE (`DateIsAvailable`&?)=?) ORDER BY ?*SPrice+?*DPrice+?*QPrice DESC;");
-//            prstmtHotel.setInt(1, hotelStar);
-//            prstmtHotel.setBytes(2, dateIsAvailableBytes);
-//            prstmtHotel.setBytes(3, dateIsAvailableBytes);
-//            prstmtHotel.setInt(4, sNumQuery);
-//            prstmtHotel.setInt(5, dNumQuery);
-//            prstmtHotel.setInt(6, qNumQuery);
         	prstmtHotel = conn.prepareStatement("SELECT * " + 
         		  					"FROM `Hotels` " + 
         		  					"WHERE `HotelId` in (SELECT `HotelId`" + 
@@ -78,17 +71,17 @@ public class DatabaseHotel extends DatabaseConnect{
 													    		") as myalias3 " +
 													    "WHERE c2=3" +
 											    		") AND " +
-											"`HotelStar`=?;");
+											"`HotelStar`=? ORDER BY ?*SPrice+?*DPrice+?*QPrice DESC;");
             prstmtHotel.setBytes(1, dateIsAvailableBytes);
             prstmtHotel.setBytes(2, dateIsAvailableBytes);
             prstmtHotel.setInt(3, sNumQuery);
             prstmtHotel.setInt(4, dNumQuery);
             prstmtHotel.setInt(5, qNumQuery);
             prstmtHotel.setInt(6, hotelStar);
+            prstmtHotel.setInt(7, sNumQuery);
+            prstmtHotel.setInt(8, dNumQuery);
+            prstmtHotel.setInt(9, qNumQuery);
             resultSetHotel = prstmtHotel.executeQuery();
-//            while (resultSetHotel.next()){
-//            	System.out.print(resultSetHotel.getString("HotelId") + "\n");
-//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
