@@ -32,7 +32,7 @@ public class DatabaseUtilHotelTest{
             System.out.print("[Test] totalHotelNumber = " + totalHotelNumber + "\n");
             // date use [dateStart, dateEnd], both include with for loop;
             // So [1, 3] will become [011100000....], because a for loop will execute in for(i=1 ; 0 <= 3; i++){}, means day 1st~3rd
-            hotels = databaseHotel.getHotelsByInformation(3,1,3,2,2,1);
+            hotels = databaseHotel.getHotelsByInformation(3,1,3,1,24,24);
             for(Hotel hotel: hotels){
                 printHotel(hotel);
             }
