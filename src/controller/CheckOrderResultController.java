@@ -10,9 +10,7 @@ public class CheckOrderResultController extends BaseController {
     private String hotelName = "hotel1";
     private Integer TotalPrize = 2000;
 
-    public CheckOrderResultController(RoutingController router) {
-        this.router = router;
-    }
+    public CheckOrderResultController() {}
 
     @Override
     public void show(JFrame frame) {

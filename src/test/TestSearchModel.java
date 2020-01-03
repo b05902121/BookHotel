@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import controller.RoutingController;
+import controller.Router;
 import databaseUtil.DatabaseBuildAllTables;
 import main.Hotel;
 import model.SearchModel;

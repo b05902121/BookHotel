@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class MenuView extends BaseView {
-    //	private JFrame frame;
-
+    private JFrame frame;
     private MenuController controller;
 
     /**
@@ -22,7 +21,7 @@ public class MenuView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    MenuView window = new MenuView();
+                    MenuView window = new MenuView(true);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -34,6 +33,14 @@ public class MenuView extends BaseView {
     /**
      * Create the application.
      */
+    private MenuView(Boolean testFlag) {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        initialize();
+    }
+    public MenuView() {}
 
     public void setProperty(MenuController controller, JFrame frame) {
         this.controller = controller;
@@ -44,20 +51,10 @@ public class MenuView extends BaseView {
     /**
      * Initialize the contents of the frame.
      */
-
-    private void initialize() {
-        //		frame = new JFrame();
-        this.frame.setBounds(100, 100, 450, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
-
+    protected void initialize() {
         JButton orderHotelButton = new JButton("OrderHotel");
         orderHotelButton.setBounds(70, 70, 117, 45);
         frame.getContentPane().add(orderHotelButton);
-
-//        JButton xxxx = new JButton("BottomLeft");
-//        xxxx.setBounds(70, 160, 117, 29);
-//        frame.getContentPane().add(xxxx);
 
         JButton checkOrderButton = new JButton("CheckOrder");
         checkOrderButton.setBounds(250, 70, 117, 45);
@@ -66,7 +63,6 @@ public class MenuView extends BaseView {
         JButton logoutButton = new JButton("Log Out");
         logoutButton.setBounds(250, 160, 117, 29);
         frame.getContentPane().add(logoutButton);
-        
 
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -76,10 +72,10 @@ public class MenuView extends BaseView {
 
         orderHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	controller.showQueryHotelView();
+                controller.showQueryHotelView();
             }
         });
-        
+
         checkOrderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.showcheckOrderView();

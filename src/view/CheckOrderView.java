@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 public class CheckOrderView extends BaseView {
-
     private JFrame frame;
 
     Object[][] data = {
@@ -35,7 +34,7 @@ public class CheckOrderView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    CheckOrderView window = new CheckOrderView();
+                    CheckOrderView window = new CheckOrderView(true);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,9 +46,14 @@ public class CheckOrderView extends BaseView {
     /**
      * Create the application.
      */
-    public CheckOrderView() {
-        //        initialize();
+    private CheckOrderView(Boolean testFlag) {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        initialize();
     }
+    public CheckOrderView() {}
 
     public void setProperty(CheckOrderController controller, JFrame frame) {
         this.controller = controller;
@@ -60,12 +64,7 @@ public class CheckOrderView extends BaseView {
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
-        //        frame = new JFrame();
-        frame.setBounds(100, 100, 450, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
-
+    public void initialize() {
         JLabel lblTheFollowingAre = new JLabel("The following are your orders:");
         lblTheFollowingAre.setBounds(30, 37, 206, 16);
         frame.getContentPane().add(lblTheFollowingAre);

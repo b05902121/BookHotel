@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class SignUpView extends BaseView {
-    //	private JFrame frame;
+    private JFrame frame;
     private JTextField usernameTextField;
     private JPasswordField passwordTextField;
 
@@ -28,7 +28,7 @@ public class SignUpView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    SignUpView window = new SignUpView();
+                    SignUpView window = new SignUpView(true);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -40,11 +40,19 @@ public class SignUpView extends BaseView {
     /**
      * Create the application.
      */
+    private SignUpView(Boolean testFlag) {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        initialize();
+    }
+    public SignUpView() {}
 
     public void setProperty(SignUpController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
-        initialize(frame);
+        initialize();
     }
 
     public void setUsername(String text) {
@@ -58,12 +66,8 @@ public class SignUpView extends BaseView {
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize(JFrame frame) {
-        //		frame = new JFrame();
-        frame.setBounds(100, 100, 450, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
 
+    protected void initialize() {
         JLabel titleLabel = new JLabel("SIGN UP");
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBounds(142, 32, 162, 47);

@@ -3,7 +3,7 @@ package controller;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
-import controller.RoutingController;
+import controller.Router;
 import model.SignUpModel;
 import view.SignUpView;
 
@@ -14,8 +14,7 @@ public class SignUpController extends BaseController {
     private String enterUsername;
     private String enterPassword;
 
-    public SignUpController(RoutingController router, String username, String password) {
-        this.router = router;
+    public SignUpController(String username, String password) {
         enterUsername = username;
         enterPassword = password;
     }
@@ -53,6 +52,6 @@ public class SignUpController extends BaseController {
     }
     
     public void showSignInView() {
-        router.showSignInView();
+        Router.getInstance().showSignInView();
     }
 }

@@ -14,11 +14,11 @@ import java.awt.event.ActionEvent;
 import controller.SignInController;
 
 public class SignInView extends BaseView {
-    //	private JFrame frame;
+    private JFrame frame;
+    private SignInController controller;
+
     private JTextField usernameField;
     private JPasswordField passwordField;
-
-    private SignInController controller;
 
     /**
      * Launch the application.
@@ -27,7 +27,7 @@ public class SignInView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    SignInView window = new SignInView();
+                    SignInView window = new SignInView(true);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -39,6 +39,15 @@ public class SignInView extends BaseView {
     /**
      * Create the application.
      */
+    private SignInView(Boolean testFlag) {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        initialize();
+    }
+    public SignInView() {}
+
     public void setProperty(SignInController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
@@ -46,14 +55,8 @@ public class SignInView extends BaseView {
     }
     /**
      * Initialize the contents of the frame.
-     * @wbp.parser.entryPoint
      */
-    private void initialize() {
-        //		frame = new JFrame();
-        frame.setBounds(100, 100, 450, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
-
+    protected void initialize() {
         JLabel TitleLable = new JLabel("Ｗelcome to B0ok1ng Hotel ! ");
         TitleLable.setHorizontalAlignment(SwingConstants.CENTER);
         TitleLable.setBounds(73, 20, 298, 58);
