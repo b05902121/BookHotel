@@ -13,7 +13,7 @@ public class Router {
     private static Router instance = new Router();
     private static JFrame mainFrame;
     private Router() {}
-    
+
     public static Router getInstance() {
         if(instance == null){
             instance = new Router();
@@ -60,6 +60,10 @@ public class Router {
 
     public void showCheckOrderResultView() {
         drawFrame(new CheckOrderResultController(), FrameType.CheckOrderResult);
+    }
+
+    public void showModifyOrderView() {
+        drawFrame(new ModifyOrderController(), FrameType.ModifyOrder);
     }
 
     // MARK - Private Method

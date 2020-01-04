@@ -3,7 +3,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 import javax.swing.JFrame;
 
@@ -11,7 +10,6 @@ import controller.CheckOrderController;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
@@ -73,12 +71,7 @@ public class CheckOrderView extends BaseView {
         jt.setShowHorizontalLines(true);
         jt.setShowVerticalLines(true);
 
-        DefaultTableModel tableModel = new DefaultTableModel(data, columns) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        DefaultTableModel tableModel = new DefaultTableModel(data, columns);
         jt.setModel(tableModel);
 
         JScrollPane scrollPane = new JScrollPane(jt);

@@ -17,18 +17,16 @@ public class CheckOrderResultController extends BaseController {
         checkOrderResultView.setProperty(this, frame);
         frame.setVisible(true);
     }
-    
+
     public void showMenu() {
         Router.getInstance().showMenu();
     }
 
     public void cancelOrder() {
         // TODO Auto-generated method stub
-        
     }
 
     public void modifyOrder() {
-        // TODO Auto-generated method stub
-        
+        Router.getInstance().showModifyOrderView();
     }
 }
