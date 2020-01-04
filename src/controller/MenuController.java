@@ -19,17 +19,21 @@ public class MenuController extends BaseController {
         frame.setVisible(true);
         UserSession.getInstance(true).testingMethod();
     }
-    
+
 
     public void logout() {
         UserSession.getInstance(true).logout();
         Router.getInstance().showSignInView();
     }
 
-    public void showQueryHotelView() throws ParseException, SQLException {
-        Router.getInstance().showQueryHotelView();
+    public void showQueryHotelView() {
+        try {
+            Router.getInstance().showQueryHotelView();
+        } catch (ParseException | SQLException e1) {
+            e1.printStackTrace();
+        }
     }
-    
+
     public void showcheckOrderView() {
         Router.getInstance().showCheckOrderView();
     }

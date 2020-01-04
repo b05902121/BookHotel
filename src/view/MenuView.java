@@ -73,12 +73,7 @@ public class MenuView extends BaseView {
 
         orderHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-					controller.showQueryHotelView();
-				} catch (ParseException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+                controller.showQueryHotelView();
             }
         });
 
