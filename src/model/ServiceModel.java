@@ -5,6 +5,6 @@ package model;
  * This is an interface of the different services.
  */
 
-public interface ServiceModel {
+public class ServiceModel {
 
 }
