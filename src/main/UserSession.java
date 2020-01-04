@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Date;
+import main.Order;
 public class UserSession {
     private UserSession() {} // private constructor
     private static UserSession instance;
@@ -11,6 +13,8 @@ public class UserSession {
     private ArrayList<Room> _orderedRoom;
     private ArrayList<Hotel> searchHotel = new ArrayList<Hotel>();
     private int[] reserveRoomNum = {0,0,0};
+    private ArrayList<Date> orderDate = new ArrayList<Date>();
+    private Order orderCache;
 
     public static UserSession getInstance(boolean isReuse) {
         if(!isReuse || instance == null){
@@ -32,7 +36,19 @@ public class UserSession {
     public void setResultHotel(ArrayList<Hotel> hotel) {
     	this.searchHotel = hotel;
     }
-    
+    public void setOrderDate(Date checkIn, Date checkOut) {
+    	this.orderDate.add(checkIn);
+    	this.orderDate.add(checkOut);
+    }
+    public ArrayList<Date> getOrderDate(){
+    	return this.orderDate;
+    }
+    public void setOrderCache(Order order) {
+    	this.orderCache = order;
+    }
+    public Order getCacheOrder() {
+    	return this.orderCache;
+    }
     public ArrayList<Hotel> getResultHotel(){
     	return this.searchHotel;
     }
@@ -52,7 +68,9 @@ public class UserSession {
     public void cancelRoom(Room room) {
         _orderedRoom.remove(room);
     }
-
+    public String getUsername() {
+    	return this._username;
+    }
     public void testingMethod() {
         System.out.println(String.format("[Session] Tesing: U: %s, P: %s, RC: %d",
                 _username, _password, _orderedRoom.size()));

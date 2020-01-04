@@ -69,7 +69,9 @@ public class Router {
     public void showModifyOrderRoomView() {
         drawFrame(new ModifyOrderRoomController(), FrameType.ModifyOrder);
     }
-
+    public void showConfirmOrder() {
+    	drawFrame(new ConfirmOrderController(), FrameType.ConfirmOrder);
+    }
     // MARK - Private Method
 
     private void setupMainFrame() {

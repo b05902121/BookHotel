@@ -185,8 +185,8 @@ public class QueryView extends BaseView {
                 System.out.println("User Book "+singleNum+" single room and "+doubleNum+" double room and "+quadNum+" quad room");
                 Date checkInDate = checkInDateChooser.getDate();
                 Date checkOutDate = checkOutDateChooser.getDate();
-                //            	System.out.println(checkInDate.getTime());
-                //            	System.out.println(checkOutDate.getTime());
+                System.out.println(checkInDate);
+                System.out.println(checkOutDate);
                 UserSession.getInstance(true).setReserveRoomNum(singleNum, doubleNum, quadNum);
                 try {
 					controller.searchMatchHotel(selectHotelStar, singleNum, doubleNum, quadNum, checkInDate, checkOutDate);
