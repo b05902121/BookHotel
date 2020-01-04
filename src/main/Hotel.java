@@ -47,4 +47,7 @@ public class Hotel {
         return address;
     }
     
+    public Integer calPrice(Integer sNum, Integer dNum, Integer qNum) {
+        return sNum*getSingleRoomPrice() + dNum*getDoubleRoomPrice() + qNum*getQuadRoomPrice();
+    }
 }
