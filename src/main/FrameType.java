@@ -8,4 +8,5 @@ public enum FrameType {
     ShowResult,
     CheckOrderResult,
     CheckOrder,
+    ModifyOrder,
 }
