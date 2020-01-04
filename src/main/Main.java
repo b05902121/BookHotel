@@ -1,7 +1,7 @@
 package main;
 import java.sql.SQLException;
 
-import controller.RoutingController;
+import controller.Router;
 import databaseUtil.DatabaseBuildAllTables;
 
 public class Main {
@@ -25,7 +25,6 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        RoutingController router = new RoutingController();
-        router.start();
+        Router.getInstance().start();
     }
 }

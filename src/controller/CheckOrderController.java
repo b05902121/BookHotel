@@ -6,10 +6,7 @@ import view.CheckOrderView;
 
 public class CheckOrderController extends BaseController {
     private CheckOrderView checkOrderView = new CheckOrderView();
-
-    public CheckOrderController(RoutingController router) {
-        this.router = router;
-    }
+    public CheckOrderController() {}
 
     @Override
     public void show(JFrame frame) {
@@ -18,6 +15,6 @@ public class CheckOrderController extends BaseController {
     }
     
     public void showCheckOrderResult(int selectedRow) {
-        router.showCheckOrderResultView();
+        Router.getInstance().showCheckOrderResultView();
     }
 }

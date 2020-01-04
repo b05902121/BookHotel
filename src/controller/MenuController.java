@@ -9,9 +9,7 @@ public class MenuController extends BaseController {
     private MenuView menuView = new MenuView();
     // MenuModel menuModel = new MenuModel(this);
 
-    public MenuController(RoutingController router) {
-        this.router = router;
-    }
+    public MenuController() {}
 
     @Override
     public void show(JFrame frame) {
@@ -23,14 +21,14 @@ public class MenuController extends BaseController {
 
     public void logout() {
         UserSession.getInstance(true).logout();
-        router.showSignInView();
+        Router.getInstance().showSignInView();
     }
 
     public void showQueryHotelView() {
-    	router.showQueryHotelView();
+        Router.getInstance().showQueryHotelView();
     }
     
     public void showcheckOrderView() {
-        router.showCheckOrderView();
+        Router.getInstance().showCheckOrderView();
     }
 }

@@ -9,12 +9,20 @@ import javax.swing.*;
 import main.FrameType;
 import main.ImagePanel;
 
-public class RoutingController {
-    //	private static RoutingController sharedInstance = new RoutingController();
-
-    private static JFrame mainFrame = new JFrame("B0ok1ng Hotel");
+public class Router {
+    private static Router instance = new Router();
+    private static JFrame mainFrame;
+    private Router() {}
+    
+    public static Router getInstance() {
+        if(instance == null){
+            instance = new Router();
+        } 
+        return instance;
+    }
 
     public void start() {
+        setupMainFrame();
         try {
             BufferedImage backgroundImage = ImageIO.read(new File("images/hotel_test.jpeg"));
             mainFrame.setContentPane(new ImagePanel(backgroundImage));
@@ -27,40 +35,47 @@ public class RoutingController {
     // MARK - Routing Method
 
     public void showSignInView() {
-        drawFrame(new SignInController(this), FrameType.Login);
+        drawFrame(new SignInController(), FrameType.Login);
     }
 
     public void showSignUpView(String username, String password) {
-        drawFrame(new SignUpController(this, username, password), FrameType.SignUp);
+        drawFrame(new SignUpController(username, password), FrameType.SignUp);
     }
 
     public void showMenu() {
-        drawFrame(new MenuController(this), FrameType.Menu);
+        drawFrame(new MenuController(), FrameType.Menu);
     }
 
     public void showQueryHotelView() {
-        drawFrame(new QueryController(this), FrameType.Query);
+        drawFrame(new QueryController(), FrameType.Query);
     }
 
     public void showSearchResultView() {
-        drawFrame(new SearchResultController(this), FrameType.ShowResult);
+        drawFrame(new SearchResultController(), FrameType.ShowResult);
     }
 
     public void showCheckOrderView() {
-        drawFrame(new CheckOrderController(this), FrameType.CheckOrder);
+        drawFrame(new CheckOrderController(), FrameType.CheckOrder);
     }
 
     public void showCheckOrderResultView() {
-        drawFrame(new CheckOrderResultController(this), FrameType.CheckOrderResult);
+        drawFrame(new CheckOrderResultController(), FrameType.CheckOrderResult);
     }
 
     // MARK - Private Method
+
+    private void setupMainFrame() {
+        mainFrame = new JFrame("B0ok1ng Hotel");
+        mainFrame.setBounds(100, 100, 450, 400);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.getContentPane().setLayout(null);
+    }
 
     private void drawFrame(BaseController controller, FrameType frameType) {
         clearFrame(mainFrame);
         controller.show(mainFrame);
     }
-    
+
     private void clearFrame(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();

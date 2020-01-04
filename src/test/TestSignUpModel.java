@@ -2,7 +2,7 @@ package test;
 
 import java.sql.*;
 
-import controller.RoutingController;
+import controller.Router;
 import model.SignUpModel;
 import databaseUtil.DatabaseBuildAllTables;
 import databaseUtil.DatabaseUser;
@@ -19,9 +19,8 @@ public class TestSignUpModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-            RoutingController router = new RoutingController();
-            router.start();
-        }
+        Router.getInstance().start();
+    }
 
     public static void main(String[] args) throws SQLException {
         SignUpModel signUpModel = new SignUpModel();

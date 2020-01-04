@@ -11,8 +11,7 @@ import javax.swing.SwingConstants;
 import controller.CheckOrderResultController;
 
 public class CheckOrderResultView extends BaseView {
-
-//    private JFrame frame;
+    private JFrame frame;
     private JTextField reservationIdField, hotelIdField, startDateField, endDateField;
     private JTextField singleNumField, doubleNumField, quadNumField, stayNightsField, totalPrizeField;
     private CheckOrderResultController controller;
@@ -23,7 +22,7 @@ public class CheckOrderResultView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    CheckOrderResultView window = new CheckOrderResultView();
+                    CheckOrderResultView window = new CheckOrderResultView(true);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -35,9 +34,14 @@ public class CheckOrderResultView extends BaseView {
     /**
      * Create the application.
      */
-    public CheckOrderResultView() {
-//         initialize();
+    private CheckOrderResultView(Boolean testFlag) {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        initialize();
     }
+    public CheckOrderResultView() {}
 
     public void setProperty(CheckOrderResultController controller, JFrame frame) {
         this.controller = controller;
@@ -45,16 +49,10 @@ public class CheckOrderResultView extends BaseView {
         initialize();
     }
 
-
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
-//        frame = new JFrame();
-        frame.setBounds(100, 100, 450, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
-
+    protected void initialize() {
         JLabel reservationIdLabel = new JLabel("Reservation Number:");
         reservationIdLabel.setBounds(47, 36, 136, 25);
         frame.getContentPane().add(reservationIdLabel);
@@ -88,11 +86,11 @@ public class CheckOrderResultView extends BaseView {
         frame.getContentPane().add(totalPrizeLabel);
 
         JButton cancelButton = new JButton("Cancel Order");
-        cancelButton.setBounds(24, 319, 117, 29);
+        cancelButton.setBounds(42, 319, 117, 29);
         frame.getContentPane().add(cancelButton);
 
         JButton modifyButton = new JButton("Modify");
-        modifyButton.setBounds(167, 319, 117, 29);
+        modifyButton.setBounds(171, 319, 117, 29);
         frame.getContentPane().add(modifyButton);
 
         JButton confirmButton = new JButton("Confirm");
