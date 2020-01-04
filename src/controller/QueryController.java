@@ -15,16 +15,20 @@ import main.UserSession;
 public class QueryController extends BaseController{
     private QueryView queryView = new QueryView();
     private SearchModel searchModel;
+    public ArrayList<Hotel> hotelInfo = new ArrayList<Hotel>();
     public QueryController() throws ParseException, SQLException {
     	searchModel = new SearchModel();
     }
 
     public void show(JFrame frame) {
-        //ArrayList<Hotel> fakeHotelInfo = makeFakeHotelInfo();	
+        this.hotelInfo = searchModel.getAllHotels();	
         queryView.setProperty(this, frame);
         frame.setVisible(true);
     }
-
+    public void getHotelByStar(int star) {
+    	Integer hotelStar = Integer.valueOf(star);
+    	this.hotelInfo = searchModel.getHotelsbyHotelStar(hotelStar);
+    }
     public void searchMatchHotel(int selectHotelStar, int singelNum, int doubleNum, int quadNum, Date checkInDate, Date checkOutDate) throws ParseException {
     	ArrayList<Hotel> resultHotel = searchModel.SearchAvailableRoom(selectHotelStar, checkInDate, checkOutDate, singelNum, doubleNum, quadNum);
 //    	System.out.println(resultHotel);

@@ -13,10 +13,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import com.toedter.calendar.*;
 import javax.swing.JTextField;
+
+import java.util.ArrayList;
 import java.util.Date;
 import main.UserSession;
 import controller.QueryController;
 import javax.swing.JButton;
+import main.Hotel;
+import javax.swing.table.*;
 
 public class QueryView extends BaseView {
     private JFrame frame;
@@ -26,6 +30,8 @@ public class QueryView extends BaseView {
     private int selectDoubleNum;
     private int selectQuadNum;
     private JTextField textField;
+    private JTable jt;
+    private Object[][] data;
 
     /**
      * Launch the application.
@@ -60,19 +66,25 @@ public class QueryView extends BaseView {
         this.frame = frame;
         initialize();
     }
-
+    public Object[][] getHotel(){
+    	Object [][] resultObject = new Object[1500][5];
+    	ArrayList<Hotel> resultHotel = controller.hotelInfo;
+    	for(int i=0; i<resultHotel.size(); i++) {
+    		Hotel tmpHotel = resultHotel.get(i);
+    		int totalPrice = tmpHotel.calPrice(1, 1, 1);
+    		resultObject[i] = new Object[]{tmpHotel.getHotelId(), tmpHotel.getHotelStar(), tmpHotel.getAddress(), tmpHotel.getLocality(), totalPrice};
+    	}
+    	return resultObject;
+    }
     /**
      * Initialize the contents of the frame.
      */
 
     protected void initialize() {
-        Object[][] data={
-                {"1","hotel1","台北","你媽區你媽路","2000"},
-                {"2","hotel2","高雄","你爸街你爸區","3000"},
-                {"3","hotel3","高雄","你阿公路你阿公道","1000"},
-                {"4","hotel4","台中","你妹妹區","300000"}};
-        String[] columns={"HotelID","HotelName","地點","地址","價位"};
-        JTable jt=new JTable(data,columns);
+        data=getHotel();
+        String[] columns={"HotelID","星級","地點","地址","價位"};
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        jt=new JTable(model);
         jt.setShowHorizontalLines(true);
         jt.setShowVerticalLines(true);
         //		jt.setPreferredScrollableViewportSize(new Dimension(400,300));
@@ -91,27 +103,61 @@ public class QueryView extends BaseView {
         JLabel filterLabel = new JLabel("篩選條件");
         filterLabel.setBounds(19, 105, 61, 16);
         frame.getContentPane().add(filterLabel);
-
+        
+        JRadioButton []starButtons = new JRadioButton[4]; 
         JRadioButton starFiveButton = new JRadioButton("五星級");
         starFiveButton.setBounds(76, 99, 80, 30);
+        starButtons[0] = starFiveButton;
         frame.getContentPane().add(starFiveButton);
 
         JRadioButton starFourButton = new JRadioButton("四星級");
         starFourButton.setBounds(156, 99, 80, 30);
+        starButtons[1] = starFourButton;
         frame.getContentPane().add(starFourButton);
 
         JRadioButton starThreeButton = new JRadioButton("三星級");
         starThreeButton.setBounds(236, 99, 80, 30);
+        starButtons[2] = starThreeButton;
         frame.getContentPane().add(starThreeButton);
 
         JRadioButton starTwoButton = new JRadioButton("二星級");
         starTwoButton.setBounds(316, 99, 80, 30);
+        starButtons[3] = starTwoButton;
         frame.getContentPane().add(starTwoButton);
+        
+        
+        
+        class RadioButtonActionListener implements ActionListener{
+        	public void actionPerformed(ActionEvent e) {
+        		for(int i=0; i<4; i++) {
+        			if (e.getSource() == starButtons[i]) {
+        				for(int j=0; j<4; j++) {
+        					if (j != i) {
+        						starButtons[j].setSelected(false);
+        					}
+        				}
+        				controller.getHotelByStar(5-i);
+        				data = getHotel();
+        				DefaultTableModel dm = (DefaultTableModel)jt.getModel();
+        				dm.getDataVector().removeAllElements();
+        				dm.fireTableDataChanged();
+        				for(int k=0; k<data.length; k++) {
+        					dm.addRow(data[k]);
+        				}
+        			}
+        		}
+        	}
+        }
+        
+        starButtons[0].addActionListener(new RadioButtonActionListener());
+        starButtons[1].addActionListener(new RadioButtonActionListener());
+        starButtons[2].addActionListener(new RadioButtonActionListener());
+        starButtons[3].addActionListener(new RadioButtonActionListener());
+        
 
         JComboBox hotelStarComboBox = new JComboBox();
         hotelStarComboBox.setBounds(133, 6, 52, 27);
         hotelStarComboBox.addItem("請選擇星級(預設三星級)");
-        hotelStarComboBox.addItem("一星級");
         hotelStarComboBox.addItem("二星級");
         hotelStarComboBox.addItem("三星級");
         hotelStarComboBox.addItem("四星級");
