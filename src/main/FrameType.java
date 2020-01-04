@@ -9,4 +9,5 @@ public enum FrameType {
     CheckOrderResult,
     CheckOrder,
     ModifyOrder,
+    ConfirmOrder,
 }

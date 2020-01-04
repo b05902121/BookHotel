@@ -30,6 +30,7 @@ public class QueryController extends BaseController{
 //    	System.out.println(resultHotel);
     	UserSession session = UserSession.getInstance(true);
     	session.setResultHotel(resultHotel);
+    	session.setOrderDate(checkInDate, checkOutDate);
     	Router.getInstance().showSearchResultView();
     }
     public void returnMenu() {

@@ -123,6 +123,11 @@ public class SearchResultView extends BaseView {
         bookHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Hotel Number " + table.getSelectedRow() + " is choosed");
+                Object[][] hotelList = getHotel();
+                int id = table.getSelectedRow();
+                int choosedHotelId = (int)hotelList[id][0];
+                int totalPrice = (int)hotelList[id][4];
+                controller.confirmOrder(choosedHotelId, totalPrice);
             }
         });
         returnLastPageButton.addActionListener(new ActionListener() {
