@@ -10,6 +10,7 @@ public class UserSession {
     private String _password;
     private ArrayList<Room> _orderedRoom;
     private ArrayList<Hotel> searchHotel = new ArrayList<Hotel>();
+    private int[] reserveRoomNum = {0,0,0};
 
     public static UserSession getInstance(boolean isReuse) {
         if(!isReuse || instance == null){
@@ -34,6 +35,14 @@ public class UserSession {
     
     public ArrayList<Hotel> getResultHotel(){
     	return this.searchHotel;
+    }
+    public void setReserveRoomNum(int sNum, int dNum, int qNum) {
+    	this.reserveRoomNum[0] = sNum;
+    	this.reserveRoomNum[1] = dNum;
+    	this.reserveRoomNum[2] = qNum;
+    }
+    public int[] getReserveRoomNum() {
+    	return this.reserveRoomNum;
     }
     
     public void orderRoom(Room room) {

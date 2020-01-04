@@ -32,4 +32,7 @@ public class QueryController extends BaseController{
     	session.setResultHotel(resultHotel);
     	Router.getInstance().showSearchResultView();
     }
+    public void returnMenu() {
+    	Router.getInstance().showMenu();
+    }
 }

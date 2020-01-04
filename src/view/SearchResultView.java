@@ -62,10 +62,12 @@ public class SearchResultView extends BaseView {
      */
     public Object[][] getHotel(){
     	ArrayList<Hotel> resultHotel = UserSession.getInstance(true).getResultHotel();
-    	Object [][] resultObject = new Object[1500][4];
+    	int[] reserveRoomNum = UserSession.getInstance(true).getReserveRoomNum();
+    	Object [][] resultObject = new Object[1500][5];
     	for(int i=0; i<resultHotel.size(); i++) {
     		Hotel tmpHotel = resultHotel.get(i);
-    		resultObject[i] = new Object[]{tmpHotel.getHotelId(), tmpHotel.getHotelStar(), tmpHotel.getAddress(), tmpHotel.getLocality()};
+    		int totalPrice = tmpHotel.calPrice(reserveRoomNum[0], reserveRoomNum[1], reserveRoomNum[2]);
+    		resultObject[i] = new Object[]{tmpHotel.getHotelId(), tmpHotel.getHotelStar(), tmpHotel.getAddress(), tmpHotel.getLocality(), totalPrice};
     	}
     	return resultObject;
     }
@@ -87,7 +89,8 @@ public class SearchResultView extends BaseView {
             }
         }
         Object[][] data=getHotel();
-        String[] columns={"HotelID","星級","地址","地點"};
+        System.out.println("Total Result: "+data.length);
+        String[] columns={"HotelID","星級","地址","地點","總價"};
         JTable table=new JTable(data,columns);
 
         JScrollPane scrollPane = new JScrollPane(table);
@@ -97,16 +100,25 @@ public class SearchResultView extends BaseView {
         frame.getContentPane().add(scrollPane);
 
         JButton bookHotelButton = new JButton("訂房");
-        bookHotelButton.setBounds(327, 343, 117, 29);
+        bookHotelButton.setBounds(327, 343, 120, 30);
         frame.getContentPane().add(bookHotelButton);
         
         JButton returnLastPageButton = new JButton("回上一頁");
-        returnLastPageButton.setBounds(212, 343, 117, 29);
+        returnLastPageButton.setBounds(212, 343, 120, 30);
         frame.getContentPane().add(returnLastPageButton);
         
         JButton returnMenuButton = new JButton("回首頁");
-        returnMenuButton.setBounds(98, 343, 117, 29);
+        returnMenuButton.setBounds(98, 343, 120, 30);
         frame.getContentPane().add(returnMenuButton);
+        
+        JLabel hintLabel = new JLabel("");
+        if (UserSession.getInstance(true).getResultHotel().size() == 0) {
+        	hintLabel.setText("沒有符合搜尋條件的飯店");
+        }
+        hintLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        hintLabel.setForeground(Color.RED);
+        hintLabel.setBounds(120, 46, 200, 16);
+        frame.getContentPane().add(hintLabel);
         
         bookHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
