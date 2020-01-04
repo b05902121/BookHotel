@@ -13,7 +13,7 @@ public class Order {
     private Integer sNum;
     private Integer dNum;
     private Integer qNum;
-	private Integer totalPrice;
+    private Integer totalPrice;
     
 	public Order(Integer orderId, String username, Integer hotelId, Integer startDate, Integer endDate, Integer sNum,
 			Integer dNum, Integer qNum, Integer totalPrice) {
@@ -54,5 +54,5 @@ public class Order {
 	}
 	public Integer getTotalPrice() {
 		return totalPrice;
-    
+    }
 }
