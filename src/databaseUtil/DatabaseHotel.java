@@ -41,46 +41,43 @@ public class DatabaseHotel extends DatabaseConnect{
         return totalHotelNumber;
     }
 
-    public ArrayList<Hotel> getHotelsByInformation(Integer hotelStar, Integer dateStart, Integer dateEnd, Integer sNumQuery, Integer dNumQuery, Integer qNumQuery){
+    public ArrayList<Hotel> getHotelsByInformation(Integer hotelStar, Integer startDate, Integer endDate, Integer sNumQuery, Integer dNumQuery, Integer qNumQuery){
         /* SELECT * FROM `Hotels` WHERE `HotelStar`=hotelStar ORDER BY sNumQuery*SPrice+dNumQuery*DPrice+qNumQuery*QPrice DESC; */
         System.out.print("[dbUtil] DatabaseHotel getHotelsByInformation().\n");
         ResultSet resultSetHotel = null;
         ArrayList<Hotel> hotels = new ArrayList<Hotel>();
         byte dateIsAvailableBytes[] = new byte[365];
         Arrays.fill(dateIsAvailableBytes,(byte)0);
-        for (int i = dateStart; i <= dateEnd ; i++){
-            dateIsAvailableBytes[i] = (byte)1;
-        }
-//        System.out.print("[dbUtil] getHotelsByInformation dateIsAvailableBytes " + new String(dateIsAvailableBytes, Charset.forName("UTF-8")) + "\n");
+        dateIsAvailableBytes = setBit(dateIsAvailableBytes, (byte)1, startDate, endDate);
         try {
-        	prstmtHotel = conn.prepareStatement("SELECT * " + 
-        		  					"FROM `Hotels` " + 
-        		  					"WHERE `HotelId` in (SELECT `HotelId`" + 
-        		  										"FROM (SELECT `HotelId`,count(*) as c2 " + 
-													    		"FROM (SELECT `HotelId`,`RoomType`,count(*) as c1 " + 
-													    				"FROM (SELECT `HotelId`,`RoomType` " + 
-													    						"FROM `Rooms` " + 
-													    						"WHERE (`DateIsAvailable`&?)=? " +
-													    						") as myalias1 " +
-													    				"group by `HotelId`,`RoomType`" + 
-													    				") as myalias2 " + 
-													    		"WHERE IF(`RoomType`='Single',c1>=?,1) AND " + 
-													    				"IF(`RoomType`='Double',c1>=?,1) AND " + 
-													    				"IF(`RoomType`='Quad',c1>=?,1) " +
-													    		"group by `HotelId`" + 
-													    		") as myalias3 " +
-													    "WHERE c2=3" +
-											    		") AND " +
-											"`HotelStar`=? ORDER BY ?*SPrice+?*DPrice+?*QPrice DESC;");
+        	prstmtHotel = conn.prepareStatement(
+        			"SELECT *" + 
+					"FROM `Hotels`" +
+					"WHERE `HotelID` in (SELECT DISTINCT `hotels_subtable`.`HotelId` " + 
+										"FROM ( SELECT `HotelId`,`RoomType`,count(*) as c1 " + 
+												"FROM `Rooms` " + 
+												"WHERE (`DateIsAvailable`&?)=? " +
+												"group by `HotelId`,`RoomType` " +
+											" ) as rooms_subtable " +
+										"LEFT JOIN ( SELECT `HotelID`,`SNum`,`DNum`,`QNum` " +
+													"FROM `Hotels` " +
+													") as hotels_subtable " +
+										"ON `hotels_subtable`.`HotelID`=`rooms_subtable`.`HotelID` " +
+										"WHERE IF(`RoomType`='Single',`SNum`=`c1`,1) AND " +
+												"IF(`RoomType`='Double',`DNum`=`c1`,1) AND " +
+												"IF(`RoomType`='Quad',`QNum`=`c1`,1) " +
+										") AND " +
+						"`hotelStar`=? " + 
+					"ORDER BY ?*`SPrice`+?*`DPrice`+?*`QPrice` DESC;");
             prstmtHotel.setBytes(1, dateIsAvailableBytes);
             prstmtHotel.setBytes(2, dateIsAvailableBytes);
-            prstmtHotel.setInt(3, sNumQuery);
-            prstmtHotel.setInt(4, dNumQuery);
-            prstmtHotel.setInt(5, qNumQuery);
-            prstmtHotel.setInt(6, hotelStar);
-            prstmtHotel.setInt(7, sNumQuery);
-            prstmtHotel.setInt(8, dNumQuery);
-            prstmtHotel.setInt(9, qNumQuery);
+            prstmtHotel.setInt(3, hotelStar);
+            prstmtHotel.setInt(4, sNumQuery);
+            prstmtHotel.setInt(5, dNumQuery);
+            prstmtHotel.setInt(6, qNumQuery);
+//            prstmtHotel.setInt(3, sNumQuery);
+//            prstmtHotel.setInt(4, dNumQuery);
+//            prstmtHotel.setInt(6, qNumQuery);
             resultSetHotel = prstmtHotel.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,13 +86,13 @@ public class DatabaseHotel extends DatabaseConnect{
             try {
                 while (resultSetHotel.next()){
                     hotels.add(new Hotel(
-                                        Integer.parseInt(resultSetHotel.getString("HotelId")),
-                                        Integer.parseInt(resultSetHotel.getString("HotelStar")),
+                    					resultSetHotel.getInt("HotelId"),
+                    					resultSetHotel.getInt("HotelStar"),
                                         resultSetHotel.getString("Street-Address"),
                                         resultSetHotel.getString("Locality"),
-                                        Integer.parseInt(resultSetHotel.getString("SPrice")),
-                                        Integer.parseInt(resultSetHotel.getString("DPrice")),
-                                        Integer.parseInt(resultSetHotel.getString("QPrice"))
+                                        resultSetHotel.getInt("SPrice"),
+                                        resultSetHotel.getInt("DPrice"),
+                                        resultSetHotel.getInt("QPrice")
                                         )
                                 );
                 }
@@ -106,6 +103,37 @@ public class DatabaseHotel extends DatabaseConnect{
         return hotels;
     }
 
+    public ArrayList<Hotel> getHotels(){
+        System.out.print("[dbUtil] DatabaseHotel getHotels().\n");
+        ResultSet resultSetHotel = null;
+        ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+        try {
+        	prstmtHotel = conn.prepareStatement("SELECT * FROM `Hotels`");
+            resultSetHotel = prstmtHotel.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (resultSetHotel != null) {
+            try {
+                while (resultSetHotel.next()){
+                    hotels.add(new Hotel(
+                    					resultSetHotel.getInt("HotelId"),
+                    					resultSetHotel.getInt("HotelStar"),
+                                        resultSetHotel.getString("Street-Address"),
+                                        resultSetHotel.getString("Locality"),
+                                        resultSetHotel.getInt("SPrice"),
+                                        resultSetHotel.getInt("DPrice"),
+                                        resultSetHotel.getInt("QPrice")
+                                        )
+                                );
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return hotels;
+    }
+    
     public Integer getTotalHotelNumber(){
         Integer totalHotelNumber = -1;
         try {
@@ -120,4 +148,11 @@ public class DatabaseHotel extends DatabaseConnect{
         return totalHotelNumber + 1;
     }
 
+    public byte[] setBit(byte[] source, byte target, Integer startDate, Integer endDate) {
+    	byte[] update = source;
+    	for(int i=startDate ; i<endDate ; i++) {
+    		update[i] = (byte)target;
+    	}
+    	return update;
+    }
 }
