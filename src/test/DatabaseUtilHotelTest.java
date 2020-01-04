@@ -17,12 +17,12 @@ public class DatabaseUtilHotelTest{
             }
 
             /* if you execute in the first time */
-            Boolean forceDropTable = true;
-            databaseBuildAllTables.start(forceDropTable);
-            databaseBuildAllTables.insertJsonData();
-            /* if you have been executed */
-//            Boolean forceDropTable = false;
+//            Boolean forceDropTable = true;
 //            databaseBuildAllTables.start(forceDropTable);
+//            databaseBuildAllTables.insertJsonData();
+            /* if you have been executed */
+            Boolean forceDropTable = false;
+            databaseBuildAllTables.start(forceDropTable);
 
             databaseBuildAllTables.closeConnection();
 
@@ -32,11 +32,16 @@ public class DatabaseUtilHotelTest{
             System.out.print("[Test] totalHotelNumber = " + totalHotelNumber + "\n");
             // date use [dateStart, dateEnd], both include with for loop;
             // So [1, 3] will become [011100000....], because a for loop will execute in for(i=1 ; 0 <= 3; i++){}, means day 1st~3rd
-            hotels = databaseHotel.getHotelsByInformation(3,1,3,1,24,24);
-            for(Hotel hotel: hotels){
-                printHotel(hotel);
-            }
+            hotels = databaseHotel.getHotelsByInformation(5,1,3,0,0,0);
+//            for(Hotel hotel: hotels){
+//                printHotel(hotel);
+//            }
             System.out.print("[Test] total number of hotels for specific hotelStar = " + hotels.size() + "\n");
+            
+            /* New method: getHotels */
+            hotels = databaseHotel.getHotels();
+            System.out.print("[Test] total number of hotels = " + hotels.size() + "\n");
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
