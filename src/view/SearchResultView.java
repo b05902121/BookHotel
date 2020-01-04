@@ -7,6 +7,8 @@ import javax.swing.table.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +16,9 @@ import javax.swing.event.*;
 
 import controller.QueryController;
 import controller.SearchResultController;
+import main.Hotel;
+import java.util.ArrayList;
+import main.UserSession;
 
 public class SearchResultView extends BaseView {
     private JFrame frame;
@@ -55,6 +60,15 @@ public class SearchResultView extends BaseView {
     /**
      * Initialize the contents of the frame.
      */
+    public Object[][] getHotel(){
+    	ArrayList<Hotel> resultHotel = UserSession.getInstance(true).getResultHotel();
+    	Object [][] resultObject = new Object[1500][4];
+    	for(int i=0; i<resultHotel.size(); i++) {
+    		Hotel tmpHotel = resultHotel.get(i);
+    		resultObject[i] = new Object[]{tmpHotel.getHotelId(), tmpHotel.getHotelStar(), tmpHotel.getAddress(), tmpHotel.getLocality()};
+    	}
+    	return resultObject;
+    }
     protected void initialize() {
         JLabel titleLabel = new JLabel("以下顯示符合條件的飯店");
         titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -72,12 +86,8 @@ public class SearchResultView extends BaseView {
                 });
             }
         }
-        Object[][] data={
-                {"1","hotel1","台北","你媽區你媽路","2000"},
-                {"2","hotel2","高雄","你爸街你爸區","3000"},
-                {"3","hotel3","高雄","你阿公路你阿公道","1000"},
-                {"4","hotel4","台中","你妹妹區","300000",}};
-        String[] columns={"HotelID","HotelName","地點","地址","價位"};
+        Object[][] data=getHotel();
+        String[] columns={"HotelID","星級","地址","地點"};
         JTable table=new JTable(data,columns);
 
         JScrollPane scrollPane = new JScrollPane(table);
@@ -89,11 +99,35 @@ public class SearchResultView extends BaseView {
         JButton bookHotelButton = new JButton("訂房");
         bookHotelButton.setBounds(327, 343, 117, 29);
         frame.getContentPane().add(bookHotelButton);
-
+        
+        JButton returnLastPageButton = new JButton("回上一頁");
+        returnLastPageButton.setBounds(212, 343, 117, 29);
+        frame.getContentPane().add(returnLastPageButton);
+        
+        JButton returnMenuButton = new JButton("回首頁");
+        returnMenuButton.setBounds(98, 343, 117, 29);
+        frame.getContentPane().add(returnMenuButton);
+        
         bookHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Hotel Number " + table.getSelectedRow() + " is choosed");
             }
         });
+        returnLastPageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               try {
+				controller.returnLastPage();
+			} catch (ParseException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            }
+        });
+        returnMenuButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.returnMenuPage();
+            }
+        });
+        
     }
 }

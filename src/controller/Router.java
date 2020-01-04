@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.io.File;
 import java.io.IOException;
 
@@ -8,6 +10,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import main.FrameType;
 import main.ImagePanel;
+import main.Hotel;
+import java.util.ArrayList;
 
 public class Router {
     private static Router instance = new Router();
@@ -46,7 +50,7 @@ public class Router {
         drawFrame(new MenuController(), FrameType.Menu);
     }
 
-    public void showQueryHotelView() {
+    public void showQueryHotelView() throws ParseException, SQLException {
         drawFrame(new QueryController(), FrameType.Query);
     }
 

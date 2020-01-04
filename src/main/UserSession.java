@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-
 public class UserSession {
     private UserSession() {} // private constructor
     private static UserSession instance;
@@ -10,6 +9,7 @@ public class UserSession {
     private String _username;
     private String _password;
     private ArrayList<Room> _orderedRoom;
+    private ArrayList<Hotel> searchHotel = new ArrayList<Hotel>();
 
     public static UserSession getInstance(boolean isReuse) {
         if(!isReuse || instance == null){
@@ -28,7 +28,14 @@ public class UserSession {
         // TODO: Update user detail to DB
         instance = null;
     }
-
+    public void setResultHotel(ArrayList<Hotel> hotel) {
+    	this.searchHotel = hotel;
+    }
+    
+    public ArrayList<Hotel> getResultHotel(){
+    	return this.searchHotel;
+    }
+    
     public void orderRoom(Room room) {
         _orderedRoom.add(room);
     }

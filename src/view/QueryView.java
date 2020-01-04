@@ -2,6 +2,8 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.event.*;
+import java.text.ParseException;
+
 import javax.swing.JFrame;
 import view.BaseView;
 import javax.swing.JScrollPane;
@@ -182,7 +184,12 @@ public class QueryView extends BaseView {
                 //            	System.out.println(checkInDate.getTime());
                 //            	System.out.println(checkOutDate.getTime());
 
-                controller.searchMatchHotel(selectHotelStar, singleNum, doubleNum, quadNum, checkInDate, checkOutDate);
+                try {
+					controller.searchMatchHotel(selectHotelStar, singleNum, doubleNum, quadNum, checkInDate, checkOutDate);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
     }
