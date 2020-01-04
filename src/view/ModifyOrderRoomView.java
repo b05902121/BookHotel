@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import controller.ModifyOrderRoomController;
+import main.Order;
+import main.UserSession;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -14,6 +17,8 @@ import javax.swing.JTextField;
 public class ModifyOrderRoomView extends BaseView {
     private JFrame frame;
     private ModifyOrderRoomController controller;
+    private Order checkingOrder;
+
     private JTextField textFieldSingleOrigin;
     private JTextField textFieldSingleNew;
     private JTextField textFieldDoubleOrigin;
@@ -52,6 +57,7 @@ public class ModifyOrderRoomView extends BaseView {
     public void setProperty(ModifyOrderRoomController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
+        checkingOrder = UserSession.getInstance(true).getCacheOrder();
         initialize();
     }
 
@@ -94,39 +100,52 @@ public class ModifyOrderRoomView extends BaseView {
         textFieldSingleOrigin = new JTextField();
         textFieldSingleOrigin.setEditable(false);
         textFieldSingleOrigin.setBounds(219, 82, 58, 26);
-        frame.getContentPane().add(textFieldSingleOrigin);
         textFieldSingleOrigin.setColumns(10);
+        textFieldSingleOrigin.setText(checkingOrder.getsNum().toString());
+        frame.getContentPane().add(textFieldSingleOrigin);
 
         textFieldSingleNew = new JTextField();
         textFieldSingleNew.setColumns(10);
         textFieldSingleNew.setBounds(321, 82, 58, 26);
+        textFieldSingleNew.setText(checkingOrder.getsNum().toString());
         frame.getContentPane().add(textFieldSingleNew);
 
         textFieldDoubleOrigin = new JTextField();
         textFieldDoubleOrigin.setEditable(false);
         textFieldDoubleOrigin.setColumns(10);
         textFieldDoubleOrigin.setBounds(219, 137, 58, 26);
+        textFieldDoubleOrigin.setText(checkingOrder.getdNum().toString());
         frame.getContentPane().add(textFieldDoubleOrigin);
 
         textFieldDoubleNew = new JTextField();
         textFieldDoubleNew.setColumns(10);
         textFieldDoubleNew.setBounds(321, 137, 58, 26);
+        textFieldDoubleNew.setText(checkingOrder.getdNum().toString());
         frame.getContentPane().add(textFieldDoubleNew);
 
         textFieldQuadOrigin = new JTextField();
         textFieldQuadOrigin.setEditable(false);
         textFieldQuadOrigin.setColumns(10);
         textFieldQuadOrigin.setBounds(219, 195, 58, 26);
+        textFieldQuadOrigin.setText(checkingOrder.getqNum().toString());
         frame.getContentPane().add(textFieldQuadOrigin);
 
         textFieldQuadNew = new JTextField();
         textFieldQuadNew.setColumns(10);
         textFieldQuadNew.setBounds(321, 195, 58, 26);
+        textFieldQuadNew.setText(checkingOrder.getqNum().toString());
         frame.getContentPane().add(textFieldQuadNew);
 
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controller.didTapNextButton();
+                try {
+                    Integer sNum = Integer.parseInt(textFieldSingleNew.getText());
+                    Integer dNum = Integer.parseInt(textFieldDoubleNew.getText());
+                    Integer qNum = Integer.parseInt(textFieldQuadNew.getText());
+                    controller.didTapNextButton(sNum, dNum, qNum);
+                } catch (NumberFormatException e2) {
+                    showPopOutMessage("Please input integer.");
+                }              
             }
         });
 

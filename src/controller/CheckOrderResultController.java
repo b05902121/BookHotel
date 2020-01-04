@@ -1,14 +1,18 @@
 package controller;
 
+import java.text.ParseException;
+
 import javax.swing.JFrame;
 
+import main.Order;
+import main.UserSession;
+import model.OrderModel;
 import view.CheckOrderResultView;
 
 public class CheckOrderResultController extends BaseController {
     private CheckOrderResultView checkOrderResultView = new CheckOrderResultView();
-
-    private String hotelName = "hotel1";
-    private Integer TotalPrize = 2000;
+    private OrderModel orderModel = new OrderModel();
+    private Order checkingOrder = UserSession.getInstance(true).getCacheOrder();
 
     public CheckOrderResultController() {}
 
@@ -19,11 +23,13 @@ public class CheckOrderResultController extends BaseController {
     }
 
     public void showMenu() {
+        UserSession.getInstance(true).cleanOrderCache();
         Router.getInstance().showMenu();
     }
 
     public void cancelOrder() {
-        // TODO Auto-generated method stub
+        orderModel.deleteOrder(checkingOrder.getOrderId(), checkingOrder.getUsername());
+        showMenu();
     }
 
     public void modifyOrderRoom() {
@@ -31,6 +37,14 @@ public class CheckOrderResultController extends BaseController {
     }
 
     public void modifyOrderDate() {
-        // TODO Auto-generated method stub
+        Router.getInstance().showModifyOrderDateView();
+    }
+
+    public String getDateString(Integer date) {
+        try {
+            return orderModel.intToDateString(date);
+        } catch (ParseException e) {
+            return "";
+        }
     }
 }

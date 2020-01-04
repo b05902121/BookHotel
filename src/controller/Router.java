@@ -10,8 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import main.FrameType;
 import main.ImagePanel;
-import main.Hotel;
-import java.util.ArrayList;
 
 public class Router {
     private static Router instance = new Router();
@@ -67,10 +65,15 @@ public class Router {
     }
 
     public void showModifyOrderRoomView() {
-        drawFrame(new ModifyOrderRoomController(), FrameType.ModifyOrder);
+        drawFrame(new ModifyOrderRoomController(), FrameType.ModifyOrderRoom);
     }
+
+    public void showModifyOrderDateView() {
+        drawFrame(new ModifyOrderDateController(), FrameType.ModifyOrderDate);
+    }
+
     public void showConfirmOrder() {
-    	drawFrame(new ConfirmOrderController(), FrameType.ConfirmOrder);
+        drawFrame(new ConfirmOrderController(), FrameType.ConfirmOrder);
     }
     // MARK - Private Method
 
