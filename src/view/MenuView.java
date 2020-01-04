@@ -71,11 +71,11 @@ public class MenuView extends BaseView {
 
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int dialogResult = JOptionPane.showConfirmDialog(frame,
+                int logoutResult = JOptionPane.showConfirmDialog(frame,
                         "Would you want to log out?",
                         "Warning",
                         JOptionPane.OK_CANCEL_OPTION);
-                if(dialogResult == JOptionPane.OK_OPTION) {
+                if (logoutResult == JOptionPane.OK_OPTION) {
                     controller.logout();
                 }
             }

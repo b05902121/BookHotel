@@ -26,7 +26,11 @@ public class CheckOrderResultController extends BaseController {
         // TODO Auto-generated method stub
     }
 
-    public void modifyOrder() {
-        Router.getInstance().showModifyOrderView();
+    public void modifyOrderRoom() {
+        Router.getInstance().showModifyOrderRoomView();
+    }
+
+    public void modifyOrderDate() {
+        // TODO Auto-generated method stub
     }
 }
