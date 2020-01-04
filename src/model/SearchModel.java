@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import databaseUtil.DatabaseHotel;
 import main.Hotel;
 
-public class SearchModel extends ServiceModel {
+public class SearchModel{
     DatabaseHotel dbhotel = null;
     public SearchModel() throws SQLException {
         dbhotel = new DatabaseHotel("config/jdbc.properties");
@@ -25,7 +25,7 @@ public class SearchModel extends ServiceModel {
     
     public int datetoint(Date date) throws ParseException {
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-        String pivotDate_str = "01 01 2019";
+        String pivotDate_str = "01 01 2020";
         Date pivotDate = myFormat.parse(pivotDate_str);
         long diff = date.getTime() - pivotDate.getTime();
         //System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
