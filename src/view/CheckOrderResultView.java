@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -167,13 +168,27 @@ public class CheckOrderResultView extends BaseView {
                 controller.cancelOrder();
             }
         });
-        
+
         modifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                 controller.modifyOrder();
+                String[] options = {"Revise Date", "Change Room", "Cancel"};
+                int opt = JOptionPane.showOptionDialog(frame,
+                        "Select what you want to change: ",
+                        "Change Order",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        "Cancel");
+                if (opt==JOptionPane.YES_OPTION) {
+                    
+                }
+                else if (opt==JOptionPane.NO_OPTION) {
+                    controller.modifyOrderRoom();
+                }
             }
         });
-        
+
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.showMenu();

@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import controller.ModifyOrderController;
+import controller.ModifyOrderRoomController;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class ModifyOrderView extends BaseView {
+public class ModifyOrderRoomView extends BaseView {
     private JFrame frame;
-    private ModifyOrderController controller;
+    private ModifyOrderRoomController controller;
     private JTextField textFieldSingleOrigin;
     private JTextField textFieldSingleNew;
     private JTextField textFieldDoubleOrigin;
@@ -28,7 +28,7 @@ public class ModifyOrderView extends BaseView {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ModifyOrderView window = new ModifyOrderView(true);
+                    ModifyOrderRoomView window = new ModifyOrderRoomView(true);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -40,16 +40,16 @@ public class ModifyOrderView extends BaseView {
     /**
      * Create the application.
      */
-    private ModifyOrderView(Boolean testFlag) {
+    private ModifyOrderRoomView(Boolean testFlag) {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         initialize();
     }
-    public ModifyOrderView() {}
+    public ModifyOrderRoomView() {}
 
-    public void setProperty(ModifyOrderController controller, JFrame frame) {
+    public void setProperty(ModifyOrderRoomController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
         initialize();

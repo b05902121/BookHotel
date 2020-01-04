@@ -1,18 +1,16 @@
 package controller;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
-import view.ModifyOrderView;
+import view.ModifyOrderRoomView;
 
-public class ModifyOrderController extends BaseController {
-    private ModifyOrderView modifyOrderView = new ModifyOrderView();
-    public ModifyOrderController() {}
+public class ModifyOrderRoomController extends BaseController {
+    private ModifyOrderRoomView modifyOrderRoomView = new ModifyOrderRoomView();
+    public ModifyOrderRoomController() {}
 
     @Override
     public void show(JFrame frame) {
-        modifyOrderView.setProperty(this, frame);
+        modifyOrderRoomView.setProperty(this, frame);
         frame.setVisible(true);
     }
 
