@@ -13,6 +13,7 @@ import controller.SignUpController;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class SignUpView extends BaseView {
     private JFrame frame;
@@ -69,34 +70,35 @@ public class SignUpView extends BaseView {
 
     protected void initialize() {
         JLabel titleLabel = new JLabel("SIGN UP");
+        titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBounds(142, 32, 162, 47);
         frame.getContentPane().add(titleLabel);
 
         JLabel lblNewLabel = new JLabel("Password");
-        lblNewLabel.setBounds(106, 165, 84, 27);
+        lblNewLabel.setBounds(100, 180, 84, 27);
         frame.getContentPane().add(lblNewLabel);
 
         JLabel label = new JLabel("Username");
-        label.setBounds(106, 126, 84, 27);
+        label.setBounds(100, 130, 80, 27);
         frame.getContentPane().add(label);
 
         usernameTextField = new JTextField();
-        usernameTextField.setBounds(189, 126, 130, 26);
+        usernameTextField.setBounds(200, 130, 130, 25);
         frame.getContentPane().add(usernameTextField);
         usernameTextField.setColumns(10);
 
         passwordTextField = new JPasswordField();
         passwordTextField.setColumns(10);
-        passwordTextField.setBounds(189, 165, 130, 26);
+        passwordTextField.setBounds(200, 180, 130, 25);
         frame.getContentPane().add(passwordTextField);
 
         JButton submitButton = new JButton("submit");
-        submitButton.setBounds(100, 234, 100, 30);
+        submitButton.setBounds(100, 280, 120, 30);
         frame.getContentPane().add(submitButton);
         
         JButton cancelButton = new JButton("cancel");
-        cancelButton.setBounds(230, 234, 100, 30);
+        cancelButton.setBounds(230, 280, 120, 30);
         frame.getContentPane().add(cancelButton);
 
         // Set ActionListener

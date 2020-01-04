@@ -56,11 +56,11 @@ public class CheckOrderResultView extends BaseView {
      */
     protected void initialize() {
         JLabel reservationIdLabel = new JLabel("Reservation Number:");
-        reservationIdLabel.setBounds(47, 36, 136, 25);
+        reservationIdLabel.setBounds(50, 40, 136, 25);
         frame.getContentPane().add(reservationIdLabel);
 
         JLabel hotelIdLabel = new JLabel("Hotel ID:");
-        hotelIdLabel.setBounds(86, 73, 73, 25);
+        hotelIdLabel.setBounds(50, 80, 73, 25);
         frame.getContentPane().add(hotelIdLabel);
 
         JLabel waveLabel = new JLabel("~");
@@ -68,41 +68,41 @@ public class CheckOrderResultView extends BaseView {
         frame.getContentPane().add(waveLabel);
 
         JLabel singleLabel = new JLabel("Single:");
-        singleLabel.setBounds(67, 190, 52, 25);
+        singleLabel.setBounds(60, 200, 50, 25);
         frame.getContentPane().add(singleLabel);
 
         JLabel doubleLabel = new JLabel("Double:");
-        doubleLabel.setBounds(183, 190, 52, 25);
+        doubleLabel.setBounds(180, 200, 50, 25);
         frame.getContentPane().add(doubleLabel);
 
         JLabel QuadLabel = new JLabel("Quad:");
-        QuadLabel.setBounds(307, 190, 41, 25);
+        QuadLabel.setBounds(310, 200, 40, 25);
         frame.getContentPane().add(QuadLabel);
 
         JLabel stayNightsLabel = new JLabel("Total Nights of Stay:");
-        stayNightsLabel.setBounds(47, 257, 136, 25);
+        stayNightsLabel.setBounds(50, 260, 140, 25);
         frame.getContentPane().add(stayNightsLabel);
 
         JLabel totalPrizeLabel = new JLabel("Total Prize:");
-        totalPrizeLabel.setBounds(262, 257, 80, 25);
+        totalPrizeLabel.setBounds(265, 260, 80, 25);
         frame.getContentPane().add(totalPrizeLabel);
 
         JButton cancelOrderButton = new JButton("Cancel Order");
-        cancelOrderButton.setBounds(42, 319, 117, 29);
+        cancelOrderButton.setBounds(30, 320, 120, 30);
         frame.getContentPane().add(cancelOrderButton);
 
         JButton modifyButton = new JButton("Modify");
-        modifyButton.setBounds(171, 319, 117, 29);
+        modifyButton.setBounds(160, 320, 120, 30);
         frame.getContentPane().add(modifyButton);
 
         JButton confirmButton = new JButton("Confirm");
-        confirmButton.setBounds(310, 319, 117, 29);
+        confirmButton.setBounds(290, 320, 120, 30);
         frame.getContentPane().add(confirmButton);
 
         reservationIdField = new JTextField();
         reservationIdField.setEditable(false);
         reservationIdField.setHorizontalAlignment(SwingConstants.CENTER);
-        reservationIdField.setBounds(195, 35, 130, 26);
+        reservationIdField.setBounds(200, 40, 130, 25);
         frame.getContentPane().add(reservationIdField);
         reservationIdField.setColumns(10);
 
@@ -110,56 +110,56 @@ public class CheckOrderResultView extends BaseView {
         hotelIdField.setEditable(false);
         hotelIdField.setHorizontalAlignment(SwingConstants.CENTER);
         hotelIdField.setColumns(10);
-        hotelIdField.setBounds(195, 72, 130, 26);
+        hotelIdField.setBounds(200, 80, 130, 25);
         frame.getContentPane().add(hotelIdField);
 
         startDateField = new JTextField();
         startDateField.setEditable(false);
         startDateField.setHorizontalAlignment(SwingConstants.CENTER);
         startDateField.setColumns(10);
-        startDateField.setBounds(67, 140, 130, 26);
+        startDateField.setBounds(40, 140, 150, 25);
         frame.getContentPane().add(startDateField);
 
         endDateField = new JTextField();
         endDateField.setEditable(false);
         endDateField.setHorizontalAlignment(SwingConstants.CENTER);
         endDateField.setColumns(10);
-        endDateField.setBounds(250, 140, 130, 26);
+        endDateField.setBounds(250, 140, 150, 25);
         frame.getContentPane().add(endDateField);
 
         singleNumField = new JTextField();
         singleNumField.setEditable(false);
         singleNumField.setHorizontalAlignment(SwingConstants.CENTER);
         singleNumField.setColumns(10);
-        singleNumField.setBounds(124, 189, 41, 26);
+        singleNumField.setBounds(120, 200, 40, 25);
         frame.getContentPane().add(singleNumField);
 
         doubleNumField = new JTextField();
         doubleNumField.setEditable(false);
         doubleNumField.setHorizontalAlignment(SwingConstants.CENTER);
         doubleNumField.setColumns(10);
-        doubleNumField.setBounds(241, 189, 41, 26);
+        doubleNumField.setBounds(240, 200, 40, 25);
         frame.getContentPane().add(doubleNumField);
 
         quadNumField = new JTextField();
         quadNumField.setEditable(false);
         quadNumField.setHorizontalAlignment(SwingConstants.CENTER);
         quadNumField.setColumns(10);
-        quadNumField.setBounds(358, 189, 41, 26);
+        quadNumField.setBounds(360, 200, 40, 25);
         frame.getContentPane().add(quadNumField);
 
         stayNightsField = new JTextField();
         stayNightsField.setEditable(false);
         stayNightsField.setHorizontalAlignment(SwingConstants.CENTER);
         stayNightsField.setColumns(10);
-        stayNightsField.setBounds(195, 256, 41, 26);
+        stayNightsField.setBounds(200, 260, 50, 25);
         frame.getContentPane().add(stayNightsField);
 
         totalPrizeField = new JTextField();
         totalPrizeField.setEditable(false);
         totalPrizeField.setHorizontalAlignment(SwingConstants.CENTER);
         totalPrizeField.setColumns(10);
-        totalPrizeField.setBounds(354, 256, 41, 26);
+        totalPrizeField.setBounds(360, 260, 50, 25);
         frame.getContentPane().add(totalPrizeField);
 
         cancelOrderButton.addActionListener(new ActionListener() {

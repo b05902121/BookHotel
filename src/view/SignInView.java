@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import controller.SignInController;
+import java.awt.Font;
 
 public class SignInView extends BaseView {
     private JFrame frame;
@@ -58,34 +59,35 @@ public class SignInView extends BaseView {
      */
     protected void initialize() {
         JLabel TitleLable = new JLabel("Ｗelcome to B0ok1ng Hotel ! ");
+        TitleLable.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
         TitleLable.setHorizontalAlignment(SwingConstants.CENTER);
-        TitleLable.setBounds(73, 20, 298, 58);
+        TitleLable.setBounds(75, 50, 300, 60);
         frame.getContentPane().add(TitleLable);
 
         JLabel lblNewLabel = new JLabel("Username");
-        lblNewLabel.setBounds(105, 110, 75, 27);
+        lblNewLabel.setBounds(105, 150, 75, 27);
         frame.getContentPane().add(lblNewLabel);
 
         JLabel lblPassword = new JLabel("Password");
-        lblPassword.setBounds(105, 152, 75, 27);
+        lblPassword.setBounds(105, 210, 75, 27);
         frame.getContentPane().add(lblPassword);
 
         usernameField = new JTextField();
-        usernameField.setBounds(206, 115, 151, 15);
+        usernameField.setBounds(206, 150, 151, 25);
         frame.getContentPane().add(usernameField);
         usernameField.setColumns(10);
 
         passwordField = new  JPasswordField();
         passwordField.setColumns(10);
-        passwordField.setBounds(206, 157, 151, 15);
+        passwordField.setBounds(206, 210, 151, 25);
         frame.getContentPane().add(passwordField);
 
         JButton registerBtn = new JButton("register");
-        registerBtn.setBounds(105, 220, 97, 27);
+        registerBtn.setBounds(100, 300, 120, 30);
         frame.getContentPane().add(registerBtn);
 
         JButton loginBtn = new JButton("login");
-        loginBtn.setBounds(227, 219, 117, 29);
+        loginBtn.setBounds(230, 300, 120, 30);
         frame.getContentPane().add(loginBtn);
 
         // Set ActionListener
