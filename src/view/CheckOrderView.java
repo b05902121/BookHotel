@@ -80,7 +80,7 @@ public class CheckOrderView extends BaseView {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         JButton btnNext = new JButton("Next");
-        btnNext.setBounds(314, 332, 117, 29);
+        btnNext.setBounds(320, 330, 120, 30);
         frame.getContentPane().add(btnNext);
         
         btnNext.addActionListener(new ActionListener() {
@@ -91,7 +91,7 @@ public class CheckOrderView extends BaseView {
         });
 
         JButton btnCancel = new JButton("Cancel");
-        btnCancel.setBounds(199, 332, 117, 29);
+        btnCancel.setBounds(200, 330, 120, 30);
         frame.getContentPane().add(btnCancel);
         
         btnCancel.addActionListener(new ActionListener() {
