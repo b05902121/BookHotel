@@ -145,6 +145,7 @@ public class ConfirmView {
 		JButton doOrderButton = new JButton("確定預定");
 		doOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				controller.confirmOrder();
 			}
 		});
 		doOrderButton.setBounds(223, 331, 117, 29);
