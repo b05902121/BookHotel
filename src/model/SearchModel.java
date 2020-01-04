@@ -27,6 +27,10 @@ public class SearchModel{
         return dbhotel.getHotels();
     }
     
+    public ArrayList<Hotel> getHotelsbyHotelStar(Integer hotelStar){
+        return dbhotel.getHotelsbyHotelStar(hotelStar);
+    }
+    
     public int datetoint(Date date) throws ParseException {
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
         String pivotDate_str = "01 01 2020";
