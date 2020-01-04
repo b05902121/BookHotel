@@ -66,15 +66,15 @@ public class Router {
         drawFrame(new CheckOrderResultController(), FrameType.CheckOrderResult);
     }
 
-    public void showModifyOrderView() {
-        drawFrame(new ModifyOrderController(), FrameType.ModifyOrder);
+    public void showModifyOrderRoomView() {
+        drawFrame(new ModifyOrderRoomController(), FrameType.ModifyOrder);
     }
 
     // MARK - Private Method
 
     private void setupMainFrame() {
         mainFrame = new JFrame("B0ok1ng Hotel");
-        mainFrame.setBounds(100, 100, 450, 400);
+        mainFrame.setBounds(400, 200, 450, 400);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.getContentPane().setLayout(null);
     }
