@@ -14,7 +14,7 @@ public class UserSession {
     private int[] reserveRoomNum = {0,0,0};
     private ArrayList<Date> orderDate = new ArrayList<Date>();
     private Order orderCache;
-    private ArrayList<Order> userOrderList;
+    private ArrayList<Order> userOrderList = new ArrayList<Order>(); 
 
     public static UserSession getInstance(boolean isReuse) {
         if(!isReuse || instance == null){
@@ -68,7 +68,9 @@ public class UserSession {
     public int[] getReserveRoomNum() {
     	return this.reserveRoomNum;
     }
-    
+    public void addOrder(Order order) {
+    	this.userOrderList.add(order);
+    }
 //    public void orderRoom(Room room) {
 //        _orderedRoom.add(room);
 //    }
