@@ -17,4 +17,8 @@ public class CheckOrderController extends BaseController {
     public void showCheckOrderResult(int selectedRow) {
         Router.getInstance().showCheckOrderResultView();
     }
+    
+    public void showMenu() {
+        Router.getInstance().showMenu();
+    }
 }

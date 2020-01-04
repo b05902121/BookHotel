@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -85,9 +87,9 @@ public class CheckOrderResultView extends BaseView {
         totalPrizeLabel.setBounds(262, 257, 80, 25);
         frame.getContentPane().add(totalPrizeLabel);
 
-        JButton cancelButton = new JButton("Cancel Order");
-        cancelButton.setBounds(42, 319, 117, 29);
-        frame.getContentPane().add(cancelButton);
+        JButton cancelOrderButton = new JButton("Cancel Order");
+        cancelOrderButton.setBounds(42, 319, 117, 29);
+        frame.getContentPane().add(cancelOrderButton);
 
         JButton modifyButton = new JButton("Modify");
         modifyButton.setBounds(171, 319, 117, 29);
@@ -159,5 +161,23 @@ public class CheckOrderResultView extends BaseView {
         totalPrizeField.setColumns(10);
         totalPrizeField.setBounds(354, 256, 41, 26);
         frame.getContentPane().add(totalPrizeField);
+
+        cancelOrderButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.cancelOrder();
+            }
+        });
+        
+        modifyButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 controller.modifyOrder();
+            }
+        });
+        
+        confirmButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.showMenu();
+            }
+        });
     }
 }
