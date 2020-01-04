@@ -26,12 +26,12 @@ public class TestSearchModel {
         databaseBuildAllTables.start(forceDropTable);
         databaseBuildAllTables.insertJsonData();
         /* if you have been executed */
-//        Boolean forceDropTable = false;
-//        databaseBuildAllTables.start(forceDropTable);
+        //        Boolean forceDropTable = false;
+        //        databaseBuildAllTables.start(forceDropTable);
 
         databaseBuildAllTables.closeConnection();
     }
-    
+
     public static Date getDate(String date) throws ParseException {
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
         String retDate_str = date;
@@ -48,7 +48,10 @@ public class TestSearchModel {
         Integer dNum = 2;
         Integer qNum = 3;
         ArrayList<Hotel> retHotelList = searchModel.SearchAvailableRoom(hotelStar, startDate, endDate, sNum, dNum, qNum);
-        if (retHotelList != null) {System.out.println("got results");}
+        if (retHotelList != null) {
+            System.out.print("[Test] Got results: ");
+            System.out.println(retHotelList);
+        }
         for (Hotel h:retHotelList) {
             System.out.println("-------------------------------------------------");
             System.out.printf("hotelStar: %d\n", h.getHotelStar());
