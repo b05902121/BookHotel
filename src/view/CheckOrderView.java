@@ -100,5 +100,11 @@ public class CheckOrderView extends BaseView {
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setBounds(199, 332, 117, 29);
         frame.getContentPane().add(btnCancel);
+        
+        btnCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.showMenu();
+            }
+        });
     }
 }
