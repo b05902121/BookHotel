@@ -9,7 +9,8 @@ import controller.MenuController;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.sql.SQLException;
+import java.text.ParseException;
 public class MenuView extends BaseView {
     private JFrame frame;
     private MenuController controller;

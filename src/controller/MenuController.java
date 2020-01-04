@@ -1,6 +1,8 @@
 package controller;
 
 import javax.swing.JFrame;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import main.UserSession;
 import view.MenuView;
@@ -17,7 +19,7 @@ public class MenuController extends BaseController {
         frame.setVisible(true);
         UserSession.getInstance(true).testingMethod();
     }
-    
+
 
     public void logout() {
         UserSession.getInstance(true).logout();
@@ -25,9 +27,13 @@ public class MenuController extends BaseController {
     }
 
     public void showQueryHotelView() {
-        Router.getInstance().showQueryHotelView();
+        try {
+            Router.getInstance().showQueryHotelView();
+        } catch (ParseException | SQLException e1) {
+            e1.printStackTrace();
+        }
     }
-    
+
     public void showcheckOrderView() {
         Router.getInstance().showCheckOrderView();
     }
