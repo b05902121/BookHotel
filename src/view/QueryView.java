@@ -2,7 +2,10 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JFrame;
 import view.BaseView;
@@ -32,7 +35,7 @@ public class QueryView extends BaseView {
     private JTextField textField;
     private JTable jt;
     private Object[][] data;
-
+    private SimpleDateFormat myFormat = new SimpleDateFormat("MM/dd");
     /**
      * Launch the application.
      */
@@ -82,7 +85,7 @@ public class QueryView extends BaseView {
 
     protected void initialize() {
         data=getHotel();
-        String[] columns={"HotelID","星級","地點","地址","價位"};
+        String[] columns={"HotelID","Star","Address","Locality","Price"};
         DefaultTableModel model = new DefaultTableModel(data, columns);
         jt=new JTable(model);
         jt.setShowHorizontalLines(true);
@@ -96,31 +99,31 @@ public class QueryView extends BaseView {
         scrollPane.setBounds(6, 133, 418, 214);
         frame.getContentPane().add(scrollPane);
 
-        JLabel searchTitleLabel = new JLabel("搜尋條件");
-        searchTitleLabel.setBounds(6, 6, 70, 24);
+        JLabel searchTitleLabel = new JLabel("Search Hotel");
+        searchTitleLabel.setBounds(6, 6, 80, 24);
         frame.getContentPane().add(searchTitleLabel);
 
-        JLabel filterLabel = new JLabel("篩選條件");
+        JLabel filterLabel = new JLabel("Filter");
         filterLabel.setBounds(19, 105, 61, 16);
         frame.getContentPane().add(filterLabel);
 
         JRadioButton []starButtons = new JRadioButton[4]; 
-        JRadioButton starFiveButton = new JRadioButton("五星級");
+        JRadioButton starFiveButton = new JRadioButton("Star 5");
         starFiveButton.setBounds(76, 99, 80, 30);
         starButtons[0] = starFiveButton;
         frame.getContentPane().add(starFiveButton);
 
-        JRadioButton starFourButton = new JRadioButton("四星級");
+        JRadioButton starFourButton = new JRadioButton("Star 4");
         starFourButton.setBounds(156, 99, 80, 30);
         starButtons[1] = starFourButton;
         frame.getContentPane().add(starFourButton);
 
-        JRadioButton starThreeButton = new JRadioButton("三星級");
+        JRadioButton starThreeButton = new JRadioButton("Star 3");
         starThreeButton.setBounds(236, 99, 80, 30);
         starButtons[2] = starThreeButton;
         frame.getContentPane().add(starThreeButton);
 
-        JRadioButton starTwoButton = new JRadioButton("二星級");
+        JRadioButton starTwoButton = new JRadioButton("Star 2");
         starTwoButton.setBounds(316, 99, 80, 30);
         starButtons[3] = starTwoButton;
         frame.getContentPane().add(starTwoButton);
@@ -157,34 +160,34 @@ public class QueryView extends BaseView {
 
         JComboBox hotelStarComboBox = new JComboBox();
         hotelStarComboBox.setBounds(133, 6, 52, 27);
-        hotelStarComboBox.addItem("請選擇星級(預設三星級)");
-        hotelStarComboBox.addItem("二星級");
-        hotelStarComboBox.addItem("三星級");
-        hotelStarComboBox.addItem("四星級");
-        hotelStarComboBox.addItem("五星級");
+        hotelStarComboBox.addItem("Default(3 Star)");
+        hotelStarComboBox.addItem("2 star");
+        hotelStarComboBox.addItem("3 star");
+        hotelStarComboBox.addItem("4 star");
+        hotelStarComboBox.addItem("5 star");
         frame.getContentPane().add(hotelStarComboBox);
 
-        JLabel checkInLabel = new JLabel("住房日期");
+        JLabel checkInLabel = new JLabel("CheckIn");
         checkInLabel.setBounds(197, 10, 61, 16);
         frame.getContentPane().add(checkInLabel);
 
         JDateChooser checkInDateChooser = new JDateChooser();
-        checkInDateChooser.setBounds(266, 10, 20, 20);
+        checkInDateChooser.setBounds(250, 10, 20, 20);
         frame.getContentPane().add(checkInDateChooser);
 
         JDateChooser checkOutDateChooser = new JDateChooser();
-        checkOutDateChooser.setBounds(402, 10, 20, 20);
+        checkOutDateChooser.setBounds(395, 10, 20, 20);
         frame.getContentPane().add(checkOutDateChooser);
 
-        JLabel checkOutLabel = new JLabel("退房日期");
-        checkOutLabel.setBounds(327, 10, 61, 16);
+        JLabel checkOutLabel = new JLabel("CheckOut");
+        checkOutLabel.setBounds(327, 10, 70, 16);
         frame.getContentPane().add(checkOutLabel);
 
-        JLabel hotelStarLabel = new JLabel("飯店星級");
-        hotelStarLabel.setBounds(76, 10, 61, 16);
+        JLabel hotelStarLabel = new JLabel("Star");
+        hotelStarLabel.setBounds(100, 10, 61, 16);
         frame.getContentPane().add(hotelStarLabel);
 
-        JLabel singleRoomLabel = new JLabel("單人房數量");
+        JLabel singleRoomLabel = new JLabel("Single");
         singleRoomLabel.setBounds(76, 38, 77, 16);
         frame.getContentPane().add(singleRoomLabel);
 
@@ -192,7 +195,7 @@ public class QueryView extends BaseView {
         singleRoomField.setBounds(143, 34, 52, 25);
         frame.getContentPane().add(singleRoomField);
 
-        JLabel doubleRoomLabel = new JLabel("雙人房數量");
+        JLabel doubleRoomLabel = new JLabel("Double");
         doubleRoomLabel.setBounds(197, 38, 81, 16);
         frame.getContentPane().add(doubleRoomLabel);
 
@@ -200,7 +203,7 @@ public class QueryView extends BaseView {
         doubleRoomField.setBounds(265, 34, 52, 25);
         frame.getContentPane().add(doubleRoomField);
 
-        JLabel quadRoomLabel = new JLabel("四人房數量");
+        JLabel quadRoomLabel = new JLabel("Quad");
         quadRoomLabel.setBounds(327, 38, 70, 16);
         frame.getContentPane().add(quadRoomLabel);
 
@@ -208,13 +211,21 @@ public class QueryView extends BaseView {
         quadRoomField.setBounds(392, 34, 52, 25);
         frame.getContentPane().add(quadRoomField);
 
-        JButton searchHotelButton = new JButton("搜尋飯店");
+        JButton searchHotelButton = new JButton("Search");
         searchHotelButton.setBounds(327, 66, 120, 30);
         frame.getContentPane().add(searchHotelButton);
 
-        JButton returnMenuButton = new JButton("回首頁");
+        JButton returnMenuButton = new JButton("Menu");
         returnMenuButton.setBounds(0, 343, 120, 30);
         frame.getContentPane().add(returnMenuButton);
+        
+        JLabel checkInDataLabel = new JLabel("");
+        checkInDataLabel.setBounds(270, 8, 61, 20);
+        frame.getContentPane().add(checkInDataLabel);
+        
+        JLabel checkOutDateLabel = new JLabel("");
+        checkOutDateLabel.setBounds(415, 10, 61, 16);
+        frame.getContentPane().add(checkOutDateLabel);
 
         hotelStarComboBox.addItemListener(new ItemListener() {
             @Override
@@ -247,5 +258,29 @@ public class QueryView extends BaseView {
                 controller.returnMenu();
             }
         });
+        
+        checkInDateChooser.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent e) {
+                        if ("date".equals(e.getPropertyName())) {
+                            Date newDate = (Date) e.getNewValue();
+                            checkInDataLabel.setText(myFormat.format(newDate));
+                        }
+                    }
+                });
+        checkOutDateChooser.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent e) {
+                        if ("date".equals(e.getPropertyName())) {
+                            Date newDate = (Date) e.getNewValue();
+                            checkOutDateLabel.setText(myFormat.format(newDate));
+                        }
+                    }
+                });
+        
+        
+        
     }
 }
