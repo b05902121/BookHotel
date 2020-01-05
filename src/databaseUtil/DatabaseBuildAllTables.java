@@ -90,7 +90,7 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
             JsonReader reader = new JsonReader(br);
             ArrayList<HotelForJson> hotelListFromJson = gson.fromJson(reader, REVIEW_TYPE);
             Integer roomIdStart = 0;
-            prstmtHotel = conn.prepareStatement("INSERT INTO `Hotels`(`HotelID`,`HotelStar`,`Locality`,`Street-Address`,`SNum`,`DNum`,`QNum`,`SPrice`,`DPrice`,`QPrice`) VALUES (?,?,?,?,?,?,?,?,?,?);");
+            prstmtHotel = conn.prepareStatement("INSERT INTO `Hotels`(`HotelID`,`HotelStar`,`Locality`,`Street-Address`,`SNum`,`DNum`,`QNum`,`SPrice`,`DPrice`,`QPrice`,`ValidRoomTypeNum`) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
             prstmtRoom = conn.prepareStatement("INSERT INTO `Rooms`(`RoomID`,`HotelID`,`RoomType`,`RoomPrice`,`DateIsAvailable`) VALUES (?,?,?,?,?);");
             conn.setAutoCommit(false);
             for(HotelForJson hotel:hotelListFromJson){
@@ -110,6 +110,12 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
         RoomForJson[] rooms = hotel.getRooms();
         byte dateIsAvailableBytes[] = new byte[365];
         Arrays.fill(dateIsAvailableBytes,(byte)1);
+        Integer validRoomTypeNum = 0;
+        for(RoomForJson room: rooms) {
+        	if(room.getNumber() > 0) {
+        		validRoomTypeNum ++;
+        	}
+        }
 //        System.out.print("[dbUtil] insertOneJsonData dateIsAvailableBytes " + new String(dateIsAvailableBytes, Charset.forName("UTF-8")) + "\n");
         try {
             prstmtHotel.setInt(1, hotel.getHotelId());
@@ -122,6 +128,7 @@ public class DatabaseBuildAllTables extends DatabaseConnect{
             prstmtHotel.setInt(8, rooms[0].getRoomPrice());
             prstmtHotel.setInt(9, rooms[1].getRoomPrice());
             prstmtHotel.setInt(10, rooms[2].getRoomPrice());
+            prstmtHotel.setInt(11, validRoomTypeNum);
             prstmtHotel.addBatch();
         } catch (SQLException e) {
             e.printStackTrace();

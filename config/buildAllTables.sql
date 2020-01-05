@@ -25,6 +25,7 @@ CREATE TABLE `Hotels` (
   `SPrice` int(11) NOT NULL,
   `DPrice` int(11) NOT NULL,
   `QPrice` int(11) NOT NULL,
+  `ValidRoomTypeNum` int(11) NOT NULL,
   PRIMARY KEY (`HotelID`),
   UNIQUE KEY `HotelID_UNIQUE` (`HotelID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

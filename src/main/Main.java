@@ -18,7 +18,7 @@ public class Main {
         /* if you want to insert InsertDefaultData.sql (when test login/signin)*/
         databaseBuildAllTables.insertDefaultData("config/InsertDefaultData.sql");
         /* if you want to insert Json Data (when test book hotel) */
-//        databaseBuildAllTables.insertJsonData();
+        databaseBuildAllTables.insertJsonData();
 
         try {
             databaseBuildAllTables.closeConnection();
