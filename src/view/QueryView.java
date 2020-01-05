@@ -2,7 +2,10 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JFrame;
 import view.BaseView;
@@ -32,7 +35,7 @@ public class QueryView extends BaseView {
     private JTextField textField;
     private JTable jt;
     private Object[][] data;
-
+    private SimpleDateFormat myFormat = new SimpleDateFormat("MM/dd");
     /**
      * Launch the application.
      */
@@ -169,11 +172,11 @@ public class QueryView extends BaseView {
         frame.getContentPane().add(checkInLabel);
 
         JDateChooser checkInDateChooser = new JDateChooser();
-        checkInDateChooser.setBounds(266, 10, 20, 20);
+        checkInDateChooser.setBounds(250, 10, 20, 20);
         frame.getContentPane().add(checkInDateChooser);
 
         JDateChooser checkOutDateChooser = new JDateChooser();
-        checkOutDateChooser.setBounds(402, 10, 20, 20);
+        checkOutDateChooser.setBounds(382, 10, 20, 20);
         frame.getContentPane().add(checkOutDateChooser);
 
         JLabel checkOutLabel = new JLabel("退房日期");
@@ -215,6 +218,14 @@ public class QueryView extends BaseView {
         JButton returnMenuButton = new JButton("回首頁");
         returnMenuButton.setBounds(0, 343, 120, 30);
         frame.getContentPane().add(returnMenuButton);
+        
+        JLabel checkInDataLabel = new JLabel("");
+        checkInDataLabel.setBounds(270, 8, 61, 20);
+        frame.getContentPane().add(checkInDataLabel);
+        
+        JLabel checkOutDateLabel = new JLabel("");
+        checkOutDateLabel.setBounds(394, 10, 61, 16);
+        frame.getContentPane().add(checkOutDateLabel);
 
         hotelStarComboBox.addItemListener(new ItemListener() {
             @Override
@@ -247,5 +258,29 @@ public class QueryView extends BaseView {
                 controller.returnMenu();
             }
         });
+        
+        checkInDateChooser.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent e) {
+                        if ("date".equals(e.getPropertyName())) {
+                            Date newDate = (Date) e.getNewValue();
+                            checkInDataLabel.setText(myFormat.format(newDate));
+                        }
+                    }
+                });
+        checkOutDateChooser.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent e) {
+                        if ("date".equals(e.getPropertyName())) {
+                            Date newDate = (Date) e.getNewValue();
+                            checkOutDateLabel.setText(myFormat.format(newDate));
+                        }
+                    }
+                });
+        
+        
+        
     }
 }

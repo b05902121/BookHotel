@@ -133,7 +133,9 @@ public class ModifyOrderDateView extends BaseView {
 
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controller.didTapNextButton(checkInDateChooser.getDate(), checkOutDateChooser.getDate());           
+            	Date checkInDate = checkInDateChooser.getDate();
+            	Date checkOutDate = checkOutDateChooser.getDate();
+                controller.didTapNextButton(checkInDate, checkOutDate);           
             }
         });
 
