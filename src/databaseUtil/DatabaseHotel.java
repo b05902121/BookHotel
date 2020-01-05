@@ -53,22 +53,26 @@ public class DatabaseHotel extends DatabaseConnect{
             prstmtHotel = conn.prepareStatement(
                     "SELECT *" + 
                     "FROM `Hotels`" +
-                    "WHERE `HotelID` in (SELECT DISTINCT `HotelId` " + 
-                                        "FROM ( SELECT `HotelId`,`RoomType`,count(*) as timeAbleRoomNumPerRoomType " + 
-                                                "FROM `Rooms` " + 
-                                                "WHERE (`DateIsAvailable`&?)=? " +
-                                                "group by `HotelId`,`RoomType` " +
-                                            " ) as rooms_subtable " +
-//                                        "LEFT JOIN ( SELECT `HotelID`,`SNum`,`DNum`,`QNum` " +
-//                                                    "FROM `Hotels` " +
-//                                                    ") as hotels_subtable " +
-//                                        "ON `hotels_subtable`.`HotelID`=`rooms_subtable`.`HotelID` " +
-//                                        "WHERE IF(`RoomType`='Single',`SNum`=`timeAbleRoomNumPerRoomType`,1) AND " +
-//                                                "IF(`RoomType`='Double',`DNum`=`timeAbleRoomNumPerRoomType`,1) AND " +
-//                                                "IF(`RoomType`='Quad',`QNum`=`timeAbleRoomNumPerRoomType`,1) AND " +
-                                        "WHERE IF(`RoomType`='Single',`timeAbleRoomNumPerRoomType`>=?,1=1) AND " +
-                                                "IF(`RoomType`='Double',`timeAbleRoomNumPerRoomType`>=?,1=1) AND " +
-                                                "IF(`RoomType`='Quad',`timeAbleRoomNumPerRoomType`>=?,1=1) " +
+                    "WHERE `HotelID` in (SELECT `HotelID` " +
+                    					"FROM ( SELECT `rooms_subtable`.`HotelID`,`SNum`,`DNum`,`QNum`,`ValidRoomTypeNum`,count(*) as RoomTypeNum " +
+		                                        "FROM ( SELECT `HotelID`,`RoomType`,count(*) as timeAbleRoomNumPerRoomType " + 
+		                                                "FROM `Rooms` " + 
+		                                                "WHERE (`DateIsAvailable`&?)=? " +
+		                                                "group by `HotelId`,`RoomType` " +
+		                                            " ) as rooms_subtable " +
+					                            "LEFT JOIN ( SELECT `HotelID`,`SNum`,`DNum`,`QNum`,`ValidRoomTypeNum` " +
+				                                        	"FROM `Hotels` " +
+				                                        	") as hotels_subtable " +
+				                                "ON `rooms_subtable`.`HotelID`=`hotels_subtable`.`HotelID` " +
+		                                        "WHERE IF(`RoomType`='Single',`timeAbleRoomNumPerRoomType`>=?,1=1) AND " +
+		                                                "IF(`RoomType`='Double',`timeAbleRoomNumPerRoomType`>=?,1=1) AND " +
+		                                                "IF(`RoomType`='Quad',`timeAbleRoomNumPerRoomType`>=?,1=1) " +
+		                                        "group by `rooms_subtable`.`HotelID` " +
+		                                        ") as hotels_rooms_joinTable " +
+		                                "WHERE `RoomTypeNum`=`ValidRoomTypeNum` AND " +
+		                                        "`SNum`>=? AND " +
+		                                        "`DNum`>=? AND " +
+		                                        "`QNum`>=? " +
                                         ") AND " +
                         "`hotelStar`=? " + 
                     "ORDER BY ?*`SPrice`+?*`DPrice`+?*`QPrice` DESC;");
@@ -77,10 +81,13 @@ public class DatabaseHotel extends DatabaseConnect{
             prstmtHotel.setInt(3, sNumQuery);
             prstmtHotel.setInt(4, dNumQuery);
             prstmtHotel.setInt(5, qNumQuery);
-            prstmtHotel.setInt(6, hotelStar);
-            prstmtHotel.setInt(7, sNumQuery);
-            prstmtHotel.setInt(8, dNumQuery);
-            prstmtHotel.setInt(9, qNumQuery);
+            prstmtHotel.setInt(6, sNumQuery);
+            prstmtHotel.setInt(7, dNumQuery);
+            prstmtHotel.setInt(8, qNumQuery);
+            prstmtHotel.setInt(9, hotelStar);
+            prstmtHotel.setInt(10, sNumQuery);
+            prstmtHotel.setInt(11, dNumQuery);
+            prstmtHotel.setInt(12, qNumQuery);
             resultSetHotel = prstmtHotel.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
