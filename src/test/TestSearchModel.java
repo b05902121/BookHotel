@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import controller.Router;
 import databaseUtil.DatabaseBuildAllTables;
 import main.Hotel;
 import model.SearchModel;
@@ -42,9 +41,9 @@ public class TestSearchModel {
         Integer hotelStar = 3;
         Date startDate = getDate("01 01 2020");
         Date endDate = getDate("03 01 2020");
-        Integer sNum = 10;
-        Integer dNum = 15;
-        Integer qNum = 25;
+        Integer sNum = 20;
+        Integer dNum = 20;
+        Integer qNum = 30;
         ArrayList<Hotel> retHotelList = searchModel.SearchAvailableRoom(hotelStar, startDate, endDate, sNum, dNum, qNum);
         if (retHotelList != null) {
             System.out.print("[Test] Got results: ");

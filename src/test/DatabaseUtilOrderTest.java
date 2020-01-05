@@ -53,8 +53,8 @@ public class DatabaseUtilOrderTest {
 	        }
 	        
 	        Integer update_OrderID = 1;
-	        Order updateOrder = new Order(update_OrderID,"b05902109",9,9,5,9,9,9,900);
-	        System.out.print("[Test] delete order orderID = " + update_OrderID + "\n");
+	        Order updateOrder = new Order(update_OrderID,"b05902109",1,1,3,1,1,1,101);
+	        System.out.print("[Test] update order orderID = " + update_OrderID + "\n");
 	        databaseOrder.updateOrder(updateOrder);
 	        orders = databaseOrder.getOrderList("b05902109");
 	        for(Order order: orders){
