@@ -72,7 +72,7 @@ public class SearchResultView extends BaseView {
     	return resultObject;
     }
     protected void initialize() {
-        JLabel titleLabel = new JLabel("以下顯示符合條件的飯店");
+        JLabel titleLabel = new JLabel("Hotels matched");
         titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBounds(76, 6, 290, 51);
@@ -90,7 +90,7 @@ public class SearchResultView extends BaseView {
         }
         Object[][] data=getHotel();
         System.out.println("Total Result: "+data.length);
-        String[] columns={"HotelID","星級","地址","地點","總價"};
+        String[] columns={"HotelID","star","Address","Locality","Price"};
         JTable table=new JTable(data,columns);
 
         JScrollPane scrollPane = new JScrollPane(table);
@@ -99,21 +99,21 @@ public class SearchResultView extends BaseView {
         scrollPane.setBounds(18, 70, 365, 267);
         frame.getContentPane().add(scrollPane);
 
-        JButton bookHotelButton = new JButton("訂房");
+        JButton bookHotelButton = new JButton("Book");
         bookHotelButton.setBounds(327, 343, 120, 30);
         frame.getContentPane().add(bookHotelButton);
         
-        JButton returnLastPageButton = new JButton("回上一頁");
+        JButton returnLastPageButton = new JButton("Last page");
         returnLastPageButton.setBounds(212, 343, 120, 30);
         frame.getContentPane().add(returnLastPageButton);
         
-        JButton returnMenuButton = new JButton("回首頁");
+        JButton returnMenuButton = new JButton("Menu");
         returnMenuButton.setBounds(98, 343, 120, 30);
         frame.getContentPane().add(returnMenuButton);
         
         JLabel hintLabel = new JLabel("");
         if (UserSession.getInstance(true).getResultHotel().size() == 0) {
-        	hintLabel.setText("沒有符合搜尋條件的飯店");
+        	hintLabel.setText("No Hotels Match");
         }
         hintLabel.setHorizontalAlignment(SwingConstants.CENTER);
         hintLabel.setForeground(Color.RED);

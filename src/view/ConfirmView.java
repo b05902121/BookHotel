@@ -60,7 +60,7 @@ public class ConfirmView {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        JLabel lblNewLabel = new JLabel("確認您的訂單");
+        JLabel lblNewLabel = new JLabel("Confirm Your Order");
         lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setBounds(109, 30, 224, 47);
@@ -75,32 +75,32 @@ public class ConfirmView {
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
         String checkInDate = dateFormat.format(orderDate.get(0));
         String checkOutDate = dateFormat.format(orderDate.get(1));
-        JLabel lblNewLabel_1 = new JLabel("入住飯店ID : ");
+        JLabel lblNewLabel_1 = new JLabel("Hotel ID : ");
         lblNewLabel_1.setBounds(87, 89, 78, 23);
         frame.getContentPane().add(lblNewLabel_1);
 
-        JLabel lblNewLabel_2 = new JLabel("預定房型數量 : ");
-        lblNewLabel_2.setBounds(87, 124, 90, 29);
+        JLabel lblNewLabel_2 = new JLabel("Reserved Room Number : ");
+        lblNewLabel_2.setBounds(87, 124, 170, 29);
         frame.getContentPane().add(lblNewLabel_2);
 
-        JLabel lblNewLabel_3 = new JLabel("單人房 : ");
+        JLabel lblNewLabel_3 = new JLabel("Single : ");
         lblNewLabel_3.setBounds(142, 159, 61, 16);
         frame.getContentPane().add(lblNewLabel_3);
 
-        JLabel lblNewLabel_4 = new JLabel("雙人房 : ");
+        JLabel lblNewLabel_4 = new JLabel("Double : ");
         lblNewLabel_4.setBounds(142, 187, 61, 16);
         frame.getContentPane().add(lblNewLabel_4);
 
-        JLabel lblNewLabel_5 = new JLabel("四人房 : ");
+        JLabel lblNewLabel_5 = new JLabel("Quad : ");
         lblNewLabel_5.setBounds(142, 215, 61, 16);
         frame.getContentPane().add(lblNewLabel_5);
 
-        JLabel lblNewLabel_6 = new JLabel("入住時間 : ");
-        lblNewLabel_6.setBounds(87, 254, 73, 23);
+        JLabel lblNewLabel_6 = new JLabel("Stay Night : ");
+        lblNewLabel_6.setBounds(87, 254, 90, 23);
         frame.getContentPane().add(lblNewLabel_6);
 
-        JLabel lblNewLabel_7 = new JLabel("訂單金額 : ");
-        lblNewLabel_7.setBounds(87, 292, 73, 16);
+        JLabel lblNewLabel_7 = new JLabel("Order Price : ");
+        lblNewLabel_7.setBounds(87, 292, 90, 16);
         frame.getContentPane().add(lblNewLabel_7);
 
         JLabel orderPriceValue = new JLabel("New label");
@@ -133,7 +133,7 @@ public class ConfirmView {
         hotelIdValue.setText(hotelId);
         frame.getContentPane().add(hotelIdValue);
 
-        JButton returnLastPageButton = new JButton("回上一頁");
+        JButton returnLastPageButton = new JButton("Last page");
         returnLastPageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.returnLastPage();
@@ -142,7 +142,7 @@ public class ConfirmView {
         returnLastPageButton.setBounds(75, 331, 117, 29);
         frame.getContentPane().add(returnLastPageButton);
 
-        JButton doOrderButton = new JButton("確定預定");
+        JButton doOrderButton = new JButton("Confirm");
         doOrderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.confirmOrder();
