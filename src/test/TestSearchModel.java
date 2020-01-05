@@ -40,8 +40,8 @@ public class TestSearchModel {
         
         SearchModel searchModel = new SearchModel();
         Integer hotelStar = 3;
-        Date startDate = getDate("01 01 2019");
-        Date endDate = getDate("03 01 2019");
+        Date startDate = getDate("01 01 2020");
+        Date endDate = getDate("03 01 2020");
         Integer sNum = 10;
         Integer dNum = 15;
         Integer qNum = 25;

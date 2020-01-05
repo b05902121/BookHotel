@@ -2,12 +2,8 @@ package controller;
 
 import javax.swing.JFrame;
 
-import view.SearchResultView;
-
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import main.Hotel;
 import main.Order;
 import main.UserSession;
 import java.util.Date;
@@ -53,9 +49,6 @@ public class ConfirmOrderController extends BaseController {
 			Router.getInstance().showMenu();
 		}
 		UserSession.getInstance(true).cleanOrderCache();
-		
-		// store order in usersession
-		UserSession.getInstance(true).addOrder(order);
 		
 		System.out.println("Success Order!");
 		System.out.println(String.format( "Order Id : %d, Order username: %s, Order Price: %d", order.getOrderId(), order.getUsername(), order.getTotalPrice()));

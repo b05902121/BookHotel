@@ -8,6 +8,7 @@ public enum FrameType {
     ShowResult,
     CheckOrderResult,
     CheckOrder,
-    ModifyOrder,
+    ModifyOrderRoom,
     ConfirmOrder,
+    ModifyOrderDate,
 }

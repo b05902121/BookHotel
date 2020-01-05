@@ -60,21 +60,21 @@ public class QueryView extends BaseView {
         initialize();
     }
     public QueryView() {}
-    
+
     public void setProperty(QueryController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
         initialize();
     }
     public Object[][] getHotel(){
-    	Object [][] resultObject = new Object[1500][5];
-    	ArrayList<Hotel> resultHotel = controller.hotelInfo;
-    	for(int i=0; i<resultHotel.size(); i++) {
-    		Hotel tmpHotel = resultHotel.get(i);
-    		int totalPrice = tmpHotel.calPrice(1, 1, 1);
-    		resultObject[i] = new Object[]{tmpHotel.getHotelId(), tmpHotel.getHotelStar(), tmpHotel.getAddress(), tmpHotel.getLocality(), totalPrice};
-    	}
-    	return resultObject;
+        Object [][] resultObject = new Object[1500][5];
+        ArrayList<Hotel> resultHotel = controller.hotelInfo;
+        for(int i=0; i<resultHotel.size(); i++) {
+            Hotel tmpHotel = resultHotel.get(i);
+            int totalPrice = tmpHotel.calPrice(1, 1, 1);
+            resultObject[i] = new Object[]{tmpHotel.getHotelId(), tmpHotel.getHotelStar(), tmpHotel.getAddress(), tmpHotel.getLocality(), totalPrice};
+        }
+        return resultObject;
     }
     /**
      * Initialize the contents of the frame.
@@ -103,7 +103,7 @@ public class QueryView extends BaseView {
         JLabel filterLabel = new JLabel("篩選條件");
         filterLabel.setBounds(19, 105, 61, 16);
         frame.getContentPane().add(filterLabel);
-        
+
         JRadioButton []starButtons = new JRadioButton[4]; 
         JRadioButton starFiveButton = new JRadioButton("五星級");
         starFiveButton.setBounds(76, 99, 80, 30);
@@ -124,36 +124,36 @@ public class QueryView extends BaseView {
         starTwoButton.setBounds(316, 99, 80, 30);
         starButtons[3] = starTwoButton;
         frame.getContentPane().add(starTwoButton);
-        
-        
-        
+
+
+
         class RadioButtonActionListener implements ActionListener{
-        	public void actionPerformed(ActionEvent e) {
-        		for(int i=0; i<4; i++) {
-        			if (e.getSource() == starButtons[i]) {
-        				for(int j=0; j<4; j++) {
-        					if (j != i) {
-        						starButtons[j].setSelected(false);
-        					}
-        				}
-        				controller.getHotelByStar(5-i);
-        				data = getHotel();
-        				DefaultTableModel dm = (DefaultTableModel)jt.getModel();
-        				dm.getDataVector().removeAllElements();
-        				dm.fireTableDataChanged();
-        				for(int k=0; k<data.length; k++) {
-        					dm.addRow(data[k]);
-        				}
-        			}
-        		}
-        	}
+            public void actionPerformed(ActionEvent e) {
+                for(int i=0; i<4; i++) {
+                    if (e.getSource() == starButtons[i]) {
+                        for(int j=0; j<4; j++) {
+                            if (j != i) {
+                                starButtons[j].setSelected(false);
+                            }
+                        }
+                        controller.getHotelByStar(5-i);
+                        data = getHotel();
+                        DefaultTableModel dm = (DefaultTableModel)jt.getModel();
+                        dm.getDataVector().removeAllElements();
+                        dm.fireTableDataChanged();
+                        for(int k=0; k<data.length; k++) {
+                            dm.addRow(data[k]);
+                        }
+                    }
+                }
+            }
         }
-        
+
         starButtons[0].addActionListener(new RadioButtonActionListener());
         starButtons[1].addActionListener(new RadioButtonActionListener());
         starButtons[2].addActionListener(new RadioButtonActionListener());
         starButtons[3].addActionListener(new RadioButtonActionListener());
-        
+
 
         JComboBox hotelStarComboBox = new JComboBox();
         hotelStarComboBox.setBounds(133, 6, 52, 27);
@@ -211,7 +211,7 @@ public class QueryView extends BaseView {
         JButton searchHotelButton = new JButton("搜尋飯店");
         searchHotelButton.setBounds(327, 66, 120, 30);
         frame.getContentPane().add(searchHotelButton);
-        
+
         JButton returnMenuButton = new JButton("回首頁");
         returnMenuButton.setBounds(0, 343, 120, 30);
         frame.getContentPane().add(returnMenuButton);
@@ -235,11 +235,11 @@ public class QueryView extends BaseView {
                 System.out.println(checkOutDate);
                 UserSession.getInstance(true).setReserveRoomNum(singleNum, doubleNum, quadNum);
                 try {
-					controller.searchMatchHotel(selectHotelStar, singleNum, doubleNum, quadNum, checkInDate, checkOutDate);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+                    controller.searchMatchHotel(selectHotelStar, singleNum, doubleNum, quadNum, checkInDate, checkOutDate);
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         });
         returnMenuButton.addActionListener(new ActionListener() {
@@ -247,6 +247,5 @@ public class QueryView extends BaseView {
                 controller.returnMenu();
             }
         });
-        
     }
 }

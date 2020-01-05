@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -11,9 +12,11 @@ import main.Order;
 import databaseUtil.DatabaseOrder;
 
 public class OrderModel {
-    
     DatabaseOrder dbOrder = null;
-    
+
+    private SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+    private String pivotDate_str = "01 01 2020";
+
     public OrderModel() {
         try {
             this.dbOrder = new DatabaseOrder("config/jdbc.properties");
@@ -21,16 +24,26 @@ public class OrderModel {
             e.printStackTrace();
         }
     }
-    
+
     public int datetoint(Date date) throws ParseException {
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-        String pivotDate_str = "01 01 2020";
         Date pivotDate = myFormat.parse(pivotDate_str);
         long diff = date.getTime() - pivotDate.getTime();
         //System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         return (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
-    
+
+    public Date intToDate(int dateOffset) throws ParseException {
+        Date pivotDate = myFormat.parse(pivotDate_str);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(pivotDate);
+        cal.add(Calendar.DATE, dateOffset);
+        return cal.getTime();
+    }
+
+    public String intToDateString(int dateOffset) throws ParseException {
+        return myFormat.format(intToDate(dateOffset)).replace(" ", "-");
+    }
+
     public Order insertOrder(String username, Integer hotelId, Date startDate, Date endDate, Integer sNum,
             Integer dNum, Integer qNum, Integer totalPrice) throws ParseException {
         Integer startDate_int = datetoint(startDate);
@@ -40,12 +53,12 @@ public class OrderModel {
         this.dbOrder.insertOrder(order);
         return order;
     }
-    
+
     public ArrayList<Order> findOrderByUsername(String username) {
         ArrayList<Order> orderList = this.dbOrder.getOrderList(username);
         return orderList;
     }
-    
+
     public Boolean reviseOrder(Integer orderId, String username, Integer hotelId, Date startDate, Date endDate, Integer sNum,
             Integer dNum, Integer qNum, Integer totalPrice) throws ParseException {
         Integer startDate_int = datetoint(startDate);
@@ -64,7 +77,7 @@ public class OrderModel {
         Boolean ret = this.dbOrder.updateOrder(newOrder);
         return ret;
     }
-    
+
     public void deleteOrder(Integer orderId, String username) {
         Order order = null;
         ArrayList<Order> orderList = findOrderByUsername(username);

@@ -12,12 +12,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.CheckOrderResultController;
+import main.Order;
+import main.UserSession;
 
 public class CheckOrderResultView extends BaseView {
     private JFrame frame;
     private JTextField reservationIdField, hotelIdField, startDateField, endDateField;
     private JTextField singleNumField, doubleNumField, quadNumField, stayNightsField, totalPrizeField;
     private CheckOrderResultController controller;
+    private Order checkingOrder;
     /**
      * Launch the application.
      */
@@ -49,6 +52,7 @@ public class CheckOrderResultView extends BaseView {
     public void setProperty(CheckOrderResultController controller, JFrame frame) {
         this.controller = controller;
         this.frame = frame;
+        checkingOrder = UserSession.getInstance(true).getCacheOrder();
         initialize();
     }
 
@@ -104,14 +108,16 @@ public class CheckOrderResultView extends BaseView {
         reservationIdField.setEditable(false);
         reservationIdField.setHorizontalAlignment(SwingConstants.CENTER);
         reservationIdField.setBounds(200, 40, 130, 25);
-        frame.getContentPane().add(reservationIdField);
         reservationIdField.setColumns(10);
+        reservationIdField.setText(checkingOrder.getOrderId().toString());
+        frame.getContentPane().add(reservationIdField);
 
         hotelIdField = new JTextField();
         hotelIdField.setEditable(false);
         hotelIdField.setHorizontalAlignment(SwingConstants.CENTER);
         hotelIdField.setColumns(10);
         hotelIdField.setBounds(200, 80, 130, 25);
+        hotelIdField.setText(checkingOrder.getHotelId().toString());
         frame.getContentPane().add(hotelIdField);
 
         startDateField = new JTextField();
@@ -119,6 +125,7 @@ public class CheckOrderResultView extends BaseView {
         startDateField.setHorizontalAlignment(SwingConstants.CENTER);
         startDateField.setColumns(10);
         startDateField.setBounds(40, 140, 150, 25);
+        startDateField.setText(controller.getDateString(checkingOrder.getStartDate()));
         frame.getContentPane().add(startDateField);
 
         endDateField = new JTextField();
@@ -126,6 +133,7 @@ public class CheckOrderResultView extends BaseView {
         endDateField.setHorizontalAlignment(SwingConstants.CENTER);
         endDateField.setColumns(10);
         endDateField.setBounds(250, 140, 150, 25);
+        endDateField.setText(controller.getDateString(checkingOrder.getEndDate()));
         frame.getContentPane().add(endDateField);
 
         singleNumField = new JTextField();
@@ -133,6 +141,7 @@ public class CheckOrderResultView extends BaseView {
         singleNumField.setHorizontalAlignment(SwingConstants.CENTER);
         singleNumField.setColumns(10);
         singleNumField.setBounds(120, 200, 40, 25);
+        singleNumField.setText(checkingOrder.getsNum().toString());
         frame.getContentPane().add(singleNumField);
 
         doubleNumField = new JTextField();
@@ -140,6 +149,7 @@ public class CheckOrderResultView extends BaseView {
         doubleNumField.setHorizontalAlignment(SwingConstants.CENTER);
         doubleNumField.setColumns(10);
         doubleNumField.setBounds(240, 200, 40, 25);
+        doubleNumField.setText(checkingOrder.getdNum().toString());
         frame.getContentPane().add(doubleNumField);
 
         quadNumField = new JTextField();
@@ -147,6 +157,7 @@ public class CheckOrderResultView extends BaseView {
         quadNumField.setHorizontalAlignment(SwingConstants.CENTER);
         quadNumField.setColumns(10);
         quadNumField.setBounds(360, 200, 40, 25);
+        quadNumField.setText(checkingOrder.getqNum().toString());
         frame.getContentPane().add(quadNumField);
 
         stayNightsField = new JTextField();
@@ -154,6 +165,8 @@ public class CheckOrderResultView extends BaseView {
         stayNightsField.setHorizontalAlignment(SwingConstants.CENTER);
         stayNightsField.setColumns(10);
         stayNightsField.setBounds(200, 260, 50, 25);
+        Integer stayNights = checkingOrder.getEndDate() - checkingOrder.getStartDate();
+        stayNightsField.setText(stayNights.toString());
         frame.getContentPane().add(stayNightsField);
 
         totalPrizeField = new JTextField();
@@ -161,11 +174,18 @@ public class CheckOrderResultView extends BaseView {
         totalPrizeField.setHorizontalAlignment(SwingConstants.CENTER);
         totalPrizeField.setColumns(10);
         totalPrizeField.setBounds(360, 260, 50, 25);
+        totalPrizeField.setText(checkingOrder.getTotalPrice().toString());
         frame.getContentPane().add(totalPrizeField);
 
         cancelOrderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controller.cancelOrder();
+                int logoutResult = JOptionPane.showConfirmDialog(frame,
+                        "Would you want to cancel order?",
+                        "Warning",
+                        JOptionPane.OK_CANCEL_OPTION);
+                if (logoutResult == JOptionPane.OK_OPTION) {
+                    controller.cancelOrder();
+                }
             }
         });
 
@@ -181,7 +201,7 @@ public class CheckOrderResultView extends BaseView {
                         options,
                         "Cancel");
                 if (opt==JOptionPane.YES_OPTION) {
-                    
+                    controller.modifyOrderDate();
                 }
                 else if (opt==JOptionPane.NO_OPTION) {
                     controller.modifyOrderRoom();

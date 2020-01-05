@@ -3,10 +3,15 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import controller.CheckOrderController;
+import main.Order;
+import main.UserSession;
+import model.OrderModel;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,16 +20,10 @@ import javax.swing.JButton;
 
 public class CheckOrderView extends BaseView {
     private JFrame frame;
-
-    Object[][] data = {
-            {"qwertyuiop", "1", "hotel1", 1, 2, 3, 2000},
-            {"qwertyuiop", "1", "hotel1", 1, 2, 3, 2000},
-            {"qwertyuiop", "1", "hotel1", 1, 2, 3, 2000},
-    };
-    String[] columns = {"OrderID", "HotelID", "HotelName", "Single", "Double", "Quad", "Total Prize"};
-
+    private String[] columns = {"OrderID", "HotelID", "Single", "Double", "Quad", "Total Prize"};
+    private DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
     private CheckOrderController controller;
-
+    private ArrayList<Order> orderlist;
     /**
      * Launch the application.
      */
@@ -44,6 +43,7 @@ public class CheckOrderView extends BaseView {
     /**
      * Create the application.
      */
+
     private CheckOrderView(Boolean testFlag) {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 400);
@@ -59,6 +59,20 @@ public class CheckOrderView extends BaseView {
         initialize();
     }
 
+    public void setContent(ArrayList<Order> orderlist) {
+        this.orderlist = orderlist;
+        if (orderlist == null || orderlist.isEmpty()) {
+            showPopOutMessage("You have no orders.");
+        } else {
+            System.out.println(orderlist);
+            for (Order order: orderlist) {
+                Object[] objs = {order.getOrderId(), order.getHotelId(), 
+                        order.getsNum(), order.getdNum(), order.getqNum(), order.getTotalPrice()};
+                tableModel.addRow(objs);
+            }
+        }
+    }
+
     /**
      * Initialize the contents of the frame.
      */
@@ -70,8 +84,6 @@ public class CheckOrderView extends BaseView {
         JTable jt = new JTable();
         jt.setShowHorizontalLines(true);
         jt.setShowVerticalLines(true);
-
-        DefaultTableModel tableModel = new DefaultTableModel(data, columns);
         jt.setModel(tableModel);
 
         JScrollPane scrollPane = new JScrollPane(jt);
@@ -82,18 +94,22 @@ public class CheckOrderView extends BaseView {
         JButton btnNext = new JButton("Next");
         btnNext.setBounds(320, 330, 120, 30);
         frame.getContentPane().add(btnNext);
-        
+
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("[Order List] Hotel Number " + jt.getSelectedRow() + " is choosed");
-                controller.showCheckOrderResult(jt.getSelectedRow());
+                if (jt.getSelectedRow() < 0) {
+                    showPopOutMessage("Please select an order.");
+                } else {
+                    UserSession.getInstance(true).setOrderCache(orderlist.get(jt.getSelectedRow()));
+                    controller.showCheckOrderResult();
+                }
             }
         });
 
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setBounds(200, 330, 120, 30);
         frame.getContentPane().add(btnCancel);
-        
+
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.showMenu();

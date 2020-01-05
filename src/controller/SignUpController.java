@@ -50,7 +50,7 @@ public class SignUpController extends BaseController {
             signUpView.showPopOutMessage("Sign-up failed, please try again.");
         }
     }
-    
+
     public void showSignInView() {
         Router.getInstance().showSignInView();
     }
