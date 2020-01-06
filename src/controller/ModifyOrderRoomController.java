@@ -6,12 +6,12 @@ import javax.swing.JFrame;
 
 import main.Order;
 import main.UserSession;
-import model.OrderModel;
+import model.ModifyOrderModel;
 import view.ModifyOrderRoomView;
 
 public class ModifyOrderRoomController extends BaseController {
     private ModifyOrderRoomView modifyOrderRoomView = new ModifyOrderRoomView();
-    private OrderModel orderModel = new OrderModel();
+    private ModifyOrderModel modifyOrderModel = new ModifyOrderModel();
     private Order checkingOrder = UserSession.getInstance(true).getCacheOrder();
 
     public ModifyOrderRoomController() {}
@@ -28,8 +28,8 @@ public class ModifyOrderRoomController extends BaseController {
 
     public void didTapNextButton(Integer sNum, Integer dNum, Integer qNum) {
         try {
-            Boolean modifyResult = orderModel.reviseOrder(checkingOrder.getOrderId(), checkingOrder.getUsername(), checkingOrder.getHotelId(),
-                    orderModel.intToDate(checkingOrder.getStartDate()), orderModel.intToDate(checkingOrder.getEndDate()),
+            Boolean modifyResult = modifyOrderModel.reviseOrder(checkingOrder.getOrderId(), checkingOrder.getUsername(), checkingOrder.getHotelId(),
+                    modifyOrderModel.intToDate(checkingOrder.getStartDate()), modifyOrderModel.intToDate(checkingOrder.getEndDate()),
                     sNum, dNum, qNum, checkingOrder.getTotalPrice());
             System.out.println(String.format("[ModifyOrderRoom] Modify Result -> %b", modifyResult));
             if (modifyResult) {
