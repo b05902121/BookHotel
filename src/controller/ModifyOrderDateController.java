@@ -7,12 +7,12 @@ import javax.swing.JFrame;
 
 import main.Order;
 import main.UserSession;
-import model.OrderModel;
+import model.ModifyOrderModel;
 import view.ModifyOrderDateView;
 
 public class ModifyOrderDateController extends BaseController {
     private ModifyOrderDateView modifyOrderDateView = new ModifyOrderDateView();
-    private OrderModel orderModel = new OrderModel();
+    private ModifyOrderModel modifyOrderModel = new ModifyOrderModel();
     private Order checkingOrder = UserSession.getInstance(true).getCacheOrder();
 
     public ModifyOrderDateController() {}
@@ -29,7 +29,7 @@ public class ModifyOrderDateController extends BaseController {
     
     public String getDateString(Integer date) {
         try {
-            return orderModel.intToDateString(date);
+            return modifyOrderModel.intToDateString(date);
         } catch (ParseException e) {
             return "";
         }
@@ -37,7 +37,7 @@ public class ModifyOrderDateController extends BaseController {
 
     public void didTapNextButton(Date startDate, Date endDate) {
         try {
-            Boolean modifyResult = orderModel.reviseOrder(checkingOrder.getOrderId(), checkingOrder.getUsername(), checkingOrder.getHotelId(),
+            Boolean modifyResult = modifyOrderModel.reviseOrder(checkingOrder.getOrderId(), checkingOrder.getUsername(), checkingOrder.getHotelId(),
                     startDate, endDate, checkingOrder.getsNum(), checkingOrder.getdNum(),
                     checkingOrder.getqNum(), checkingOrder.getTotalPrice());
             System.out.println(String.format("[ModifyOrderRoom] Modify Result -> %b", modifyResult));
