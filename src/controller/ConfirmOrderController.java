@@ -8,13 +8,13 @@ import main.Order;
 import main.UserSession;
 import java.util.Date;
 import view.ConfirmView;
-import model.OrderModel;
+import model.InsertOrderModel;
 
 public class ConfirmOrderController extends BaseController {
 	private ConfirmView confirmView = new ConfirmView();
-	private OrderModel orderModel;
+	private InsertOrderModel insertOrderModel = null;
 	public ConfirmOrderController() {
-		orderModel = new OrderModel();
+	    insertOrderModel = new InsertOrderModel();
 	}
 	
 	public void show(JFrame frame) {
@@ -30,7 +30,6 @@ public class ConfirmOrderController extends BaseController {
 		Integer dNum = tmpOrder.getdNum();
 		Integer qNum = tmpOrder.getqNum();
 		Integer totalPrice = tmpOrder.getTotalPrice();
-		Integer orderPrice = tmpOrder.getTotalPrice();
 		Integer hotelId = tmpOrder.getHotelId();
 		ArrayList<Date> orderDate = UserSession.getInstance(true).getOrderDate();
 		String username = UserSession.getInstance(true).getUsername();
@@ -39,7 +38,7 @@ public class ConfirmOrderController extends BaseController {
 		// ...
 		Order order = null;
 		try {
-			order = orderModel.insertOrder(username, hotelId, orderDate.get(0), orderDate.get(1), sNum, dNum, qNum, totalPrice);
+			order = insertOrderModel.insertOrder(username, hotelId, orderDate.get(0), orderDate.get(1), sNum, dNum, qNum, totalPrice);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
