@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import databaseUtil.DatabaseBuildAllTables;
-import databaseUtil.DatabaseOrder;
 import main.Order;
-import model.OrderModel;
+import model.CheckOrderModel;
+import model.InsertOrderModel;
+import model.ModifyOrderModel;
 
 public class TestOrderModel {
 
@@ -55,13 +56,16 @@ public class TestOrderModel {
             e.printStackTrace();
         }
         
-        OrderModel orderModel = new OrderModel();
+        CheckOrderModel checkOrderModel = new CheckOrderModel();
+        InsertOrderModel insertOrderModel = new InsertOrderModel();
+        ModifyOrderModel modifyOrderModel = new ModifyOrderModel();
+        
         Date startDate = getDate("01 01 2020");
         Date endDate = getDate("05 01 2020");
         // insert new order
-        orderModel.insertOrder("aaaaa", 0, startDate, endDate, 1, 1, 1, 100);
+        insertOrderModel.insertOrder("aaaaa", 0, startDate, endDate, 1, 1, 1, 100);
         // check if new order inserted exists
-        ArrayList<Order> orderList = orderModel.findOrderByUsername("aaaaa");
+        ArrayList<Order> orderList = checkOrderModel.findOrderByUsername("aaaaa");
         System.out.println("[TEST] get order: should be 0, aaaaa, 0, 0, 4, 1, 1, 1, 100");
         System.out.print(orderList);
         printOrder(orderList.get(0));
@@ -70,17 +74,17 @@ public class TestOrderModel {
         Date endDate2 = getDate("04 01 2020");
         // revise order
         Integer orderId = orderList.get(0).getOrderId();
-        Boolean ret = orderModel.reviseOrder(orderId, "aaaaa", 0, startDate2, endDate2, 1, 1, 1, 100);
+        Boolean ret = modifyOrderModel.reviseOrder(orderId, "aaaaa", 0, startDate2, endDate2, 1, 1, 1, 100);
         if(ret == Boolean.TRUE) {System.out.println("[TEST] revise order success");}
         else if(ret == Boolean.FALSE) {System.out.println("[TEST] revise order fail");}
-        ArrayList<Order> orderList2 = orderModel.findOrderByUsername("aaaaa");
+        ArrayList<Order> orderList2 = checkOrderModel.findOrderByUsername("aaaaa");
         System.out.println("[TEST] get order: should be 0, aaaaa, 0, 1, 3, 1, 1, 1, 100");
         System.out.print(orderList2);
         printOrder(orderList2.get(0));
         
         // delete order
-        orderModel.deleteOrder(orderId, "aaaaa");
-        ArrayList<Order> orderList3 = orderModel.findOrderByUsername("aaaaa");
+        checkOrderModel.deleteOrder(orderId, "aaaaa");
+        ArrayList<Order> orderList3 = checkOrderModel.findOrderByUsername("aaaaa");
         System.out.println("[TEST] get order: should be []");
         System.out.print(orderList3);
     }
