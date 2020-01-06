@@ -10,13 +10,13 @@ import javax.swing.JFrame;
 import controller.CheckOrderController;
 import main.Order;
 import main.UserSession;
-import model.OrderModel;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class CheckOrderView extends BaseView {
     private JFrame frame;
@@ -24,6 +24,7 @@ public class CheckOrderView extends BaseView {
     private DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
     private CheckOrderController controller;
     private ArrayList<Order> orderlist;
+    private JTextField textFieldSearch;
     /**
      * Launch the application.
      */
@@ -87,12 +88,12 @@ public class CheckOrderView extends BaseView {
         jt.setModel(tableModel);
 
         JScrollPane scrollPane = new JScrollPane(jt);
-        scrollPane.setBounds(30, 65, 390, 250);
+        scrollPane.setBounds(30, 65, 390, 128);
         frame.getContentPane().add(scrollPane);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         JButton btnNext = new JButton("Next");
-        btnNext.setBounds(320, 330, 120, 30);
+        btnNext.setBounds(324, 330, 120, 30);
         frame.getContentPane().add(btnNext);
 
         btnNext.addActionListener(new ActionListener() {
@@ -110,9 +111,37 @@ public class CheckOrderView extends BaseView {
         btnCancel.setBounds(200, 330, 120, 30);
         frame.getContentPane().add(btnCancel);
 
+        JLabel lblSelectTheRow = new JLabel("Select the row you want to revise and click \"Next\"");
+        lblSelectTheRow.setBounds(30, 227, 323, 16);
+        frame.getContentPane().add(lblSelectTheRow);
+
+        JButton btnSearch = new JButton("Search");
+        btnSearch.setBounds(353, 259, 80, 30);
+        frame.getContentPane().add(btnSearch);
+
+        JLabel lblOrSearchBy = new JLabel("Or search by order ID");
+        lblOrSearchBy.setBounds(60, 265, 145, 16);
+        frame.getContentPane().add(lblOrSearchBy);
+
+        textFieldSearch = new JTextField();
+        textFieldSearch.setBounds(210, 260, 135, 26);
+        frame.getContentPane().add(textFieldSearch);
+        textFieldSearch.setColumns(10);
+
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.showMenu();
+            }
+        });
+
+        btnSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String orderId = textFieldSearch.getText();
+                if (!orderId.isEmpty()) {
+                    controller.searchOrderID(orderId);
+                } else {
+                    showPopOutMessage("Please enter order ID.");
+                }
             }
         });
     }
