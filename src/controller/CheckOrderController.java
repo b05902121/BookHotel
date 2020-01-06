@@ -6,19 +6,19 @@ import javax.swing.JFrame;
 
 import main.Order;
 import main.UserSession;
-import model.OrderModel;
+import model.CheckOrderModel;
 import view.CheckOrderView;
 
 public class CheckOrderController extends BaseController {
     private CheckOrderView checkOrderView = new CheckOrderView();
-    private OrderModel orderModel = new OrderModel();
+    private CheckOrderModel checkOrderModel = new CheckOrderModel();
     private ArrayList<Order> orderlist;
     public CheckOrderController() {}
 
     @Override
     public void show(JFrame frame) {
         checkOrderView.setProperty(this, frame);
-        orderlist = orderModel.findOrderByUsername(UserSession.getInstance(true).getUsername());
+        orderlist = checkOrderModel.findOrderByUsername(UserSession.getInstance(true).getUsername());
         checkOrderView.setContent(orderlist);
         frame.setVisible(true);
     }

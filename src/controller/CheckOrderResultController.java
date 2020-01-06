@@ -6,12 +6,13 @@ import javax.swing.JFrame;
 
 import main.Order;
 import main.UserSession;
+import model.CheckOrderModel;
 import model.OrderModel;
 import view.CheckOrderResultView;
 
 public class CheckOrderResultController extends BaseController {
     private CheckOrderResultView checkOrderResultView = new CheckOrderResultView();
-    private OrderModel orderModel = new OrderModel();
+    private CheckOrderModel checkOrderModel = new CheckOrderModel();
     private Order checkingOrder = UserSession.getInstance(true).getCacheOrder();
 
     public CheckOrderResultController() {}
@@ -28,7 +29,7 @@ public class CheckOrderResultController extends BaseController {
     }
 
     public void cancelOrder() {
-        orderModel.deleteOrder(checkingOrder.getOrderId(), checkingOrder.getUsername());
+        checkOrderModel.deleteOrder(checkingOrder.getOrderId(), checkingOrder.getUsername());
         showMenu();
     }
 
@@ -42,7 +43,7 @@ public class CheckOrderResultController extends BaseController {
 
     public String getDateString(Integer date) {
         try {
-            return orderModel.intToDateString(date);
+            return checkOrderModel.intToDateString(date);
         } catch (ParseException e) {
             return "";
         }
