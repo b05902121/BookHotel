@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import main.Order;
 import main.UserSession;
 import model.CheckOrderModel;
-import model.OrderModel;
 import view.CheckOrderResultView;
 
 public class CheckOrderResultController extends BaseController {
