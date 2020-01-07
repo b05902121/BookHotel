@@ -3,12 +3,7 @@ package model;
 import java.sql.*;
 import databaseUtil.DatabaseUser;
 
-public class SignUpModel {
-    private DatabaseUser dbUser = null;
-
-    public SignUpModel() {
-        this.dbUser = new DatabaseUser("config/jdbc.properties");
-    }
+public class SignUpModel extends SignModel{
 
     public Boolean signUp(String username, String pwd) throws SQLException {
         /* 

@@ -4,13 +4,7 @@ import java.sql.*;
 import main.UserSession;
 import databaseUtil.DatabaseUser;
 
-public class SignInModel {
-
-    private DatabaseUser dbUser = null;
-
-    public SignInModel() {
-        this.dbUser = new DatabaseUser("config/jdbc.properties");
-    }
+public class SignInModel extends SignModel{
 
     public Boolean signIn(String username, String pwd) throws SQLException {
         /*
